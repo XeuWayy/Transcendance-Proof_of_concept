@@ -84,25 +84,26 @@ scene.add(light)
 // Ground
 
 const groundArmTexture = textureLoader.load('/floor/granite_tile_arm_1k.png')
+groundArmTexture.colorSpace = THREE.SRGBColorSpace
+groundArmTexture.repeat.set(16, 16)
 groundArmTexture.wrapS = THREE.RepeatWrapping
 groundArmTexture.wrapT = THREE.RepeatWrapping
-groundArmTexture.repeat.set(16, 16)
 
 const groundDiffTexture = textureLoader.load('/floor/granite_tile_diff_1k.jpg')
+groundDiffTexture.repeat.set(16, 16)
 groundDiffTexture.wrapS = THREE.RepeatWrapping
 groundDiffTexture.wrapT = THREE.RepeatWrapping
-groundDiffTexture.repeat.set(16, 16)
 
-const groundNorTexture = textureLoader.load('/floor/granite_tile_nor_gl_1k.jpg')
+const groundNorTexture = textureLoader.load('/floor/granite_tile_nor_gl_1k.png')
+groundNorTexture.repeat.set(16, 16)
 groundNorTexture.wrapS = THREE.RepeatWrapping
 groundNorTexture.wrapT = THREE.RepeatWrapping
-groundNorTexture.repeat.set(16, 16)
 
 const ground = new THREE.Mesh(
   new THREE.PlaneGeometry(100, 100, 100, 100),
   new THREE.MeshStandardMaterial({
       map: groundDiffTexture,
-      displacementMap: groundNorTexture,
+      normalMap: groundNorTexture,
       aoMap: groundArmTexture,
       roughnessMap: groundArmTexture,
       metalnessMap: groundArmTexture,
@@ -116,25 +117,27 @@ scene.add(ground)
 // Cube
 
 const cubeArmTexture = textureLoader.load('/cube/broken_wall_arm_1k.png')
+cubeArmTexture.repeat.set(2, 2)
 cubeArmTexture.wrapS = THREE.RepeatWrapping
 cubeArmTexture.wrapT = THREE.RepeatWrapping
-cubeArmTexture.repeat.set(2, 2)
+
 
 const cubeDiffTexture = textureLoader.load('/cube/broken_wall_diff_1k.jpg')
+cubeDiffTexture.colorSpace = THREE.SRGBColorSpace
+cubeDiffTexture.repeat.set(2, 2)
 cubeDiffTexture.wrapS = THREE.RepeatWrapping
 cubeDiffTexture.wrapT = THREE.RepeatWrapping
-cubeDiffTexture.repeat.set(2, 2)
 
-const cubeNorTexture = textureLoader.load('/cube/broken_wall_nor_gl_1k.jpg')
+const cubeNorTexture = textureLoader.load('/cube/broken_wall_nor_gl_1k.png')
+cubeNorTexture.repeat.set(2, 2)
 cubeNorTexture.wrapS = THREE.RepeatWrapping
 cubeNorTexture.wrapT = THREE.RepeatWrapping
-cubeNorTexture.repeat.set(2, 2)
 
 const cube = new THREE.Mesh(
-  new THREE.BoxGeometry(5, 5, 5),
+  new THREE.BoxGeometry(5, 5, 5, 128, 128),
   new THREE.MeshStandardMaterial({
       map: cubeDiffTexture,
-      displacementMap: cubeNorTexture,
+      normalMap: cubeNorTexture,
       aoMap: cubeArmTexture,
       roughnessMap: cubeArmTexture,
       metalnessMap: cubeArmTexture
@@ -143,29 +146,14 @@ const cube = new THREE.Mesh(
 cube.position.set(15,2.5, -30)
 scene.add(cube)
 
-const cube2ArmTexture = textureLoader.load('/cube/broken_wall_arm_1k.png')
-cube2ArmTexture.wrapS = THREE.RepeatWrapping
-cube2ArmTexture.wrapT = THREE.RepeatWrapping
-cube2ArmTexture.repeat.set(2, 2)
-
-const cube2DiffTexture = textureLoader.load('/cube/broken_wall_diff_1k.jpg')
-cube2DiffTexture.wrapS = THREE.RepeatWrapping
-cube2DiffTexture.wrapT = THREE.RepeatWrapping
-cube2DiffTexture.repeat.set(2, 2)
-
-const cube2NorTexture = textureLoader.load('/cube/broken_wall_nor_gl_1k.jpg')
-cube2NorTexture.wrapS = THREE.RepeatWrapping
-cube2NorTexture.wrapT = THREE.RepeatWrapping
-cube2NorTexture.repeat.set(2, 2)
-
 const cube2 = new THREE.Mesh(
-  new THREE.BoxGeometry(5, 5, 5),
+  new THREE.BoxGeometry(5, 5, 5, 128, 128),
   new THREE.MeshStandardMaterial({
-      map: cube2DiffTexture,
-      displacementMap: cube2NorTexture,
-      aoMap: cube2ArmTexture,
-      roughnessMap: cube2ArmTexture,
-      metalnessMap: cube2ArmTexture
+      map: cubeDiffTexture,
+      normalMap: cubeNorTexture,
+      aoMap: cubeArmTexture,
+      roughnessMap: cubeArmTexture,
+      metalnessMap: cubeArmTexture
   })
 )
 cube2.position.set(-15,2.5, -30)
