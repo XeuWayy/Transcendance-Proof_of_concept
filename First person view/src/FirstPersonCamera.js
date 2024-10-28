@@ -16,11 +16,27 @@ class FirstPersonCamera {
     this.theta = 0
     this.mouseSensitivity = 0.002
     this.cameraSpeed = 10
+
     this.baseHeight = camera.position.y
-    this.headBobbingActive = false
-    this.headBobbingTimer = 0
-    this.headBobbingAmplitude = 0.15
-    this.headBobbingFrequency = 10
+
+    // Vertical bobbing
+    this.verticalBobbingAmplitude = 0.15
+    this.verticalBobbingFrequency = 10
+
+    // Horizontal bobbing
+    this.horizontalBobbingAmplitude = 0.015
+    this.horizontalBobbingFrequency = 5
+
+    // Phase difference between vertical and horizontal bobbing
+    this.bobbingPhaseOffset = Math.PI / 2
+
+    // Smooth transition
+    this.currentVerticalOffset = 0
+    this.currentHorizontalOffset = 0
+    this.transitionSpeed = 8
+
+    // Store the base position
+    this.basePosition = new THREE.Vector3()
   }
 
   /**
@@ -97,14 +113,39 @@ class FirstPersonCamera {
    * @param elapsedTime The elapsedTime between the update
    */
   updateHeadBobbing(elapsedTime) {
+    console.log(this.camera.position)
     if (this.headBobbingActive) {
-      this.headBobbingTimer += elapsedTime * this.headBobbingFrequency
-      const bobOffset = Math.sin(this.headBobbingTimer) * this.headBobbingAmplitude
-      this.camera.position.y = this.baseHeight + bobOffset
+      this.headBobbingTimer += elapsedTime
+
+      const verticalBob = Math.sin(this.headBobbingTimer * this.verticalBobbingFrequency) * this.verticalBobbingAmplitude
+
+      const horizontalBob = Math.sin(
+        this.headBobbingTimer * this.horizontalBobbingFrequency + this.bobbingPhaseOffset
+      ) * this.horizontalBobbingAmplitude
+
+      this.currentVerticalOffset += (verticalBob - this.currentVerticalOffset)
+        * this.transitionSpeed * elapsedTime
+      this.currentHorizontalOffset += (horizontalBob - this.currentHorizontalOffset)
+        * this.transitionSpeed * elapsedTime
+
+      this.camera.position.y = this.baseHeight + this.currentVerticalOffset
+      const rightVector = new THREE.Vector3(1, 0, 0)
+      rightVector.applyQuaternion(this.camera.quaternion)
+      this.camera.position.add(
+        rightVector.multiplyScalar(this.currentHorizontalOffset)
+      )
     } else {
       this.headBobbingTimer = 0
 
-      this.camera.position.y += (this.baseHeight - this.camera.position.y) * 0.1
+      this.currentVerticalOffset *= 0.9
+      this.currentHorizontalOffset *= 0.9
+
+      this.camera.position.y = this.baseHeight + this.currentVerticalOffset
+      const rightVector = new THREE.Vector3(1, 0, 0)
+      rightVector.applyQuaternion(this.camera.quaternion)
+      this.camera.position.add(
+        rightVector.multiplyScalar(this.currentHorizontalOffset)
+      )
     }
   }
 
