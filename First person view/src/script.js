@@ -1,7 +1,11 @@
 import * as THREE from 'three'
 import GUI from 'lil-gui'
+import Stats from "three/addons/libs/stats.module.js";
 
 import FirstPersonCamera from "./FirstPersonCamera.js";
+import CrosshairVertex from "./shaders/crosshair/vertex.glsl"
+import CrosshairFragment from "./shaders/crosshair/fragment.glsl"
+
 
 /**
  * Base
@@ -10,6 +14,12 @@ import FirstPersonCamera from "./FirstPersonCamera.js";
 // Debug
 const gui = new GUI({ width: 340 })
 const debugObject = {}
+
+// FPS Count
+const stats = new Stats();
+stats.domElement.style.position = 'absolute';
+stats.domElement.style.top = '0px';
+document.body.appendChild(stats.dom)
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -54,6 +64,35 @@ camera.position.set(0, 1.9, 0)
 scene.add(camera)
 const fpsCamera = new FirstPersonCamera(camera)
 
+/**
+ * Crosshair
+ */
+
+/**
+ *@author https://codepen.io/driezis/pen/jOPzjLG
+ */
+const crosshair = new THREE.ShaderMaterial({
+  uniforms: {
+    mainColor: {value: {r: 0, g: 1, b: 0.75}},
+    border_Color: {value: {r: 0, g: 0, b: 0}},
+
+    thickness: {value: 0.005},
+    height: {value: 0.007},
+    offset: {value: 0},
+    border: {value: 0.002},
+
+    opacity: {value: 1},
+    center: {value: {x: 0.5, y: 0.5}},
+    rotation: {value: 0}
+  },
+  vertexShader: CrosshairVertex,
+  fragmentShader: CrosshairFragment,
+  transparent: true,
+});
+
+const crosshairSprite = new THREE.Sprite(crosshair);
+crosshairSprite.position.set(0,0,-0.5);
+camera.add(crosshairSprite);
 
 /**
  * Renderer
@@ -159,7 +198,6 @@ const cube2 = new THREE.Mesh(
 cube2.position.set(-15,2.5, -30)
 scene.add(cube2)
 
-
 /**
  * Animate
  */
@@ -167,6 +205,7 @@ const clock = new THREE.Clock()
 
 const tick = () =>
 {
+    stats.begin()
     const elapsedTime = clock.getDelta()
 
     // Update first person
@@ -174,6 +213,8 @@ const tick = () =>
 
     // Render normal scene
     renderer.render(scene, camera)
+
+    stats.end()
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
