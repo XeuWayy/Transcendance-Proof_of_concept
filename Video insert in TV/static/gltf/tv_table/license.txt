@@ -1,0 +1,11 @@
+Model Information:
+* title:	tv table
+* source:	https://sketchfab.com/3d-models/tv-table-d5d2ab03add047ac9cd4f6eb69624822
+* author:	FinBeastMode (https://sketchfab.com/FinBeastMode)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "tv table" (https://sketchfab.com/3d-models/tv-table-d5d2ab03add047ac9cd4f6eb69624822) by FinBeastMode (https://sketchfab.com/FinBeastMode) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

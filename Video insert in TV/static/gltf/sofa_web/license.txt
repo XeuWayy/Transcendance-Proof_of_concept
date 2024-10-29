@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sofa Web
+* source:	https://sketchfab.com/3d-models/sofa-web-0fe3264cdfa8482a83830450d05ae1f1
+* author:	afernandezdelara (https://sketchfab.com/afernandezdelara)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sofa Web" (https://sketchfab.com/3d-models/sofa-web-0fe3264cdfa8482a83830450d05ae1f1) by afernandezdelara (https://sketchfab.com/afernandezdelara) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
