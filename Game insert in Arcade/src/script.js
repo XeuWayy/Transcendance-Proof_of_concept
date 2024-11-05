@@ -92,7 +92,7 @@ gltfLoader.setKTX2Loader(ktx2Loader)
  */
 
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000)
-camera.position.set(14.135021129051161, 1.7, -26.13715029859714)
+camera.position.set(-5, 1.7, 0)
 scene.add(camera)
 const fpsCamera = new FirstPersonCamera(camera)
 
@@ -220,9 +220,9 @@ colladaLoader.load('./Tetris/model.dae', function (collada) {
     scene.add( tetrisMachine );
 })
 
-
-// GLTF Object
-
+/**
+ * Pong TV Part
+ */
 
 const sofa = gltfLoader.load('./gltf/sofa_web/scene.glb', (load) => {
     load.scene.scale.set(0.003, 0.004, 0.004)
@@ -303,6 +303,28 @@ const coolerTv = gltfLoader.load('./gltf/old_tvclean/old_tvclean_compressed.glb'
 
 
 /**
+ * Tetris game part
+ */
+
+const tetrisCanvas = document.getElementById('tetrisCanvas')
+const canvasTexture = new THREE.CanvasTexture(tetrisCanvas)
+
+const tetrisGame = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.914, 0.686, 128, 128),
+    new THREE.ShaderMaterial({
+        uniforms: {
+            videoTexture: { value: canvasTexture }
+        },
+        vertexShader: crtVertex,
+        fragmentShader: crtFragment,
+        side: THREE.DoubleSide
+
+    })
+)
+tetrisGame.position.set(-5, 1.7, -1)
+scene.add(tetrisGame)
+
+/**
  * Animate
  */
 const clock = new THREE.Clock()
@@ -317,6 +339,9 @@ const tick = () =>
 
     // Update the TV
     pongTexture.update()
+
+    // Update the tetris game
+    canvasTexture.needsUpdate = true
 
     // Render normal scene
     renderer.render(scene, camera)
