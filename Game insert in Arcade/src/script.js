@@ -11,6 +11,8 @@ import CrosshairVertex from "./shaders/crosshair/vertex.glsl"
 import CrosshairFragment from "./shaders/crosshair/fragment.glsl"
 import crtVertex from "./shaders/crtScreen/vertex.glsl"
 import crtFragment from "./shaders/crtScreen/fragment.glsl"
+import flatCrtVertex from "./shaders/flatCrt/vertex.glsl"
+import flatCrtFragment from "./shaders/flatCrt/fragment.glsl"
 
 /**
  * Base
@@ -92,7 +94,7 @@ gltfLoader.setKTX2Loader(ktx2Loader)
  */
 
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000)
-camera.position.set(-5, 1.7, 0)
+camera.position.set(-15, 1.7, -25)
 scene.add(camera)
 const fpsCamera = new FirstPersonCamera(camera)
 
@@ -211,15 +213,6 @@ for (let i = 0; i < position.length; i++) {
     scene.add(cube)
 }
 
-// Collada object
-import { ColladaLoader } from 'three/addons/loaders/ColladaLoader.js';
-const colladaLoader = new ColladaLoader();
-colladaLoader.load('./Tetris/model.dae', function (collada) {
-
-    const tetrisMachine = collada.scene;
-    scene.add( tetrisMachine );
-})
-
 /**
  * Pong TV Part
  */
@@ -306,23 +299,66 @@ const coolerTv = gltfLoader.load('./gltf/old_tvclean/old_tvclean_compressed.glb'
  * Tetris game part
  */
 
+const objectsToIntersect = []
+
+// Collada object
+import { ColladaLoader } from 'three/addons/loaders/ColladaLoader.js';
+const colladaLoader = new ColladaLoader();
+colladaLoader.load('./Tetris/model.dae', function (collada) {
+
+    const tetrisMachine = collada.scene;
+    tetrisMachine.rotation.z = -Math.PI * 0.5 // git #24289 issue
+    tetrisMachine.position.set(-15.40, 0, -27)
+    tetrisMachine.scale.set(0.030, 0.030, 0.030)
+    scene.add( tetrisMachine );
+    objectsToIntersect.push(tetrisMachine)
+})
+
 const tetrisCanvas = document.getElementById('tetrisCanvas')
 const canvasTexture = new THREE.CanvasTexture(tetrisCanvas)
+canvas.colorSpace = THREE.SRGBColorSpace
 
 const tetrisGame = new THREE.Mesh(
-    new THREE.PlaneGeometry(0.914, 0.686, 128, 128),
+    new THREE.PlaneGeometry(0.475, 0.352, 128, 128),
     new THREE.ShaderMaterial({
         uniforms: {
             videoTexture: { value: canvasTexture }
         },
-        vertexShader: crtVertex,
-        fragmentShader: crtFragment,
+        vertexShader: flatCrtVertex,
+        fragmentShader: flatCrtFragment,
         side: THREE.DoubleSide
-
     })
 )
-tetrisGame.position.set(-5, 1.7, -1)
+tetrisGame.position.set(-15.034, 1.553, -26.474)
+tetrisGame.rotation.x = -Math.PI * 0.15
+objectsToIntersect.push(tetrisGame)
 scene.add(tetrisGame)
+
+
+window.addEventListener('keydown', (event) => {
+    if (event.code === 'KeyE') {
+        const cameraDirection = camera.getWorldDirection(new THREE.Vector3())
+
+        const raycast = new THREE.Raycaster()
+        raycast.camera = camera
+        raycast.far = 1.5
+        raycast.set(camera.position, cameraDirection)
+        const intersects = raycast.intersectObjects(objectsToIntersect, true)
+        if (intersects.length > 0) {
+            centerCameraOnArcade()
+        }
+    }
+})
+const centerCameraOnArcade = () =>{
+    if (!fpsCamera.isInteractingWithArcade) {
+        fpsCamera.isInteractingWithArcade= true
+        camera.position.set(-15.03, 1.7, -26.15)
+        camera.rotation.set(-0.4940008349279439, -0.0017608863389264688, -0.0009483038705260853)
+    }  else {
+        fpsCamera.isInteractingWithArcade = false
+        camera.position.set(-15, 1.7, -25.15)
+    }
+}
 
 /**
  * Animate

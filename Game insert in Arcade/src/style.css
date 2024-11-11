@@ -10,6 +10,11 @@ body
     overflow: hidden;
 }
 
+@font-face {
+    font-family: 'Tetris';
+    src: url('./font/Tetris.ttf');
+}
+
 .webgl
 {
     position: fixed;

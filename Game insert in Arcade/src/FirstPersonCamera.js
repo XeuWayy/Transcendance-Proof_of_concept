@@ -11,6 +11,8 @@ class FirstPersonCamera {
         this.camera = camera
         this.inputManager = new InputManager()
 
+        this.isInteractingWithArcade = false;
+
         this.rotation = new THREE.Quaternion()
         this.translation = new THREE.Vector3()
         this.phi = 0
@@ -39,12 +41,14 @@ class FirstPersonCamera {
      * @param elapsedTime The elapsedTime between the update
      */
     update (elapsedTime) {
-        this.updateRotation()
-        this.updateTranslation(elapsedTime)
-        this.updateCamera()
-        this.updateHeadBobbing(elapsedTime)
-        this.camera.lookAt(this.focusTarget())
-        this.inputManager.update()
+        if (!this.isInteractingWithArcade) {
+            this.updateRotation()
+            this.updateTranslation(elapsedTime)
+            this.updateCamera()
+            this.updateHeadBobbing(elapsedTime)
+            this.camera.lookAt(this.focusTarget())
+            this.inputManager.update()
+        }
     }
 
     /**
