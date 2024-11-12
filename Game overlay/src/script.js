@@ -362,6 +362,28 @@ const centerCameraOnArcade = () =>{
 }
 
 /**
+ * Overlay
+ */
+
+async function toggleOverlay() {
+    const overlay = document.getElementById('overlay');
+    if (overlay.style.display === 'none' || !overlay.innerHTML) {
+        // Si l'overlay est vide, charger le contenu
+        const response = await fetch('./GameOverlay/overlay.html');
+        overlay.innerHTML = await response.text();
+        overlay.style.display = 'block';
+    } else {
+        overlay.style.display = 'none';
+    }
+}
+
+window.addEventListener('keydown', (event) => {
+    if (event.code === 'CapsLock') {
+        toggleOverlay()
+    }
+})
+
+/**
  * Animate
  */
 const clock = new THREE.Clock()

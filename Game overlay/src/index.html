@@ -7,11 +7,13 @@
         <link rel="stylesheet" href="./style.css">
     </head>
     <body>
+
        <canvas class="webgl"></canvas>
        <video class="webglVideo" autoplay muted playsinline loop style="opacity: 0;">
            <source src="../video/pong_game.mp4" type="video/mp4">
        </video>
        <canvas id="tetrisCanvas" width="1344" height="960" style="opacity:  0"></canvas>
+       <div id="overlay" style=" display: none;"></div>
        <script type="module" src="./script.js"></script>
        <script type="module" src="./tetrisGame/tetris.js"></script>
     </body>
