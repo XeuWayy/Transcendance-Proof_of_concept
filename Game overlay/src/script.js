@@ -6,7 +6,7 @@ import {GLTFLoader} from "three/addons";
 import {MeshoptDecoder} from "three/addons/libs/meshopt_decoder.module.js";
 import {KTX2Loader} from 'three/addons/loaders/KTX2Loader.js';
 
-import FirstPersonCamera from "./FirstPersonCamera.js";
+import FirstPersonCamera from "./FPVCamera/FirstPersonCamera.js";
 import CrosshairVertex from "./shaders/crosshair/vertex.glsl"
 import CrosshairFragment from "./shaders/crosshair/fragment.glsl"
 import crtVertex from "./shaders/crtScreen/vertex.glsl"
@@ -143,18 +143,18 @@ scene.add(tvLight)
 
 // Ground
 
-const groundArmTexture = textureLoader.load('/floor/granite_tile_arm_1k.png')
+const groundArmTexture = textureLoader.load('./textures/floor/granite_tile_arm_1k.png')
 groundArmTexture.colorSpace = THREE.SRGBColorSpace
 groundArmTexture.repeat.set(16, 16)
 groundArmTexture.wrapS = THREE.RepeatWrapping
 groundArmTexture.wrapT = THREE.RepeatWrapping
 
-const groundDiffTexture = textureLoader.load('/floor/granite_tile_diff_1k.jpg')
+const groundDiffTexture = textureLoader.load('./textures/floor/granite_tile_diff_1k.jpg')
 groundDiffTexture.repeat.set(16, 16)
 groundDiffTexture.wrapS = THREE.RepeatWrapping
 groundDiffTexture.wrapT = THREE.RepeatWrapping
 
-const groundNorTexture = textureLoader.load('/floor/granite_tile_nor_gl_1k.png')
+const groundNorTexture = textureLoader.load('./textures/floor/granite_tile_nor_gl_1k.png')
 groundNorTexture.repeat.set(16, 16)
 groundNorTexture.wrapS = THREE.RepeatWrapping
 groundNorTexture.wrapT = THREE.RepeatWrapping
@@ -176,18 +176,18 @@ scene.add(ground)
 
 // Cube
 
-const cubeArmTexture = textureLoader.load('/cube/broken_wall_arm_1k.png')
+const cubeArmTexture = textureLoader.load('./textures/cube/broken_wall_arm_1k.png')
 cubeArmTexture.repeat.set(2, 2)
 cubeArmTexture.wrapS = THREE.RepeatWrapping
 cubeArmTexture.wrapT = THREE.RepeatWrapping
 
-const cubeDiffTexture = textureLoader.load('/cube/broken_wall_diff_1k.jpg')
+const cubeDiffTexture = textureLoader.load('./textures/cube/broken_wall_diff_1k.jpg')
 cubeDiffTexture.colorSpace = THREE.SRGBColorSpace
 cubeDiffTexture.repeat.set(2, 2)
 cubeDiffTexture.wrapS = THREE.RepeatWrapping
 cubeDiffTexture.wrapT = THREE.RepeatWrapping
 
-const cubeNorTexture = textureLoader.load('/cube/broken_wall_nor_gl_1k.png')
+const cubeNorTexture = textureLoader.load('./textures/cube/broken_wall_nor_gl_1k.png')
 cubeNorTexture.repeat.set(2, 2)
 cubeNorTexture.wrapS = THREE.RepeatWrapping
 cubeNorTexture.wrapT = THREE.RepeatWrapping

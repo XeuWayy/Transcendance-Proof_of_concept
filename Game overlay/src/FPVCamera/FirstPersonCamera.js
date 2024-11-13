@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import InputManager from "./InputManager.js";
+import InputManager from "../InputManager/InputManager.js";
 
 class FirstPersonCamera {
     /**

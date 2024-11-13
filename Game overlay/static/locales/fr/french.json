@@ -1,0 +1,10 @@
+{
+    "overlay": {
+        "french": "Francais",
+        "english": "Anglais",
+        "welcome-message": "Oui oui baguette."
+    },
+    "threejs": {
+
+    }
+}
