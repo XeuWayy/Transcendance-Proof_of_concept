@@ -18,14 +18,12 @@ body
     align-content: center;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
 }
 
-h1
+#content
 {
-    color: aliceblue;
-}
-
-li
-{
-    color: aliceblue;
+    min-height: 90%;
+    min-width: 90%;
 }

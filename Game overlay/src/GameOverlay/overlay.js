@@ -1,3 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+
 import LanguageManager from "../LanguageManager/LanguageManager.js"
 
 class OverlayManager {
@@ -23,14 +26,13 @@ class OverlayManager {
 
             this.isInitialized = true
         } catch (error) {
-            console.error(`Erreur while initializing overlay: ${error}`)
-            return 
+            console.error(`Error while initializing overlay: ${error}`)
         }
 
     }
 
     initializeLanguageEvent() {
-        document.querySelectorAll('#langPicker li').forEach(item => {
+        document.querySelectorAll('#header li').forEach(item => {
             item.addEventListener('click', (event) => {
                 const lang = event.target.getAttribute('lang')
                 this.languageManager.changeLanguage(lang, 'overlay')
@@ -51,7 +53,7 @@ class OverlayManager {
 const overlayManager = new OverlayManager()
 
 window.addEventListener('keydown', (event) => {
-    if (event.code === 'CapsLock') {
+    if (event.code === 'ShiftLeft') {
         overlayManager.toggle()
     }
 })

@@ -7,15 +7,26 @@
         <link rel="stylesheet" href="./GameOverlay/overlay.css">
     </head>
     <body>
-        <div id="overlayContent">
-            <div id="langPicker">
-                <nav>
-                    <ul>
-                        <li lang="english">English</li>
-                        <li lang="french">Francais</li>
+        <div class="container" id="overlayContent">
+            <div class="row" id="header">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" id="languageBtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-earth-europe"></i>
+                        Dropdown button
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item" lang="english">🇬🇧 English</li>
+                        <li class="dropdown-item" lang="french">🇫🇷 Francais</li>
+                        <li class="dropdown-item" lang="german">🇩🇪 Deutsch</li>
+                        <li class="dropdown-item" lang="spanish">🇪🇸 Español</li>
+                        <li class="dropdown-item" lang="ukrainian">🇺🇦 українська</li>
+                        <li class="dropdown-item" lang="japanese">🇯🇵 日本語</li>
                     </ul>
-                </nav>
+                </div>
             </div>
-            <h1 data-i18n="welcome-message"></h1>
+            <div class="row" id="content">
+                <h1 class="text-primary" data-i18n="welcome-message"></h1>
+                <button class="btn btn-success">Primary button</button>
+            </div>
         </div>
     </body>

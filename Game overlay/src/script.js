@@ -378,7 +378,7 @@ async function toggleOverlay() {
 }
 
 window.addEventListener('keydown', (event) => {
-    if (event.code === 'CapsLock') {
+    if (event.code === 'ShiftLeft') {
         toggleOverlay()
     }
 })
