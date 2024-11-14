@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="./GameOverlay/overlay.css">
     </head>
     <body>
-        <div class="container" id="overlayContent">
+        <div class="container-fluid" id="overlayContent">
             <div class="row" id="header">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" id="languageBtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,9 +24,28 @@
                     </ul>
                 </div>
             </div>
-            <div class="row" id="content">
-                <h1 class="text-primary" data-i18n="welcome-message"></h1>
-                <button class="btn btn-success">Primary button</button>
+            <div class="row align-items-center" id="content">
+                <div class="col-2" id="useless">
+                    <h1 class="text-primary">Useless</h1>
+                </div>
+                <div class="col-7 d-flex justify-content-center align-items-center h-100" id="menuContainer">
+                    <div class="col-12 my-auto d-flex flex-column align-items-center justify-content-center" id="centerMenu">
+                        <div class="row" id="headerCenterMenu">
+                            <div class="col-6 d-flex justify-content-start" id="profile">
+                                <h1 class="text-primary">Useless</h1>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end" id="user">
+                                <h1 class="text-primary">Useless</h1>
+                            </div>
+                        </div>
+                        <div class="row" id="contentCenterMenu">
+                            <h1 class="text-primary" data-i18n="welcome-message"></h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="friendMenu">
+                    <h1 class="text-primary" data-i18n="welcome-message"></h1>
+                </div>
             </div>
         </div>
     </body>

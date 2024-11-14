@@ -18,12 +18,54 @@ body
     align-content: center;
     justify-content: center;
     align-items: center;
-    width: 100vw;
     height: 100vh;
 }
 
 #content
 {
-    min-height: 90%;
-    min-width: 90%;
+    min-height: 90vh;
+    min-width: 100vw;
+}
+
+#useless
+{
+    background: green;
+    height: 100%;
+
+}
+
+#menuContainer
+{
+    background: red;
+    height: 100%;
+}
+
+#centerMenu
+{
+    background: darkred;
+    height: 85%;
+    border-radius: 15px;
+}
+
+#headerCenterMenu
+{
+    background: red;
+
+    height: 10%;
+    width: 100%;
+    border-radius: 15px;
+}
+
+#contentCenterMenu
+{
+    background: #360000;
+    height: 80%;
+    width: 95%;
+    border-radius: 15px;
+}
+
+#friendMenu
+{
+    background: aquamarine;
+    height: 100%;
 }
