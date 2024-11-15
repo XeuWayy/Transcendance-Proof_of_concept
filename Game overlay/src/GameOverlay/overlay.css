@@ -51,9 +51,32 @@ body
 {
     background: red;
 
-    height: 10%;
+    height: 7%;
     width: 100%;
     border-radius: 15px;
+}
+
+#profilePicture
+{
+    width: 6vh;
+    height: 6vh;
+    min-width: 32px;
+    min-height: 32px;
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+#profilePicture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#profileNavBar
+{
+    background: red;
 }
 
 #contentCenterMenu
@@ -62,6 +85,31 @@ body
     height: 80%;
     width: 95%;
     border-radius: 15px;
+}
+
+#userStats
+{
+    background: red;
+    height: 270px;
+    width: 95%;
+    border-radius: 15px;
+}
+
+#matchHistory
+{
+    background: red;
+    height: 270px;
+    width: 90%;
+    border-radius: 15px;
+}
+
+.match
+{
+    background: darkorange;
+    height: 65px;
+    margin: 3%;
+    border-radius: 15px;
+
 }
 
 #friendMenu
