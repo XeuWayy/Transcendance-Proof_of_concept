@@ -11,7 +11,7 @@
     </head>
     <body>
         <div id="overlayContent" class="container-fluid d-flex flex-column" >
-            <div id="header" class="row d-inline" >
+            <div id="header" class="d-inline" >
 
                 <div class="dropdown">
                     <button id="languageBtn" class="btn btn-secondary dropdown-toggle"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,16 +32,16 @@
 
             <div id="content" class="row d-flex align-items-center justify-content-end">
 
-                <div id="menuContainer" class="col-xl-7 d-flex justify-content-center align-items-center h-100">
+                <div id="menuContainer" class="col-xl-8 d-flex justify-content-center align-items-center h-100">
                     <div id="centerMenu" class="col-12 my-auto d-flex flex-column align-items-center" >
 
                         <div id="headerCenterMenu" class="row m-2 mt-3 mb-1" >
                             <div id="profile" class="col-6 d-flex justify-content-start mt-0" >
-                                <h3 class="text-secondary">Profile</h3>
+                                <h4 class="text-secondary">Profile</h4>
                             </div>
                             <div id="user" class="col-6 d-flex justify-content-end align-items-center" >
                                 <div class="d-flex flex-column justify-content-end me-1">
-                                    <h3 id="username" class="text-primary mb-0" >username</h3>
+                                    <h4 id="username" class="text-primary mb-0" >username</h4>
                                     <span id="onlineStatus" class="text-secondary mb-0 text-end" >status</span>
                                 </div>
                                 <div id="profilePicture">
@@ -158,28 +158,31 @@
                             </div>
 
                             <div id="matchHistory" class="mt-4 mb-4 flex-shrink-0 overflow-y-auto">
-                                <div class="match row d-flex flex-row align-items-center">
-                                    <div class="col-2 d-flex flex-column me-1" style="background: aqua">
-                                        <span id="date" style="color: gray;">15/11/2024</span>
-                                        <span id="time" style="color: gray;">17:45 UTC</span>
+                                <div class="match row d-flex flex-column align-items-center justify-content-evenly">
+                                    <div class="d-flex flex-column" style="width: 50%; margin: 0">
+                                        <div class="align-self-center">
+                                            <span id="date" style="color: gray;">15/11/2024</span>
+                                            <span id="time" style="color: gray;">17:45 UTC</span>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center justify-content-center">
+                                            <span class="">Username 1</span>
+                                            <img class="matchProfilePicture" src="https://cdn.intra.42.fr/users/e8c9f75d2f7a8b2c1ec368bb36be4d31/ccharton.jpg" alt="user image">
+                                            <span class="matchValue">3 - 2</span>
+                                            <img class="matchProfilePicture" src="https://cdn.intra.42.fr/users/e8c9f75d2f7a8b2c1ec368bb36be4d31/ccharton.jpg" alt="user image">
+                                            <span>Username 2</span>
+                                        </div>
                                     </div>
-                                    <div class="col me-1 d-flex flex-row align-items-center" style="background: darkred">
-                                        <span class="me-1">Username 1</span>
-                                        <img class="matchProfilePicture" src="https://cdn.intra.42.fr/users/e8c9f75d2f7a8b2c1ec368bb36be4d31/ccharton.jpg" alt="user image">
-                                        <span class="matchValue ms-1 me-1">3 - 2</span>
-                                        <img class="matchProfilePicture" src="https://cdn.intra.42.fr/users/e8c9f75d2f7a8b2c1ec368bb36be4d31/ccharton.jpg" alt="user image">
-                                        <span class="ms-1">Username 2</span>
-                                    </div>
-                                    <div class="col d-flex flex-row justify-content-evenly" style="background: darkkhaki">
-                                        <div class="col-3 d-flex flex-column align-items-center ms-0">
+
+                                    <div class="d-flex flex-row justify-content-evenly" style="background: darkkhaki; width:50%; ">
+                                        <div class="d-flex flex-column align-items-center">
                                             <span>Duration</span>
                                             <span class="matchValue">03:30</span>
                                         </div>
-                                        <div class="col d-flex flex-column align-items-center">
-                                            <span>Total Bounce</span>
+                                        <div class="d-flex flex-column align-items-center">
+                                            <span>Bounce</span>
                                             <span class="matchValue">346</span>
                                         </div>
-                                        <div class="col d-flex flex-column align-items-center me-0">
+                                        <div class="d-flex flex-column align-items-center">
                                             <span>Avg time goal</span>
                                             <span class="matchValue">00:42</span>
                                         </div>
@@ -199,8 +202,10 @@
                     </div>
                 </div>
 
-                <div class="col-xl-3" id="friendMenu">
-                    <p class="h1 text-primary" data-i18n="welcome-message"></p>
+                <div id="friendMenu" class="col-xl-3 d-flex justify-content-center align-items-center h-100">
+                    <div id="friendContent">
+                        <p class="h1 text-primary" data-i18n="welcome-message"></p>
+                    </div>
                 </div>
             </div>
         </div>
