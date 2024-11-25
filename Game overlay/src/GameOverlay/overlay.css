@@ -2,7 +2,53 @@
     margin: 0;
     padding: 0;
     color: white;
+    font-family: Poppins, sans-serif;
 }
+
+html {
+    font-size: 100%;
+}
+
+body {
+    font-size: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1rem;
+}
+
+@media (max-width: 1200px) {
+    html {
+        font-size: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    html {
+        font-size: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 80%;
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 70%;
+    }
+}
+
 
 html, body {
     overflow: hidden;
@@ -23,20 +69,14 @@ html, body {
     min-width: 100vw;
 }
 
-#useless {
-    background: green;
-    height: 100%;
-
-}
-
 #menuContainer {
-    background: red;
-    height: 100%;
+    margin: 1vw 1vh;
 }
 
 #centerMenu {
     background: darkred;
-    height: 85%;
+    height: 90%;
+    width: 99%;
     border-radius: 15px;
 }
 
@@ -68,11 +108,13 @@ html, body {
     background: red;
 }
 
-#contentCenterMenu {
+#statCenterMenu {
     background: #360000;
     height: 80%;
     width: 95%;
     border-radius: 15px;
+    justify-content: safe center;
+    clip-path: inset(0 round 15px);
 }
 
 #userStats {
@@ -103,6 +145,7 @@ html, body {
     height: 270px;
     width: 90%;
     border-radius: 15px;
+    clip-path: inset(0 round 15px);
 }
 
 .match {
@@ -137,4 +180,5 @@ html, body {
 #friendMenu {
     background: aquamarine;
     height: 100%;
+    margin: 1vw 1vh;
 }
