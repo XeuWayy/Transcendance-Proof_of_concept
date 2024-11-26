@@ -11,6 +11,12 @@ html {
 
 body {
     font-size: 1rem;
+    background: url(https://w.wallhaven.cc/full/o5/wallhaven-o5762l.png) no-repeat;
+    background-size: cover;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 h1 {
@@ -71,7 +77,9 @@ html, body {
 }
 
 #centerMenu {
-    background: darkred;
+    background: rgba(255, 255, 255, .35);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 2px 5px 0 rgba(255,255,255,.75);
     height: 90%;
     width: 99%;
     border-radius: 15px;
@@ -122,7 +130,9 @@ html, body {
 }
 
 #statCenterMenu {
-    background: #360000;
+    background: rgba(0, 0, 0, .35);
+    backdrop-filter: blur(2px);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25);
     height: 80%;
     width: 95%;
     border-radius: 15px;
@@ -131,10 +141,19 @@ html, body {
 }
 
 #userStats {
-    background: red;
+    background: rgba(0, 0, 0, .40);
+    backdrop-filter: blur(0px);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25), 0 2px 5px 0 rgba(0,0,0,.45);
     height: 270px;
     width: 95%;
     border-radius: 15px;
+}
+
+.statInfo {
+    background: rgba(0, 0, 0, .25);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25);
+    width: 80%;
+    border-radius: 25px;
 }
 
 .carousel-indicators {
@@ -158,21 +177,35 @@ html, body {
 }
 
 .graph {
+    background: rgba(0, 0, 0, .25);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25);
+    border-radius: 25px;
     height: 95%;
 }
 
 #matchHistory {
-    background: red;
+    background: rgba(0, 0, 0, .40);
+    backdrop-filter: blur(0px);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25), 0 2px 5px 0 rgba(0,0,0,.45);;
     height: 270px;
     width: 90%;
     border-radius: 15px;
-    clip-path: inset(0 round 15px);
+    /*clip-path: inset(0 round 15px);*/
+    overflow: hidden;
+}
+
+#mathContent {
+    height: 100%;
+    width: 101%;
+    overflow: scroll
 }
 
 .match {
-    background: darkorange;
-    height: 75px;
-    margin: 3% 0;
+    background: rgba(0, 0, 0, .25);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25), 0 2px 5px 0 rgba(255,255,255,.10);
+    min-height: 70px;
+    width: 100%;
+    margin: 2% 0;
     border-radius: 15px;
 }
 
@@ -194,8 +227,9 @@ html, body {
 }
 
 .matchValue {
-    background: rebeccapurple;
-    padding: 2px 5px;
+    background: rgba(255, 255, 255, .15);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25);
+    padding: 3px 5px;
     border-radius: 10px;
 }
 

@@ -37,12 +37,12 @@
 
                         <div id="headerCenterMenu" class="row m-2 mt-3 mb-1" >
                             <div id="profile" class="col-6 d-flex justify-content-start mt-0" >
-                                <h4 class="text-secondary">Profile</h4>
+                                <h4>Profile</h4>
                             </div>
                             <div id="user" class="col-6 d-flex justify-content-end align-items-center" >
                                 <div class="d-flex flex-column justify-content-end me-1">
                                     <h4 id="username" class="text-primary mb-0" >username</h4>
-                                    <span id="onlineStatus" class="text-secondary mb-0 text-end" >status</span>
+                                    <span id="onlineStatus" class=" mb-0 text-end" style="color: #CACACA">status</span>
                                 </div>
                                 <div id="profilePicture">
                                     <img src="https://cdn.intra.42.fr/users/e8c9f75d2f7a8b2c1ec368bb36be4d31/ccharton.jpg" alt="user image">
@@ -75,9 +75,9 @@
                                     <div class="carousel-inner d-flex align-items-center h-100">
                                         <div class="carousel-item active align-items-center justify-content-center h-100 w-100">
 
-                                            <div id="graph1" class="col-3 d-flex flex-column justify-content-center align-items-center rounded-4 graph" style="background: darkolivegreen;">
+                                            <div id="graph1" class="col-3 d-flex flex-column justify-content-center align-items-center graph">
                                                 <div class="donut-chart mt-2 mb-2" style="position: relative; width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(#FF4F4E 0% 25%, #3EFF74 25% 100%);">
-                                                    <div class="donut-hole" style="position: absolute; top: 18%; left: 18%; width: 64%; height: 64%; border-radius: 50%; background: darkolivegreen;">
+                                                    <div class="donut-hole" style="position: absolute; top: 18%; left: 18%; width: 64%; height: 64%; border-radius: 50%; background: #1E1E1E">
                                                     </div>
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center justify-content-start">
@@ -91,38 +91,38 @@
                                             </div>
 
                                             <div id="statBlock1" class="col d-flex flex-column justify-content-evenly align-items-center h-100 rounded-4 ms-1">
-                                                <div class="row h-25 rounded-4" style="background: indigo; width: 95%;">
+                                                <div class="row h-25 statInfo">
                                                     <span class="text-center">Game Played</span>
                                                     <h3 class="text-center">420</h3>
                                                 </div>
-                                                <div class="row h-25 rounded-4" style="background: indigo; width: 95%;">
+                                                <div class="row h-25 statInfo">
                                                     <span class="text-center">Game Win</span>
                                                     <h3 class="text-center">315</h3>
                                                 </div>
-                                                <div class="row h-25 rounded-4" style="background: indigo; width: 95%;">
+                                                <div class="row h-25 statInfo">
                                                     <span class="text-center">Game Lose</span>
                                                     <h3 class="text-center">105</h3>
                                                 </div>
                                             </div>
 
                                             <div id="statBlock2" class="col d-flex flex-column justify-content-evenly align-items-center h-100 rounded-4 ms-1 me-1">
-                                                <div class="row h-25 rounded-4" style="background: rosybrown; width: 95%;">
+                                                <div class="row h-25 statInfo">
                                                     <span class="text-center">Game Played</span>
                                                     <h3 class="text-center">420</h3>
                                                 </div>
-                                                <div class="row h-25 rounded-4" style="background: rosybrown; width: 95%;">
+                                                <div class="row h-25 statInfo">
                                                     <span class="text-center">Game Win</span>
                                                     <h3 class="text-center">315</h3>
                                                 </div>
-                                                <div class="row h-25 rounded-4" style="background: rosybrown; width: 95%;">
+                                                <div class="row h-25 statInfo">
                                                     <span class="text-center">Game Lose</span>
                                                     <h3 class="text-center">105</h3>
                                                 </div>
                                             </div>
 
-                                            <div id="graph2" class="col-3 d-flex flex-column justify-content-center align-items-center rounded-4 graph" style="background: darksalmon;">
+                                            <div id="graph2" class="col-3 d-flex flex-column justify-content-center align-items-center graph">
                                                 <div class="donut-chart mt-2 mb-2" style="position: relative; width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(#FF4F4E 0% 25%, #3EFF74 25% 100%);">
-                                                    <div class="donut-hole" style="position: absolute; top: 18%; left: 18%; width: 64%; height: 64%; border-radius: 50%; background: darksalmon;">
+                                                    <div class="donut-hole" style="position: absolute; top: 18%; left: 18%; width: 64%; height: 64%; border-radius: 50%; background: #1E1E1E;">
                                                     </div>
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center justify-content-start">
@@ -146,45 +146,47 @@
                                 </div>
                             </div>
 
-                            <div id="matchHistory" class="mt-4 mb-4 flex-shrink-0 overflow-y-auto">
-                                <div class="match row d-flex flex-column align-items-center justify-content-evenly">
-                                    <div class="d-flex flex-column" style="width: 50%; margin: 0">
-                                        <div class="align-self-center">
-                                            <span id="date" style="color: gray;">15/11/2024</span>
-                                            <span id="time" style="color: gray;">17:45 UTC</span>
+                            <div id="matchHistory" class="mt-4 mb-4 ">
+                                <div id="mathContent" class="d-flex flex-column">
+                                    <div class="match row d-flex flex-column align-items-center justify-content-evenly">
+                                        <div class="d-flex flex-column" style="width: 50%; margin: 0">
+                                            <div class="align-self-center">
+                                                <span id="date" style="color: gray;">15/11/2024</span>
+                                                <span id="time" style="color: gray;">17:45 UTC</span>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center justify-content-center">
+                                                <span class="">Username 1</span>
+                                                <img class="matchProfilePicture" src="https://cdn.intra.42.fr/users/e8c9f75d2f7a8b2c1ec368bb36be4d31/ccharton.jpg" alt="user image">
+                                                <span class="matchValue">3 - 2</span>
+                                                <img class="matchProfilePicture" src="https://cdn.intra.42.fr/users/e8c9f75d2f7a8b2c1ec368bb36be4d31/ccharton.jpg" alt="user image">
+                                                <span>Username 2</span>
+                                            </div>
                                         </div>
-                                        <div class="d-flex flex-row align-items-center justify-content-center">
-                                            <span class="">Username 1</span>
-                                            <img class="matchProfilePicture" src="https://cdn.intra.42.fr/users/e8c9f75d2f7a8b2c1ec368bb36be4d31/ccharton.jpg" alt="user image">
-                                            <span class="matchValue">3 - 2</span>
-                                            <img class="matchProfilePicture" src="https://cdn.intra.42.fr/users/e8c9f75d2f7a8b2c1ec368bb36be4d31/ccharton.jpg" alt="user image">
-                                            <span>Username 2</span>
-                                        </div>
-                                    </div>
 
-                                    <div class="d-flex flex-row justify-content-evenly" style="width:50%;">
-                                        <div class="d-flex flex-column align-items-center">
-                                            <span>Duration</span>
-                                            <span class="matchValue">03:30</span>
-                                        </div>
-                                        <div class="d-flex flex-column align-items-center">
-                                            <span>Bounce</span>
-                                            <span class="matchValue">346</span>
-                                        </div>
-                                        <div class="d-flex flex-column align-items-center">
-                                            <span>Avg time goal</span>
-                                            <span class="matchValue">00:42</span>
+                                        <div class="d-flex flex-row justify-content-evenly" style="width:50%;">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <span>Duration</span>
+                                                <span class="matchValue">03:30</span>
+                                            </div>
+                                            <div class="d-flex flex-column align-items-center">
+                                                <span>Bounce</span>
+                                                <span class="matchValue">346</span>
+                                            </div>
+                                            <div class="d-flex flex-column align-items-center">
+                                                <span>Avg time goal</span>
+                                                <span class="matchValue">00:42</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="match">
-                                    <span>Match 2</span>
-                                </div>
-                                <div class="match">
-                                    <span>Match 3</span>
-                                </div>
-                                <div class="match">
-                                    <span>Match 4</span>
+                                    <div class="match">
+                                        <span>Match 2</span>
+                                    </div>
+                                    <div class="match">
+                                        <span>Match 3</span>
+                                    </div>
+                                    <div class="match">
+                                        <span>Match 4</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
