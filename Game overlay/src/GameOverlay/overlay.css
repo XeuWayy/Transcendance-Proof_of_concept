@@ -76,12 +76,20 @@ html, body {
     min-width: 100%;
 }
 
-#centerMenu {
-    background: rgba(255, 255, 255, .35);
+#centerMenu::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
     backdrop-filter: blur(2px);
-    box-shadow: 0 2px 5px 0 rgba(255,255,255,.75);
+    z-index: -1;
+}
+
+#centerMenu {
     height: 90%;
     width: 99%;
+    background: rgba(255, 255, 255, .35);
+    box-shadow: 0 2px 5px 0 rgba(255,255,255,.75);
     max-height: 810px;
     border-radius: 15px;
 }
@@ -123,27 +131,32 @@ html, body {
 }
 
 .nav-underline .nav-link.active {
-    color: white;
+    color: white ;
 }
 
 .nav-underline .nav-link.hover {
     color: white;
 }
 
+#statCenterMenu::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(2px);
+    z-index: -1;
+}
+
 #statCenterMenu {
     background: rgba(0, 0, 0, .35);
-    backdrop-filter: blur(2px);
     box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25);
     height: 80%;
     width: 95%;
     border-radius: 15px;
-    justify-content: safe center;
-    clip-path: inset(0 round 15px);
 }
 
 #userStats {
     background: rgba(0, 0, 0, .40);
-    backdrop-filter: blur(0px);
     box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25), 0 2px 5px 0 rgba(0,0,0,.45);
     height: 270px;
     width: 95%;
@@ -153,7 +166,7 @@ html, body {
 .statInfo {
     background: rgba(0, 0, 0, .25);
     box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25);
-    width: 80%;
+    width: 85%;
     border-radius: 25px;
 }
 
@@ -187,25 +200,24 @@ html, body {
 #matchHistory {
     background: rgba(0, 0, 0, .40);
     backdrop-filter: blur(0px);
-    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25), 0 2px 5px 0 rgba(0,0,0,.45);;
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25), 0 2px 5px 0 rgba(0,0,0,.45);
     height: 270px;
     width: 90%;
     border-radius: 15px;
-    /*clip-path: inset(0 round 15px);*/
     overflow: hidden;
 }
 
 #mathContent {
     height: 100%;
     width: 101%;
-    overflow: scroll
+    overflow: scroll;
 }
 
 .match {
     background: rgba(0, 0, 0, .25);
     box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25), 0 2px 5px 0 rgba(255,255,255,.10);
     min-height: 70px;
-    width: 100%;
+    width: 99%;
     margin: 2% 0;
     border-radius: 15px;
 }
