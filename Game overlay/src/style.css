@@ -32,5 +32,5 @@ body
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 9999;
-    overflow: auto;
+    overflow: hidden;
 }

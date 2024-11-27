@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 import LanguageManager from "../LanguageManager/LanguageManager.js"
+import button from "bootstrap/js/src/button.js";
+import {overlay} from "three/nodes";
 
 class OverlayManager {
     constructor() {
@@ -54,6 +56,40 @@ const overlayManager = new OverlayManager()
 
 window.addEventListener('keydown', (event) => {
     if (event.code === 'ShiftLeft') {
+        console.log("pressed")
         overlayManager.toggle()
     }
 })
+
+// Gamepad Support
+
+let animationFrame
+let previousButtonState = false
+
+const gamepadConnected = () => {
+    gamepadUpdate()
+}
+
+const gamepadUpdate = () => {
+    const gamepads = navigator.getGamepads()
+
+    if (!gamepads[0]) {
+        return
+    }
+    const gamepad = gamepads[0]
+    const isPressed = gamepad.buttons.at(9).pressed;
+
+    if (isPressed && !previousButtonState) {
+        overlayManager.toggle()
+    }
+    previousButtonState = isPressed
+
+    animationFrame = requestAnimationFrame(gamepadUpdate)
+}
+
+const gamepadDisconnected = () => {
+    cancelAnimationFrame(animationFrame)
+}
+
+window.addEventListener('gamepadconnected', () => gamepadConnected())
+window.addEventListener('gamepaddisconnected', () => gamepadDisconnected())

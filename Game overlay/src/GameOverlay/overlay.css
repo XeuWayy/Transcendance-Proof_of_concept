@@ -3,6 +3,7 @@
     padding: 0;
     color: white;
     font-family: Poppins, sans-serif;
+    overflow: hidden;
 }
 
 html {
@@ -11,12 +12,6 @@ html {
 
 body {
     font-size: 1rem;
-    background: url(https://w.wallhaven.cc/full/o5/wallhaven-o5762l.png) no-repeat;
-    background-size: cover;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
 }
 
 h1 {
@@ -147,6 +142,10 @@ html, body {
     z-index: -1;
 }
 
+#statCenterMenu::-webkit-scrollbar {
+    display: none;
+}
+
 #statCenterMenu {
     background: rgba(0, 0, 0, .35);
     box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25);
@@ -207,10 +206,15 @@ html, body {
     overflow: hidden;
 }
 
+#mathContent::-webkit-scrollbar {
+    display: none;
+}
+
 #mathContent {
     height: 100%;
     width: 101%;
     overflow: scroll;
+    scrollbar-width: none;
 }
 
 .match {
