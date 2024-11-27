@@ -1,0 +1,259 @@
+*  {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: Poppins, sans-serif;
+    overflow: hidden;
+}
+
+html {
+    font-size: 100%;
+}
+
+body {
+    font-size: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1rem;
+}
+
+@media (max-width: 1200px) {
+    html {
+        font-size: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    html {
+        font-size: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 80%;
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 70%;
+    }
+}
+
+html, body {
+    overflow: hidden;
+}
+
+#overlayContent {
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+#header {
+    height: 45px;
+}
+
+#content {
+    min-height: calc(100% - 60px);;
+    min-width: 100%;
+}
+
+#centerMenu::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(2px);
+    z-index: -1;
+}
+
+#centerMenu {
+    height: 90%;
+    width: 99%;
+    background: rgba(255, 255, 255, .35);
+    box-shadow: 0 2px 5px 0 rgba(255,255,255,.75);
+    max-height: 810px;
+    border-radius: 15px;
+}
+
+#headerCenterMenu {
+    min-height: 45px;
+    max-height: 60px;
+    width: 100%;
+    border-radius: 15px;
+}
+
+#profilePicture {
+    width: 6vh;
+    height: 6vh;
+    min-width: 32px;
+    min-height: 32px;
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+#profilePicture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#profileNavBar {
+    width: 95%;
+}
+
+.nav :hover {
+    color: gainsboro;
+}
+
+.nav-link {
+    color: gray
+}
+
+.nav-underline .nav-link.active {
+    color: white ;
+}
+
+.nav-underline .nav-link.hover {
+    color: white;
+}
+
+#statCenterMenu::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(2px);
+    z-index: -1;
+}
+
+#statCenterMenu::-webkit-scrollbar {
+    display: none;
+}
+
+#statCenterMenu {
+    background: rgba(0, 0, 0, .35);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25);
+    height: 80%;
+    width: 95%;
+    border-radius: 15px;
+}
+
+#userStats {
+    background: rgba(0, 0, 0, .40);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25), 0 2px 5px 0 rgba(0,0,0,.45);
+    height: 270px;
+    width: 95%;
+    border-radius: 15px;
+}
+
+.statInfo {
+    background: rgba(0, 0, 0, .25);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25);
+    width: 85%;
+    border-radius: 25px;
+}
+
+.carousel-indicators {
+    bottom: -5px;
+}
+
+.carousel-indicators [data-bs-target] {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+}
+
+.carousel .carousel-indicators button {
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+}
+
+.carousel-item.active {
+    display: flex;
+}
+
+.graph {
+    background: rgba(0, 0, 0, .25);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25);
+    border-radius: 25px;
+    height: 95%;
+}
+
+#matchHistory {
+    background: rgba(0, 0, 0, .40);
+    backdrop-filter: blur(0px);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25), 0 2px 5px 0 rgba(0,0,0,.45);
+    height: 270px;
+    width: 90%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#mathContent::-webkit-scrollbar {
+    display: none;
+}
+
+#mathContent {
+    height: 100%;
+    width: 101%;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.match {
+    background: rgba(0, 0, 0, .25);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25), 0 2px 5px 0 rgba(255,255,255,.10);
+    min-height: 70px;
+    width: 99%;
+    margin: 2% 0;
+    border-radius: 15px;
+}
+
+.match > div {
+    border-radius: 15px;
+}
+
+.matchProfilePicture {
+    width: 3vh;
+    height: 3vh;
+    min-width: 24px;
+    min-height: 24px;
+    max-width: 32px;
+    max-height: 32px;
+    margin: 0 2px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.matchValue {
+    background: rgba(255, 255, 255, .15);
+    box-shadow: inset 0 0 5px 4px rgba(0,0,0,0.25);
+    padding: 3px 5px;
+    border-radius: 10px;
+}
+
+#friendContent {
+    background: red;
+    height: 70%;
+    width: 99%;
+    border-radius: 15px;
+    clip-path: inset(0 round 15px);
+}

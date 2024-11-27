@@ -68,7 +68,6 @@ const renderer = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true
 })
-
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(sizes.pixelRatio)
 
@@ -95,6 +94,7 @@ gltfLoader.setKTX2Loader(ktx2Loader)
  */
 
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000)
+
 camera.position.set(-15, 1.7, -25)
 scene.add(camera)
 const fpsCamera = new FirstPersonCamera(camera)

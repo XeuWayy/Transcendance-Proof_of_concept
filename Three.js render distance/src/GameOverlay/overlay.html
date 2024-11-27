@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Transcendance - Game overlay</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./GameOverlay/overlay.css">
+    </head>
+    <body>
+        <div id="overlayContent" class="container-fluid d-flex flex-column" >
+            <div id="header" class="d-inline" >
+
+                <div class="dropdown">
+                    <button id="languageBtn" class="btn btn-secondary dropdown-toggle"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-earth-europe"></i>
+                        Dropdown button
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item" lang="english">🇬🇧 English</li>
+                        <li class="dropdown-item" lang="french">🇫🇷 Francais</li>
+                        <li class="dropdown-item" lang="german">🇩🇪 Deutsch</li>
+                        <li class="dropdown-item" lang="spanish">🇪🇸 Español</li>
+                        <li class="dropdown-item" lang="ukrainian">🇺🇦 українська</li>
+                        <li class="dropdown-item" lang="japanese">🇯🇵 日本語</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div id="content" class="row d-flex align-items-center justify-content-end">
+
+                <div id="menuContainer" class="col-xl-8 d-flex justify-content-center align-items-center h-100">
+                    <div id="centerMenu" class="col-12 my-auto d-flex flex-column align-items-center" >
+
+                        <div id="headerCenterMenu" class="row m-2 mt-3 mb-1" >
+                            <div id="profile" class="col-6 d-flex justify-content-start mt-0" >
+                                <h4>Profile</h4>
+                            </div>
+                            <div id="user" class="col-6 d-flex justify-content-end align-items-center" >
+                                <div class="d-flex flex-column justify-content-end me-1">
+                                    <h4 id="username" class="text-primary mb-0" >username</h4>
+                                    <span id="onlineStatus" class=" mb-0 text-end" style="color: #CACACA">status</span>
+                                </div>
+                                <div id="profilePicture">
+                                    <img src="https://cdn.intra.42.fr/users/e8c9f75d2f7a8b2c1ec368bb36be4d31/ccharton.jpg" alt="user image">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="profileNavBar" class="row m-2" style="border-bottom: 2px solid white;">
+                            <ul class="nav nav-underline">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">STATISTIC</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">PARAMETERS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">PROFILE</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="statCenterMenu" class="row d-flex flex-column align-items-center m-2 overflow-y-scroll flex-nowrap">
+                            <div id="userStats" class="mt-4 mb-4 d-flex flex-column align-items-center overflow-hidden">
+                                <div id="carouselIndicators" class="carousel slide" style="width: 100%; height: 99%; margin: 0">
+                                    <div class="carousel-indicators mb-0">
+                                        <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                        <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                        <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    </div>
+                                    <div class="carousel-inner d-flex align-items-center h-100">
+                                        <div class="carousel-item active align-items-center justify-content-center h-100 w-100">
+
+                                            <div id="graph1" class="col-3 d-flex flex-column justify-content-center align-items-center graph">
+                                                <div class="donut-chart mt-2 mb-2" style="position: relative; width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(#FF4F4E 0% 25%, #3EFF74 25% 100%);">
+                                                    <div class="donut-hole" style="position: absolute; top: 18%; left: 18%; width: 64%; height: 64%; border-radius: 50%; background: #1E1E1E">
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center justify-content-start">
+                                                    <div class="me-1" style="height: 10px; width: 10px; border-radius: 25%; background: #3EFF74;"></div>
+                                                    <span>Game Win</span>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center justify-content-start">
+                                                    <div class="me-1" style="height: 10px; width: 10px; border-radius: 25%; background: #FF4F4E;"></div>
+                                                    <span>Game Lose</span>
+                                                </div>
+                                            </div>
+
+                                            <div id="statBlock1" class="col d-flex flex-column justify-content-evenly align-items-center h-100 rounded-4 ms-1">
+                                                <div class="row h-25 statInfo">
+                                                    <span class="text-center">Game Played</span>
+                                                    <h3 class="text-center">420</h3>
+                                                </div>
+                                                <div class="row h-25 statInfo">
+                                                    <span class="text-center">Game Win</span>
+                                                    <h3 class="text-center">315</h3>
+                                                </div>
+                                                <div class="row h-25 statInfo">
+                                                    <span class="text-center">Game Lose</span>
+                                                    <h3 class="text-center">105</h3>
+                                                </div>
+                                            </div>
+
+                                            <div id="statBlock2" class="col d-flex flex-column justify-content-evenly align-items-center h-100 rounded-4 ms-1 me-1">
+                                                <div class="row h-25 statInfo">
+                                                    <span class="text-center">Game Played</span>
+                                                    <h3 class="text-center">420</h3>
+                                                </div>
+                                                <div class="row h-25 statInfo">
+                                                    <span class="text-center">Game Win</span>
+                                                    <h3 class="text-center">315</h3>
+                                                </div>
+                                                <div class="row h-25 statInfo">
+                                                    <span class="text-center">Game Lose</span>
+                                                    <h3 class="text-center">105</h3>
+                                                </div>
+                                            </div>
+
+                                            <div id="graph2" class="col-3 d-flex flex-column justify-content-center align-items-center graph">
+                                                <div class="donut-chart mt-2 mb-2" style="position: relative; width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(#FF4F4E 0% 25%, #3EFF74 25% 100%);">
+                                                    <div class="donut-hole" style="position: absolute; top: 18%; left: 18%; width: 64%; height: 64%; border-radius: 50%; background: #1E1E1E;">
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center justify-content-start">
+                                                    <div class="me-1" style="height: 10px; width: 10px; border-radius: 25%; background: #3EFF74;"></div>
+                                                    <span>Game Win</span>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center justify-content-start">
+                                                    <div class="me-1" style="height: 10px; width: 10px; border-radius: 25%; background: #FF4F4E;"></div>
+                                                    <span>Game Lose</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="carousel-item align-items-center justify-content-center h-100 w-100">
+                                            <span>Placeholder 1</span>
+                                        </div>
+                                        <div class="carousel-item align-items-center justify-content-center h-100 w-100">
+                                            <span>Placeholder 2</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="matchHistory" class="mt-4 mb-4">
+                                <div id="mathContent" class="d-flex flex-column">
+                                    <div class="match row d-flex flex-column align-items-center justify-content-evenly">
+                                        <div class="d-flex flex-column" style="width: 50%; margin: 0">
+                                            <div class="align-self-center">
+                                                <span id="date" style="color: gray;">15/11/2024</span>
+                                                <span id="time" style="color: gray;">17:45 UTC</span>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center justify-content-center">
+                                                <span class="">Username 1</span>
+                                                <img class="matchProfilePicture" src="https://cdn.intra.42.fr/users/e8c9f75d2f7a8b2c1ec368bb36be4d31/ccharton.jpg" alt="user image">
+                                                <span class="matchValue">3 - 2</span>
+                                                <img class="matchProfilePicture" src="https://cdn.intra.42.fr/users/e8c9f75d2f7a8b2c1ec368bb36be4d31/ccharton.jpg" alt="user image">
+                                                <span>Username 2</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-evenly" style="width:50%;">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <span>Duration</span>
+                                                <span class="matchValue">03:30</span>
+                                            </div>
+                                            <div class="d-flex flex-column align-items-center">
+                                                <span>Bounce</span>
+                                                <span class="matchValue">346</span>
+                                            </div>
+                                            <div class="d-flex flex-column align-items-center">
+                                                <span>Avg time goal</span>
+                                                <span class="matchValue">00:42</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="match">
+                                        <span>Match 2</span>
+                                    </div>
+                                    <div class="match">
+                                        <span>Match 3</span>
+                                    </div>
+                                    <div class="match">
+                                        <span>Match 4</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="friendMenu" class="col-xl-3 d-flex justify-content-center align-items-center h-100">
+                    <div id="friendContent">
+                        <p class="h1 text-primary" data-i18n="welcome-message"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
