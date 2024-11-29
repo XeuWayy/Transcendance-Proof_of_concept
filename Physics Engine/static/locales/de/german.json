@@ -1,0 +1,10 @@
+{
+  "overlay": {
+    "french": "French",
+    "english": "English",
+    "welcome-message": "Ich weiß nicht"
+  },
+  "threejs": {
+
+  }
+}

@@ -16,6 +16,7 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "gsap": "^3.12.5",
+    "jolt-physics": "^0.30.0",
     "lil-gui": "^0.19.2",
     "three": "^0.166.1"
   }

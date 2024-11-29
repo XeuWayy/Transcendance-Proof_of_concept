@@ -1,0 +1,11 @@
+Model Information:
+* title:	Old TV
+* source:	https://sketchfab.com/3d-models/old-tv-8ee8454ea06b47f1b204dfefb7af8e24
+* author:	tinderboxh (https://sketchfab.com/tinderboxh)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Old TV" (https://sketchfab.com/3d-models/old-tv-8ee8454ea06b47f1b204dfefb7af8e24) by tinderboxh (https://sketchfab.com/tinderboxh) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
