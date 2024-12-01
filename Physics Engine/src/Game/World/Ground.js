@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import * as RAPIER from "@dimforge/rapier3d"
 
 import Game from "../Game.js"
 
@@ -7,6 +8,8 @@ class Ground {
         this.game = new Game()
         this.scene = this.game.scene
         this.ressources = this.game.ressources
+        this.world = this.game.world
+        this.physics = this.game.physics
 
         this.setTextures()
         this.setGround()
@@ -33,6 +36,11 @@ class Ground {
     }
 
     setGround() {
+        // Physic Ground
+        this.groundColliderDesc = RAPIER.ColliderDesc.cuboid(50.0, 0.0, 50.0)
+        this.groundCollider = this.physics.world.createCollider(this.groundColliderDesc)
+
+        // Three Ground
         this.ground = new THREE.Mesh(
           new THREE.PlaneGeometry(100, 100, 100, 100),
           new THREE.MeshStandardMaterial({
@@ -47,6 +55,8 @@ class Ground {
         this.ground.rotation.x = -Math.PI * 0.5
         this.ground.position.y = 0
         this.scene.add(this.ground)
+
+        this.world.addStaticObject('ground', this.ground, this.groundCollider)
     }
 }
 

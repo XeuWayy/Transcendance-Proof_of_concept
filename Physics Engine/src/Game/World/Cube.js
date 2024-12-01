@@ -1,14 +1,17 @@
 import Game from "../Game.js"
 import * as THREE from "three"
+import * as RAPIER from "@dimforge/rapier3d";
 
 class Cube {
     constructor() {
         this.game = new Game()
         this.scene = this.game.scene
         this.ressources = this.game.ressources
+        this.physics = this.game.physics
 
         this.setTextures()
         this.setCube()
+        this.addPhysicCube()
     }
 
     setTextures() {
@@ -53,6 +56,31 @@ class Cube {
             this.cube.position.set(position[i].x, position[i].y, position[i].z)
             this.scene.add(this.cube)
         }
+    }
+
+    addPhysicCube() {
+        let rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic()
+            .setTranslation(0.0, 200.0, 0.0)
+        this.rigidBody = this.physics.world.createRigidBody(rigidBodyDesc)
+
+        let colliderDesc = RAPIER.ColliderDesc.cuboid(0.25, 0.25, 0.25)
+        let cubeCollider = this.physics.world.createCollider(colliderDesc, this.rigidBody)
+
+        let cubeMesh = new THREE.Mesh(
+            new THREE.BoxGeometry(0.5, 0.5, 0.5),
+            new THREE.MeshBasicMaterial({
+                color: 'yellow'
+            })
+        )
+        const position = this.rigidBody.translation()
+        const rotation = this.rigidBody.rotation()
+
+        cubeMesh.position.set(position.x, position.y, position.z)
+        cubeMesh.quaternion.set(rotation.x, rotation.y, rotation.z, rotation.w)
+
+        this.scene.add(cubeMesh)
+        this.game.world.addDynamicObject('cube', cubeMesh, this.rigidBody)
+
     }
 }
 export default Cube

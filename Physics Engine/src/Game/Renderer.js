@@ -25,7 +25,6 @@ class Renderer {
 
         this.debugObject.clearColor = '#160920'
         this.gui.addColor(this.debugObject, 'clearColor').onChange(() => { this.instance.setClearColor(this.debugObject.clearColor) })
-        console.log(this.debugObject);
         this.instance.setClearColor('#160920')
     }
 

@@ -9,6 +9,7 @@ import Renderer from "./Renderer.js"
 import World from "./World/World.js"
 import sources from "./sources.js"
 import Ressources from "./Utils/Ressources.js"
+import Physics from "./Physics/Physics.js"
 
 let singletonGame
 
@@ -32,6 +33,7 @@ class Game {
         this.camera = new Camera()
         this.renderer = new Renderer()
         this.ressources = new Ressources(sources)
+        this.physics = new Physics()
         this.world = new World()
 
         this.sizes.on('resize', () => {
@@ -56,6 +58,7 @@ class Game {
 
     update() {
         this.stats.begin()
+        this.physics.update()
         this.camera.update()
         this.world.update()
         this.renderer.update()

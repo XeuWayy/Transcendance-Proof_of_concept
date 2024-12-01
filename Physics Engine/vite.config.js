@@ -1,5 +1,7 @@
 import restart from 'vite-plugin-restart'
 import glsl from 'vite-plugin-glsl'
+import wasm from "vite-plugin-wasm"
+import topLevelAwait from "vite-plugin-top-level-await"
 
 export default {
     root: 'src/',
@@ -19,6 +21,13 @@ export default {
     plugins:
     [
         restart({ restart: [ '../static/**', ] }), // Restart server on static file change
-        glsl() // Handle shader files
+        glsl(), // Handle shader files
+        wasm(),
+        topLevelAwait({
+            // The export name of top-level await promise for each chunk module
+            promiseExportName: "__tla",
+            // The function to generate import names of top-level await promise in each chunk module
+            promiseImportName: i => `__tla_${i}`
+        })
     ]
 }
