@@ -20,7 +20,7 @@ class Camera {
     setInstance() {
         this.instance = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 250)
 
-        this.instance.position.set(0, 1.7, 3)
+        this.instance.position.set(0, 1.7, 0)
         this.scene.add(this.instance)
         this.fpsCamera = new FirstPersonCamera(this.instance)
     }

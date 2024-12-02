@@ -38,6 +38,7 @@ class Ground {
     setGround() {
         // Physic Ground
         this.groundColliderDesc = RAPIER.ColliderDesc.cuboid(50.0, 0.0, 50.0)
+            .setRestitution(0)
         this.groundCollider = this.physics.world.createCollider(this.groundColliderDesc)
 
         // Three Ground

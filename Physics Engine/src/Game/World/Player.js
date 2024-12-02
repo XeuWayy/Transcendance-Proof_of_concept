@@ -10,14 +10,21 @@ class Player {
         this.world = this.game.world
         this.physics = this.game.physics
         this.camera = this.game.camera.instance
+        this.fpsCamera = this.game.camera.fpsCamera
         this.inputManager = this.game.camera.fpsCamera.inputManager
+
+        this.direction = new THREE.Vector3()
+        this.right = new THREE.Vector3()
+        this.forward = new THREE.Vector3()
+        this.strafe = new THREE.Vector3()
+        this.translation = new THREE.Vector3()
 
         this.setupPhysics()
     }
 
     setupPhysics() {
         const capsuleDesc = RAPIER.RigidBodyDesc.dynamic()
-            .setTranslation(0, 0, 3)
+            .setTranslation(0, 150, 0)
             .setCcdEnabled(true)
             .lockRotations()
 
@@ -33,36 +40,39 @@ class Player {
 
 
     update() {
-        const movementInput = this.inputManager.getMovementInput()
-        const forwardVelocity = movementInput.forward * 8
-        const strafeVelocity = movementInput.strafe * 8
+        if (!this.fpsCamera.isInteractingWithArcade) {
+            const movementInput = this.inputManager.getMovementInput()
+            const forwardVelocity = movementInput.forward * 5
+            const strafeVelocity = movementInput.strafe * 5
 
-        const direction = new THREE.Vector3()
-        this.camera.getWorldDirection(direction)
-        direction.y = 0
-        direction.normalize()
+            this.camera.getWorldDirection(this.direction)
+            this.direction.y = 0
+            this.direction.normalize()
 
-        const right = new THREE.Vector3()
-        right.crossVectors(this.camera.up, direction).normalize()
 
-        const forward = direction.multiplyScalar(forwardVelocity)
-        const strafe = right.multiplyScalar(strafeVelocity)
+            this.right.crossVectors(this.camera.up, this.direction).normalize()
 
-        const translation = new THREE.Vector3()
-        translation.add(forward)
-        translation.add(strafe)
+            const forward = this.direction.multiplyScalar(forwardVelocity)
+            const strafe = this.right.multiplyScalar(strafeVelocity)
 
-        const currentLinvel = this.rigidBody.linvel()
+            this.translation = new THREE.Vector3()
+            this.translation.add(forward)
+            this.translation.add(strafe)
 
-        if (currentLinvel) {
-            translation.y = currentLinvel.y
+            const currentLinvel = this.rigidBody.linvel()
+
+            if (currentLinvel) {
+                this.translation.y = currentLinvel.y
+            }
+
+            this.rigidBody.setLinvel(this.translation, true)
+
+            const position = this.rigidBody.translation()
+            const oldy = this.camera.position.y
+            this.camera.position.set(position.x, position.y - 1.09 + oldy, position.z)
         }
-
-        this.rigidBody.setLinvel(translation, true)
-
-        const position = this.rigidBody.translation()
-        this.camera.position.set(position.x, position.y + 0.61, position.z)
     }
+
 }
 
 export default Player

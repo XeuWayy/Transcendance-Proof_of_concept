@@ -60,14 +60,14 @@ class Cube {
 
     addPhysicCube() {
         let rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic()
-            .setTranslation(0.0, 200.0, 0.0)
+            .setTranslation(0.0, 100.0, 0.0)
         this.rigidBody = this.physics.world.createRigidBody(rigidBodyDesc)
 
-        let colliderDesc = RAPIER.ColliderDesc.cuboid(0.25, 0.25, 0.25)
+        let colliderDesc = RAPIER.ColliderDesc.cuboid(1.0, 1.0, 1.0)
         let cubeCollider = this.physics.world.createCollider(colliderDesc, this.rigidBody)
 
         let cubeMesh = new THREE.Mesh(
-            new THREE.BoxGeometry(0.5, 0.5, 0.5),
+            new THREE.BoxGeometry(2.0, 2.0, 2.0),
             new THREE.MeshBasicMaterial({
                 color: 'yellow'
             })

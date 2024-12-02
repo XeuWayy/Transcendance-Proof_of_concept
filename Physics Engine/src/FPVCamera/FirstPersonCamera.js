@@ -41,7 +41,6 @@ class FirstPersonCamera {
      * @param deltaTime The deltaTime between the update
      */
     update (deltaTime) {
-
         if (!this.isInteractingWithArcade) {
             this.updateRotation()
             this.updateTranslation(deltaTime)
