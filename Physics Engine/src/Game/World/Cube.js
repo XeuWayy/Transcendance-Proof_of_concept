@@ -35,14 +35,14 @@ class Cube {
     }
 
     setCube() {
-        const position = [
+        this.position = [
             new THREE.Vector3(15,2.5, -30),
             new THREE.Vector3(-15,2.5, -30),
             new THREE.Vector3(15,2.5, 30),
             new THREE.Vector3(-15,2.5, 30)
         ]
 
-        for (let i = 0; i < position.length; i++) {
+        for (let i = 0; i < this.position.length; i++) {
             this.cube = new THREE.Mesh(
                 new THREE.BoxGeometry(5, 5, 5, 32, 32),
                 new THREE.MeshStandardMaterial({
@@ -53,9 +53,21 @@ class Cube {
                     metalnessMap: this.textures.arm
                 })
             )
-            this.cube.position.set(position[i].x, position[i].y, position[i].z)
+            this.cube.position.set(this.position[i].x, this.position[i].y, this.position[i].z)
+            this.addCubeToPhysic(this.cube)
             this.scene.add(this.cube)
         }
+    }
+
+    addCubeToPhysic(threeMesh) {
+        const physicsBox = this.physics.createBox({
+            width: 5,
+            height: 5,
+            depth: 5,
+            position: threeMesh.position,
+            type: 'fixed'
+        })
+        this.game.world.addFixedObject('Cube', threeMesh, physicsBox, {x: 0, y: 0, z: 0})
     }
 
     addPhysicCube() {
@@ -79,7 +91,7 @@ class Cube {
         cubeMesh.quaternion.set(rotation.x, rotation.y, rotation.z, rotation.w)
 
         this.scene.add(cubeMesh)
-        this.game.world.addDynamicObject('cube', cubeMesh, this.rigidBody)
+        this.game.world.addDynamicObject('cube', cubeMesh, this.rigidBody, {x: 0, y: 0, z: 0})
 
     }
 }

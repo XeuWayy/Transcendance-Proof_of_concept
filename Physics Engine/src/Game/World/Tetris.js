@@ -11,12 +11,12 @@ class Tetris {
         this.scene = this.game.scene
         this.ressources = this.game.ressources
         this.camera = this.game.camera
-
+        this.physics = this.game.physics
         this.objectsToIntersect = []
 
         this.setModel()
+        this.addArcadeToPhysics()
         this.setTetrisGame()
-
         window.addEventListener('keydown', (event) => {
             if (event.code === 'KeyE') {
                 const cameraDirection = this.camera.instance.getWorldDirection(new THREE.Vector3())
@@ -36,6 +36,7 @@ class Tetris {
     setModel() {
         this.tetrisMachine = this.ressources.items.tetrisMachine.scene
         this.tetrisMachine.rotation.z = -Math.PI * 0.5 // git #24289 issue
+
         this.tetrisMachine.position.set(-15.40, 0, -27)
         this.tetrisMachine.scale.set(0.030, 0.030, 0.030)
         this.objectsToIntersect.push(this.tetrisMachine)
@@ -64,6 +65,27 @@ class Tetris {
         this.scene.add(tetrisGame)
     }
 
+    addArcadeToPhysics() {
+        const box = new THREE.Box3().setFromObject(this.tetrisMachine)
+
+        const size = new THREE.Vector3()
+        box.getSize(size)
+        const adjustedPosition = new THREE.Vector3(
+            this.tetrisMachine.position.x + size.x * 0.5,
+            this.tetrisMachine.position.y + size.y * 0.5,
+            this.tetrisMachine.position.z + size.z * 0.5
+        )
+        const physicsBox = this.physics.createBox({
+            width: size.x,
+            height: size.y,
+            depth: size.z,
+            position: adjustedPosition,
+            type: 'fixed'
+        })
+
+        this.game.world.addFixedObject('tetrisArcade', this.tetrisMachine, physicsBox, {x: -0.365, y: -1.05, z: -0.43})
+    }
+
     centerCameraOnArcade() {
         if (!this.camera.fpsCamera.isInteractingWithArcade) {
             this.camera.fpsCamera.isInteractingWithArcade= true
@@ -76,6 +98,9 @@ class Tetris {
     }
 
     update() {
+        this.tetrisMachine.rotation.z = -Math.PI * 0.5 // git #24289 issue
+        this.tetrisMachine.rotation.x = -Math.PI * 0.5 // git #24289 issue
+
         this.canvasTexture.needsUpdate = true
     }
 }
