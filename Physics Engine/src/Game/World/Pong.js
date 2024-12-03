@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import * as RAPIER from '@dimforge/rapier3d'
 
 import Game from "../Game.js"
 import crtVertex from "../../shaders/crtScreen/vertex.glsl"
@@ -9,18 +10,31 @@ class Pong{
         this.game = new Game()
         this.scene = this.game.scene
         this.ressources = this.game.ressources
+        this.physics = this.game.physics
 
         this.setModel()
         this.loadModel()
         this.setPongVideo()
+        this.addPhysics()
     }
 
     setModel() {
         this.model = {}
 
-        this.model.sofa = this.ressources.items.sofa.scene
-        this.model.sofa.scale.set(0.003, 0.004, 0.004)
-        this.model.sofa.position.set(15, 0, -26)
+        const sofa = this.ressources.items.sofa.scene
+        sofa.scale.set(0.003, 0.004, 0.004)
+        const sofaGroup = new THREE.Group()
+        const sofaBox = new THREE.Box3().setFromObject(sofa)
+        const sofaVector = new THREE.Vector3()
+        sofaBox.getSize(sofaVector)
+
+        const halfHeight = sofaVector.y * 0.5
+
+        this.model.sofa = sofaGroup
+        sofa.position.y -= halfHeight
+        sofaGroup.add(sofa)
+
+        sofaGroup.position.set(15, 0, -26)
 
         this.model.tvTable = this.ressources.items.tvTable.scene
         this.model.tvTable.scale.set(1.25, 1, 1)
@@ -72,6 +86,26 @@ class Pong{
         coolTvPong.position.set(14.40, 1.11, -22.3565)
         coolTvPong.rotation.y = Math.PI
         this.scene.add(coolTvPong)
+    }
+
+    addPhysics() {
+        const sofaBox = new THREE.Box3().setFromObject(this.model.sofa)
+        const sofaVector = new THREE.Vector3()
+        sofaBox.getSize(sofaVector)
+
+        const halfExtents = { x: sofaVector.x * 0.5, y: sofaVector.y * 0.5, z: sofaVector.z * 0.5 }
+        const colliderDesc = RAPIER.ColliderDesc.cuboid(halfExtents.x, halfExtents.y, halfExtents.z)
+            .setFriction(1.2)
+            .setMass(60)
+            .setRestitution(0.2)
+        const position = this.model.sofa.position
+
+        const rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic()
+            .setTranslation(position.x, position.y, position.z)
+        const rigidBody = this.physics.world.createRigidBody(rigidBodyDesc)
+        this.physics.world.createCollider(colliderDesc, rigidBody)
+
+        this.game.world.addDynamicObject('sofa', this.model.sofa, rigidBody, { x: 0, y: 0, z: 0 })
     }
 
 }

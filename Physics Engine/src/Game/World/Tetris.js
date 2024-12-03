@@ -83,7 +83,7 @@ class Tetris {
             type: 'fixed'
         })
 
-        this.game.world.addFixedObject('tetrisArcade', this.tetrisMachine, physicsBox, {x: -0.365, y: -1.05, z: -0.43})
+        this.game.world.addFixedObject('tetrisArcade', this.tetrisMachine, physicsBox)
     }
 
     centerCameraOnArcade() {
@@ -98,9 +98,6 @@ class Tetris {
     }
 
     update() {
-        this.tetrisMachine.rotation.z = -Math.PI * 0.5 // git #24289 issue
-        this.tetrisMachine.rotation.x = -Math.PI * 0.5 // git #24289 issue
-
         this.canvasTexture.needsUpdate = true
     }
 }
