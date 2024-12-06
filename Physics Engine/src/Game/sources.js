@@ -49,7 +49,7 @@ export default [
     {
         name: 'coolerTv',
         type: 'gltfModel',
-        path: './gltf/old_tvclean/old_tvclean_compressed.glb'
+        path: './gltf/old_tvclean/oldTvClean.glb'
     },
     {
         name: 'tetrisMachine',

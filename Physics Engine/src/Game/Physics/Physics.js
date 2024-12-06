@@ -34,7 +34,8 @@ class Physics {
         const threeObjectVector = new THREE.Vector3()
         threeObjectBox.getSize(threeObjectVector)
 
-        const position = threeObject.position 
+        const position = threeObject.position
+        const quaternion = threeObject.quaternion
 
         const colliderDesc = RAPIER.ColliderDesc.cuboid(threeObjectVector.x * 0.5, threeObjectVector.y * 0.5, threeObjectVector.z * 0.5)
             .setMass(mass)
@@ -46,6 +47,12 @@ class Physics {
             rigidBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(position.x, position.y, position.z)
         } else {
             rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic().setTranslation(position.x, position.y, position.z)
+                .setRotation(new RAPIER.Quaternion(
+                    quaternion.x,
+                    quaternion.y,
+                    quaternion.z,
+                    quaternion.w
+                ))
         }
         const rigidBody = this.world.createRigidBody(rigidBodyDesc)
         this.world.createCollider(colliderDesc, rigidBody)

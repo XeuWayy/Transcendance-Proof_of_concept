@@ -13,8 +13,8 @@ class Pong{
         this.physics = this.game.physics
 
         this.setModel()
-        this.loadModel()
         this.setPongVideo()
+        this.loadModel()
         this.addPhysics()
     }
 
@@ -27,16 +27,21 @@ class Pong{
 
         this.model.tvTable = this.ressources.items.tvTable.scene
         this.model.tvTable.scale.set(1.25, 1, 1)
-        this.model.tvTable.position.set(16, 0.3, -22.5)
-        //this.model.tvTable.rotation.y = Math.PI * .5
+        this.model.tvTable.position.set(15, 0.3, -22)
 
-        this.model.sadTv = this.ressources.items.sadTv.scene
-        this.model.sadTv.scale.set(0.009, 0.009, 0.009)
+        const sadTv = this.ressources.items.sadTv.scene
+        sadTv.scale.set(0.009, 0.009, 0.009)
+        sadTv.rotation.y = Math.PI
+
+        this.model.sadTv = new THREE.Group()
         this.model.sadTv.position.set(15.5, 1.02, -22)
-        this.model.sadTv.rotation.y = Math.PI
+        this.model.sadTv.add(sadTv)
 
-        this.model.coolerTv = this.ressources.items.coolerTv.scene
+        const coolerTv = this.ressources.items.coolerTv.scene
+
+        this.model.coolerTv = new THREE.Group()
         this.model.coolerTv.position.set(14.25, 0.60, -22)
+        this.model.coolerTv.add(coolerTv)
     }
 
     loadModel() {
@@ -51,15 +56,15 @@ class Pong{
         const pongTexture = new THREE.VideoTexture(videoElement)
 
         const sadTvPong = new THREE.Mesh(
-            new THREE.PlaneGeometry(0.74, 0.566),
+            new THREE.PlaneGeometry(0.74, 0.57),
             new THREE.MeshBasicMaterial({
                 map: pongTexture,
                 side: THREE.BackSide,
                 transparent: true,
             })
         )
-        sadTvPong.position.set(15.605, 1.04, -22.27)
-        this.scene.add(sadTvPong)
+        sadTvPong.position.set(0.10, 0.01, -0.26)
+        this.model.sadTv.add(sadTvPong)
 
 
         const coolTvPong = new THREE.Mesh(
@@ -72,9 +77,9 @@ class Pong{
                 fragmentShader: crtFragment,
                 side: THREE.DoubleSide
             }))
-        coolTvPong.position.set(14.40, 1.11, -22.3565)
+        coolTvPong.position.set(0.15, -0.15, -0.3865)
         coolTvPong.rotation.y = Math.PI
-        this.scene.add(coolTvPong)
+        this.model.coolerTv.add(coolTvPong)
     }
 
     addPhysics() {
@@ -92,7 +97,27 @@ class Pong{
             name: 'tvTable',
             threeObject: this.model.tvTable,
             type: 'dynamic',
-            mass: 30,
+            mass: 10,
+            friction: 1.2,
+            restitution: 0.2,
+            offset: {x: 0, y: 0, z: 0}
+        })
+
+        const sadTvBody = this.physics.createBox({
+            name: 'sadTv',
+            threeObject: this.model.sadTv,
+            type: 'dynamic',
+            mass: 15,
+            friction: 1.2,
+            restitution: 0.2,
+            offset: {x: 0, y: 0, z: 0}
+        })
+
+        const coolerTvBody = this.physics.createBox({
+            name: 'coolerTv',
+            threeObject: this.model.coolerTv,
+            type: 'dynamic',
+            mass: 25,
             friction: 1.2,
             restitution: 0.2,
             offset: {x: 0, y: 0, z: 0}
