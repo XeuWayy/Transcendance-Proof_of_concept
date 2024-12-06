@@ -31,8 +31,8 @@ class Player {
         this.rigidBody = this.physics.world.createRigidBody(capsuleDesc)
 
         const colliderDesc = RAPIER.ColliderDesc.capsule(0.6, 0.5)
-            .setMass(80)
-            .setRestitution(0)
+            .setMass(0.75)
+            .setRestitution(0.3)
             .setFriction(0.7)
 
         this.collider = this.physics.world.createCollider(colliderDesc, this.rigidBody)
@@ -42,13 +42,12 @@ class Player {
     update() {
         if (!this.fpsCamera.isInteractingWithArcade) {
             const movementInput = this.inputManager.getMovementInput()
-            const forwardVelocity = movementInput.forward * 5
-            const strafeVelocity = movementInput.strafe * 5
+            const forwardVelocity = movementInput.forward * 10
+            const strafeVelocity = movementInput.strafe * 10
 
             this.camera.getWorldDirection(this.direction)
             this.direction.y = 0
             this.direction.normalize()
-
 
             this.right.crossVectors(this.camera.up, this.direction).normalize()
 

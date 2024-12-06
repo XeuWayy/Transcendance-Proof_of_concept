@@ -32,6 +32,7 @@ class Pong{
 
         this.model.sofa = sofaGroup
         sofa.position.y -= halfHeight
+        sofa.position.z += sofaVector.z * 0.1
         sofaGroup.add(sofa)
 
         sofaGroup.position.set(15, 0, -26)
@@ -98,6 +99,7 @@ class Pong{
             .setFriction(1.2)
             .setMass(60)
             .setRestitution(0.2)
+
         const position = this.model.sofa.position
 
         const rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic()
