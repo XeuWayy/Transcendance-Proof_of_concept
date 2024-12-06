@@ -60,23 +60,19 @@ class Cube {
     }
 
     addCubeToPhysic(threeMesh) {
-        const physicsBox = this.physics.createBox({
-            width: 5,
-            height: 5,
-            depth: 5,
-            position: threeMesh.position,
-            type: 'fixed'
+            const physicsBox = this.physics.createBox({
+            name: 'Cube',
+            threeObject: threeMesh,
+            type: 'fixed',
+            mass: 1000,
+            friction: 0.7,
+            restitution: 0,
+            offset: {x: 0, y: 0, z: 0}
         })
-        this.game.world.addFixedObject('Cube', threeMesh, physicsBox, {x: 0, y: 0, z: 0})
+        
     }
 
     addPhysicCube() {
-        let rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic()
-            .setTranslation(0.0, 100.0, 0.0)
-        this.rigidBody = this.physics.world.createRigidBody(rigidBodyDesc)
-
-        let colliderDesc = RAPIER.ColliderDesc.cuboid(1.0, 1.0, 1.0)
-        let cubeCollider = this.physics.world.createCollider(colliderDesc, this.rigidBody)
 
         let cubeMesh = new THREE.Mesh(
             new THREE.BoxGeometry(2.0, 2.0, 2.0),
@@ -84,15 +80,17 @@ class Cube {
                 color: 'yellow'
             })
         )
-        const position = this.rigidBody.translation()
-        const rotation = this.rigidBody.rotation()
 
-        cubeMesh.position.set(position.x, position.y, position.z)
-        cubeMesh.quaternion.set(rotation.x, rotation.y, rotation.z, rotation.w)
-
-        this.scene.add(cubeMesh)
-        this.game.world.addDynamicObject('cube', cubeMesh, this.rigidBody, {x: 0, y: 0, z: 0})
-
+        const cubeBody = this.physics.createBox({
+            name: 'smallCube',
+            threeObject: cubeMesh,
+            type: 'dynamic',
+            mass: 10,
+            friction: 0.7,
+            restitution: 0.3,
+            offset: {x: 0, y: 0, z: 0}
+        })
+        this.scene.add(cubeMesh)      
     }
 }
 export default Cube

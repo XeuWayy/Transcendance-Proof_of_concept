@@ -84,6 +84,16 @@ class Tetris {
         })
 
         this.game.world.addFixedObject('tetrisArcade', this.tetrisMachine, physicsBox)
+
+        const tetrisBody = this.physics.createBox({
+            name: 'tetrisMachine',
+            threeObject: this.tetrisMachine,
+            type: 'fixed',
+            mass: 100,
+            friction: 0.7,
+            restitution: 0,
+            offset: {x: 0, y: 0, z: 0}
+        })
     }
 
     centerCameraOnArcade() {

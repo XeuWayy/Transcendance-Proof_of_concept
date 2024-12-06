@@ -39,7 +39,7 @@ export default [
     {
         name: 'tvTable',
         type: 'gltfModel',
-        path: './gltf/tv_table/scene.glb'
+        path: './gltf/tv_table/Compressed.glb'
     },
     {
         name: 'sadTv',

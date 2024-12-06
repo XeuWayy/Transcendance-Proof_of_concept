@@ -25,13 +25,22 @@ class Physics {
         })
     }
 
-    createBox({ width, height, depth, position, type}) {
+    createBox({name, threeObject, type, mass, friction, restitution, offset}) {
         if (!this.world) {
             return
         }
 
-        const halfExtents = { x: width * 0.5, y: height * 0.5, z: depth * 0.5 }
-        const colliderDesc = RAPIER.ColliderDesc.cuboid(halfExtents.x, halfExtents.y, halfExtents.z)
+        const threeObjectBox = new THREE.Box3().setFromObject(threeObject)
+        const threeObjectVector = new THREE.Vector3()
+        threeObjectBox.getSize(threeObjectVector)
+
+        const position = threeObject.position 
+
+        const colliderDesc = RAPIER.ColliderDesc.cuboid(threeObjectVector.x * 0.5, threeObjectVector.y * 0.5, threeObjectVector.z * 0.5)
+            .setMass(mass)
+            .setFriction(friction)
+            .setRestitution(restitution)
+
         let rigidBodyDesc
         if (type === 'fixed') {
             rigidBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(position.x, position.y, position.z)
@@ -40,6 +49,12 @@ class Physics {
         }
         const rigidBody = this.world.createRigidBody(rigidBodyDesc)
         this.world.createCollider(colliderDesc, rigidBody)
+
+        if (type === 'fixed') {
+            this.game.world.addFixedObject(name, threeObject, rigidBody, offset)
+        } else {
+            this.game.world.addDynamicObject(name, threeObject, rigidBody, offset)
+        }
 
         return rigidBody
     }

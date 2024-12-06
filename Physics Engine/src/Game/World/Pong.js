@@ -21,25 +21,13 @@ class Pong{
     setModel() {
         this.model = {}
 
-        const sofa = this.ressources.items.sofa.scene
-        sofa.scale.set(0.003, 0.004, 0.004)
-        const sofaGroup = new THREE.Group()
-        const sofaBox = new THREE.Box3().setFromObject(sofa)
-        const sofaVector = new THREE.Vector3()
-        sofaBox.getSize(sofaVector)
-
-        const halfHeight = sofaVector.y * 0.5
-
-        this.model.sofa = sofaGroup
-        sofa.position.y -= halfHeight
-        sofa.position.z += sofaVector.z * 0.1
-        sofaGroup.add(sofa)
-
-        sofaGroup.position.set(15, 0, -26)
+        this.model.sofa = this.ressources.items.sofa.scene
+        this.model.sofa.scale.set(0.003, 0.004, 0.004)
+        this.model.sofa.position.set(15, 0, -26)
 
         this.model.tvTable = this.ressources.items.tvTable.scene
         this.model.tvTable.scale.set(1.25, 1, 1)
-        this.model.tvTable.position.set(16, 0, -22.5)
+        this.model.tvTable.position.set(16, 0.3, -22.5)
         this.model.tvTable.rotation.y = Math.PI
 
         this.model.sadTv = this.ressources.items.sadTv.scene
