@@ -28,7 +28,7 @@ class Pong{
         this.model.tvTable = this.ressources.items.tvTable.scene
         this.model.tvTable.scale.set(1.25, 1, 1)
         this.model.tvTable.position.set(16, 0.3, -22.5)
-        this.model.tvTable.rotation.y = Math.PI
+        //this.model.tvTable.rotation.y = Math.PI * .5
 
         this.model.sadTv = this.ressources.items.sadTv.scene
         this.model.sadTv.scale.set(0.009, 0.009, 0.009)
@@ -78,24 +78,25 @@ class Pong{
     }
 
     addPhysics() {
-        const sofaBox = new THREE.Box3().setFromObject(this.model.sofa)
-        const sofaVector = new THREE.Vector3()
-        sofaBox.getSize(sofaVector)
+        const sofaBody = this.physics.createBox({
+            name: 'sofa',
+            threeObject: this.model.sofa,
+            type: 'dynamic',
+            mass: 60,
+            friction: 1.2,
+            restitution: 0.2,
+            offset: {x: 0, y: 0, z: 0}
+        })
 
-        const halfExtents = { x: sofaVector.x * 0.5, y: sofaVector.y * 0.5, z: sofaVector.z * 0.5 }
-        const colliderDesc = RAPIER.ColliderDesc.cuboid(halfExtents.x, halfExtents.y, halfExtents.z)
-            .setFriction(1.2)
-            .setMass(60)
-            .setRestitution(0.2)
-
-        const position = this.model.sofa.position
-
-        const rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic()
-            .setTranslation(position.x, position.y, position.z)
-        const rigidBody = this.physics.world.createRigidBody(rigidBodyDesc)
-        this.physics.world.createCollider(colliderDesc, rigidBody)
-
-        this.game.world.addDynamicObject('sofa', this.model.sofa, rigidBody, { x: 0, y: 0, z: 0 })
+        const tvTableBody = this.physics.createBox({
+            name: 'tvTable',
+            threeObject: this.model.tvTable,
+            type: 'dynamic',
+            mass: 30,
+            friction: 1.2,
+            restitution: 0.2,
+            offset: {x: 0, y: 0, z: 0}
+        })
     }
 
 }

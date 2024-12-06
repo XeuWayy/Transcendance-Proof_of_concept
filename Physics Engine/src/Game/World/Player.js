@@ -38,7 +38,6 @@ class Player {
         this.collider = this.physics.world.createCollider(colliderDesc, this.rigidBody)
     }
 
-
     update() {
         if (!this.fpsCamera.isInteractingWithArcade) {
             const movementInput = this.inputManager.getMovementInput()

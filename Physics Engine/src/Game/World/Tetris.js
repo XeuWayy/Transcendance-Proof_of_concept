@@ -15,7 +15,7 @@ class Tetris {
         this.objectsToIntersect = []
 
         this.setModel()
-        this.addArcadeToPhysics()
+       this.addArcadeToPhysics()
         this.setTetrisGame()
         window.addEventListener('keydown', (event) => {
             if (event.code === 'KeyE') {
@@ -35,9 +35,9 @@ class Tetris {
 
     setModel() {
         this.tetrisMachine = this.ressources.items.tetrisMachine.scene
-        this.tetrisMachine.rotation.z = -Math.PI * 0.5 // git #24289 issue
+        this.tetrisMachine.rotation.y = -Math.PI * 0.5 // git #24289 issue
 
-        this.tetrisMachine.position.set(-15.40, 0, -27)
+        this.tetrisMachine.position.set(-15.032, 1.05, -26.57)
         this.tetrisMachine.scale.set(0.030, 0.030, 0.030)
         this.objectsToIntersect.push(this.tetrisMachine)
         this.scene.add(this.tetrisMachine)
@@ -66,25 +66,6 @@ class Tetris {
     }
 
     addArcadeToPhysics() {
-        const box = new THREE.Box3().setFromObject(this.tetrisMachine)
-
-        const size = new THREE.Vector3()
-        box.getSize(size)
-        const adjustedPosition = new THREE.Vector3(
-            this.tetrisMachine.position.x + size.x * 0.5,
-            this.tetrisMachine.position.y + size.y * 0.5,
-            this.tetrisMachine.position.z + size.z * 0.5
-        )
-        const physicsBox = this.physics.createBox({
-            width: size.x,
-            height: size.y,
-            depth: size.z,
-            position: adjustedPosition,
-            type: 'fixed'
-        })
-
-        this.game.world.addFixedObject('tetrisArcade', this.tetrisMachine, physicsBox)
-
         const tetrisBody = this.physics.createBox({
             name: 'tetrisMachine',
             threeObject: this.tetrisMachine,

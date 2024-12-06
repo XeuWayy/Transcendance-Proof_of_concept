@@ -39,7 +39,7 @@ export default [
     {
         name: 'tvTable',
         type: 'gltfModel',
-        path: './gltf/tv_table/Compressed.glb'
+        path: './gltf/tv_table/tvTable.glb'
     },
     {
         name: 'sadTv',
@@ -53,8 +53,8 @@ export default [
     },
     {
         name: 'tetrisMachine',
-        type: 'colladaModel',
-        path: './Tetris/model.dae'
+        type: 'gltfModel',
+        path: './Tetris/tetris.glb'
     }
 
 ]
