@@ -5,6 +5,7 @@ class GamepadController {
             leftStickY: 0,
             rightStickX: 0,
             rightStickY: 0,
+            buttons0: false,
             isConnected: false
         }
         this.deadzone = 0.05
@@ -55,6 +56,7 @@ class GamepadController {
 
         this.current.rightStickX = this.applyDeadzone(gamepad.axes[2]) * this.lookSensivity
         this.current.rightStickY = this.applyDeadzone(gamepad.axes[3]) * this.lookSensivity
+        this.current.buttons0 = gamepad.buttons[0].pressed
     }
 }
 

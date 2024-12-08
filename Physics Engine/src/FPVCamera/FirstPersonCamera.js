@@ -13,12 +13,10 @@ class FirstPersonCamera {
 
         this.isInteractingWithArcade = false
 
-        this.rotation = new THREE.Quaternion()
-        this.translation = new THREE.Vector3()
         this.phi = 0
         this.theta = 0
-        this.cameraSpeed = 10
-
+        this.quaternionX = new THREE.Quaternion()
+        this.quaternionZ = new THREE.Quaternion()
         this.baseHeight = camera.position.y
 
         this.verticalBobbingAmplitude = 0.15
@@ -43,10 +41,7 @@ class FirstPersonCamera {
     update (deltaTime) {
         if (!this.isInteractingWithArcade) {
             this.updateRotation()
-            this.updateTranslation(deltaTime)
-            this.updateCamera()
             this.updateHeadBobbing(deltaTime)
-            this.camera.lookAt(this.focusTarget())
             this.inputManager.update()
         }
     }
@@ -66,45 +61,14 @@ class FirstPersonCamera {
             this.theta + -verticalRotation, -Math.PI / 3, Math.PI / 3
         )
 
-        const quaternionX = new THREE.Quaternion()
-        quaternionX.setFromAxisAngle(new THREE.Vector3(0, 1, 0), this.phi)
-
-        const quaternionZ = new THREE.Quaternion()
-        quaternionZ.setFromAxisAngle(new THREE.Vector3(1, 0, 0), this.theta)
+        this.quaternionX.setFromAxisAngle(new THREE.Vector3(0, 1, 0), this.phi)
+        this.quaternionZ.setFromAxisAngle(new THREE.Vector3(1, 0, 0), this.theta)
 
         const quaternion = new THREE.Quaternion()
-        quaternion.multiply(quaternionX)
-        quaternion.multiply(quaternionZ)
+        quaternion.multiply(this.quaternionX)
+        quaternion.multiply(this.quaternionZ)
 
-        this.rotation.copy(quaternion)
-    }
-
-    /**
-     * @author Corentin (XeuWayy) Charton
-     * @desc Calculate the camera position
-     * @param deltaTime The deltaTime between the update
-     */
-    updateTranslation(deltaTime) {
-
-        const movementInput = this.inputManager.getMovementInput()
-        const forwardVelocity = movementInput.forward
-        const strafeVelocity = movementInput.strafe
-
-        this.headBobbingActive = forwardVelocity !== 0 || strafeVelocity !== 0
-
-        const quaternionX = new THREE.Quaternion()
-        quaternionX.setFromAxisAngle(new THREE.Vector3(0, 1, 0), this.phi)
-
-        const forward = new THREE.Vector3(0, 0, -1)
-        forward.applyQuaternion(quaternionX)
-        forward.multiplyScalar(forwardVelocity * this.cameraSpeed * deltaTime)
-
-        const left = new THREE.Vector3(-1, 0, 0)
-        left.applyQuaternion(quaternionX)
-        left.multiplyScalar(strafeVelocity * this.cameraSpeed * deltaTime)
-
-        this.translation.add(forward)
-        this.translation.add(left)
+        this.camera.quaternion.copy(quaternion)
     }
 
     /**
@@ -162,17 +126,6 @@ class FirstPersonCamera {
 
         pos.add(forward)
         return pos
-    }
-
-    /**
-     * @author Corentin (XeuWayy) Charton
-     * @desc Update the camera rotation && position
-     */
-    updateCamera() {
-        this.camera.quaternion.copy(this.rotation)
-        this.camera.position.add(this.translation)
-
-        this.translation.set(0, 0, 0)
     }
 }
 

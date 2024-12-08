@@ -39,12 +39,14 @@ class InputManager {
         if (this.activeInputController === 'keyboardMouse') {
             return {
                 forward: (this.keyboardMouseController.keys['KeyW'] ? 1 : 0) + (this.keyboardMouseController.keys['KeyS'] ? -1 : 0),
-                strafe: (this.keyboardMouseController.keys['KeyA'] ? 1 : 0) + (this.keyboardMouseController.keys['KeyD'] ? -1 : 0)
+                strafe: (this.keyboardMouseController.keys['KeyA'] ? 1 : 0) + (this.keyboardMouseController.keys['KeyD'] ? -1 : 0),
+                jump: this.keyboardMouseController.keys['Space'] ? 1 : 0
             }
         } else {
             return {
                 forward: -this.gamepadController.current.leftStickY,
-                strafe: -this.gamepadController.current.leftStickX
+                strafe: -this.gamepadController.current.leftStickX,
+                jump: this.gamepadController.current.buttons0
             }
         }
     }
