@@ -19,7 +19,6 @@ class Environment {
         this.tvLight = new THREE.PointLight('white', 3)
         this.tvLight.position.set(15, 3, -22)
         this.scene.add(this.tvLight)
-
     }
 }
 export default Environment

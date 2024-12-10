@@ -20,7 +20,6 @@ class Player {
 
         this.jumpCount = 0
         this.maxJumps = 2
-        this.jumpPressed = false
 
         this.cameraHeightModifier = 1.09
 

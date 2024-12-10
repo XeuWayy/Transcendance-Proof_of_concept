@@ -1,12 +1,11 @@
 import * as THREE from 'three'
 import InputManager from "../InputManager/InputManager.js"
-import { log } from 'three/examples/jsm/nodes/Nodes.js'
 
 class FirstPersonCamera {
     /**
      * @author Corentin (XeuWayy) Charton
      * @desc Construct a first person camera
-     * @param camera The three.js camera
+     * @param cameraClass The Camera.js class
      */
     constructor(cameraClass) {
         this.camera = cameraClass.instance
@@ -32,7 +31,6 @@ class FirstPersonCamera {
         this.currentVerticalOffset = 0
         this.currentHorizontalOffset = 0
         this.transitionSpeed = 8
-
     }
 
     /**

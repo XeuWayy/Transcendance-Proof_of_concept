@@ -1,6 +1,5 @@
 import Game from "../Game.js"
 import * as THREE from "three"
-import * as RAPIER from "@dimforge/rapier3d";
 
 class Cube {
     constructor() {

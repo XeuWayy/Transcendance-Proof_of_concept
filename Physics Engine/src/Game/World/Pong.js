@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import * as RAPIER from '@dimforge/rapier3d'
 
 import Game from "../Game.js"
 import crtVertex from "../../shaders/crtScreen/vertex.glsl"

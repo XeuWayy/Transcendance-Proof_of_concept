@@ -4,7 +4,6 @@ import Game from "./Game.js"
 import FirstPersonCamera from "../FPVCamera/FirstPersonCamera.js"
 import CrosshairVertex from "../shaders/crosshair/vertex.glsl"
 import CrosshairFragment from "../shaders/crosshair/fragment.glsl"
-import { log } from 'three/examples/jsm/nodes/Nodes.js'
 
 class Camera {
     constructor() {

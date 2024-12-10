@@ -4,8 +4,6 @@ import InteractManager from "./InteractManager.js"
 
 class InputManager {
     constructor(cameraClass) {
-        console.log(cameraClass)
-
         this.keyboardMouseController = new KeyboardMouseController()
         this.gamepadController = new GamepadController()
         this.interactManager = new InteractManager(cameraClass, this)
@@ -72,7 +70,7 @@ class InputManager {
         if (this.activeInputController === 'keyboardMouse') {
             currentJump = this.keyboardMouseController.keys['Space'] ? this.keyboardMouseController.keys['Space'] : false
             currentCrouch = this.keyboardMouseController.keys['ShiftLeft']? this.keyboardMouseController.keys['ShiftLeft'] : false
-            currentCrouch = this.keyboardMouseController.keys['KeyE']? this.keyboardMouseController.keys['KeyE'] : false
+            currentInteract = this.keyboardMouseController.keys['KeyE']? this.keyboardMouseController.keys['KeyE'] : false
             
             this.inputs = {
                 forward: (this.keyboardMouseController.keys['KeyW'] ? 1 : 0) + (this.keyboardMouseController.keys['KeyS'] ? -1 : 0),

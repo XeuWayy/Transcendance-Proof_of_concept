@@ -2,8 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 import LanguageManager from "../LanguageManager/LanguageManager.js"
-import button from "bootstrap/js/src/button.js"
-import {overlay} from "three/nodes"
 
 class OverlayManager {
     constructor() {
