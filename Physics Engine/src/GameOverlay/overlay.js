@@ -55,8 +55,7 @@ class OverlayManager {
 const overlayManager = new OverlayManager()
 
 window.addEventListener('keydown', (event) => {
-    if (event.code === 'ShiftLeft') {
-        console.log("pressed")
+    if (event.code === 'Tab') {
         overlayManager.toggle()
     }
 })

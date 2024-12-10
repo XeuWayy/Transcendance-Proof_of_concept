@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import InputManager from "../InputManager/InputManager.js"
+import { log } from 'three/examples/jsm/nodes/Nodes.js'
 
 class FirstPersonCamera {
     /**
@@ -7,9 +8,10 @@ class FirstPersonCamera {
      * @desc Construct a first person camera
      * @param camera The three.js camera
      */
-    constructor(camera) {
-        this.camera = camera
-        this.inputManager = new InputManager()
+    constructor(cameraClass) {
+        this.camera = cameraClass.instance
+        
+        this.inputManager = new InputManager(cameraClass)
 
         this.isInteractingWithArcade = false
 
@@ -17,7 +19,7 @@ class FirstPersonCamera {
         this.theta = 0
         this.quaternionX = new THREE.Quaternion()
         this.quaternionZ = new THREE.Quaternion()
-        this.baseHeight = camera.position.y
+        this.baseHeight = this.camera.position.y
 
         this.verticalBobbingAmplitude = 0.15
         this.verticalBobbingFrequency = 10

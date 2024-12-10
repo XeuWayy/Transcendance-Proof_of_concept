@@ -4,6 +4,7 @@ import Game from "./Game.js"
 import FirstPersonCamera from "../FPVCamera/FirstPersonCamera.js"
 import CrosshairVertex from "../shaders/crosshair/vertex.glsl"
 import CrosshairFragment from "../shaders/crosshair/fragment.glsl"
+import { log } from 'three/examples/jsm/nodes/Nodes.js'
 
 class Camera {
     constructor() {
@@ -22,7 +23,8 @@ class Camera {
 
         this.instance.position.set(0, 1.7, 0)
         this.scene.add(this.instance)
-        this.fpsCamera = new FirstPersonCamera(this.instance)
+        
+        this.fpsCamera = new FirstPersonCamera(this)
     }
 
     setCrosshair() {

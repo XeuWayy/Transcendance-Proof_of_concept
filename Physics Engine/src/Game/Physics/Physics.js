@@ -17,7 +17,6 @@ class Physics {
         import('@dimforge/rapier3d').then(RAPIER => {
             const gravity = { x: 0.0, y: -9.81, z: 0.0 }
             this.world = new RAPIER.World(gravity)
-            console.log('ready');
 
             this.mesh = new THREE.LineSegments(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: 0xffffff, vertexColors: true }))
             this.mesh.frustumCulled = false

@@ -15,7 +15,7 @@ class Player {
 
         this.rayInformation = {
             rayDirection: new THREE.Vector3(0, -1, 0),
-            rayLength: 1.2
+            rayLength: 1.10
         }
 
         this.jumpCount = 0
@@ -78,7 +78,7 @@ class Player {
 
             if (jumping.pressed) {
                 if (this.onGround || this.jumpCount < this.maxJumps) {
-                    this.rigidBody.applyImpulse(new THREE.Vector3(0, 5, 0), true)
+                    this.rigidBody.applyImpulse(new THREE.Vector3(0, 4, 0), true)
                     this.jumpCount++
                 }
 
@@ -119,7 +119,6 @@ class Player {
             const position = this.rigidBody.translation()
             const oldy = this.camera.position.y
             this.camera.position.set(position.x, position.y - this.cameraHeightModifier + oldy, position.z)
-            console.log(this.camera.position);
             
             this.camera.lookAt(this.fpsCamera.focusTarget())
         }
