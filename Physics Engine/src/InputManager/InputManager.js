@@ -6,6 +6,19 @@ class InputManager {
         this.keyboardMouseController = new KeyboardMouseController()
         this.gamepadController = new GamepadController()
         this.activeInputController = 'keyboardMouse'
+
+        this.previousInputs = {
+            jump: false,
+            crouch: false
+        }
+
+        this.inputs = {
+            forward: 0,
+            strafe: 0,
+            jump: { pressed: false, held: false, released: false },
+            crouch: { pressed: false, held: false, released: false },
+            rotation: { x: 0, y: 0 }
+        }
     }
 
     /**
@@ -13,6 +26,8 @@ class InputManager {
      * @desc Check and update the current active method of input
      */
     update () {
+        this.updateInputs()
+
         this.keyboardMouseController.update()
         this.gamepadController.update()
 
@@ -29,44 +44,67 @@ class InputManager {
             this.keyboardMouseController.current.mouseYDelta !== 0) {
             this.activeInputController = 'keyboardMouse'
         }
+        
     }
 
     /**
      * @author Corentin (XeuWayy) Charton
-     * @desc Get the current input for the movement
+     * @desc Update the input
      */
-    getMovementInput() {
+    updateInputs() {
+        let currentJump, currentCrouch
+
         if (this.activeInputController === 'keyboardMouse') {
-            return {
+            currentJump = this.keyboardMouseController.keys['Space'] ? this.keyboardMouseController.keys['Space'] : false
+            currentCrouch = this.keyboardMouseController.keys['ControlLeft']? this.keyboardMouseController.keys['ControlLeft'] : false
+            
+            this.inputs = {
                 forward: (this.keyboardMouseController.keys['KeyW'] ? 1 : 0) + (this.keyboardMouseController.keys['KeyS'] ? -1 : 0),
                 strafe: (this.keyboardMouseController.keys['KeyA'] ? 1 : 0) + (this.keyboardMouseController.keys['KeyD'] ? -1 : 0),
-                jump: this.keyboardMouseController.keys['Space'] ? 1 : 0
+                jump: this.computeActionState(currentJump, this.previousInputs.jump),
+                crouch: this.computeActionState(currentCrouch, this.previousInputs.crouch),
+                rotation: {
+                    x: this.keyboardMouseController.current.mouseXDelta,
+                    y: this.keyboardMouseController.current.mouseYDelta
+                }
             }
         } else {
-            return {
+            currentJump = this.gamepadController.current.buttons0
+            currentCrouch = this.gamepadController.current.buttons1
+            this.inputs = {
                 forward: -this.gamepadController.current.leftStickY,
                 strafe: -this.gamepadController.current.leftStickX,
-                jump: this.gamepadController.current.buttons0
+                jump: this.computeActionState(currentJump, this.previousInputs.jump),
+                crouch: this.computeActionState(currentCrouch, this.previousInputs.crouch),
+                rotation: {
+                    x: this.gamepadController.current.rightStickX,
+                    y: this.gamepadController.current.rightStickY
+                }
             }
+        }
+
+        this.previousInputs.jump = currentJump
+        this.previousInputs.crouch = currentCrouch
+    }
+
+    /**
+     * @author Corentin (XeuWayy) Charton
+     * @desc Set three state for a key
+     */
+    computeActionState(current, previous) {
+        return {
+            pressed: current && !previous,
+            held: current,
+            released: !current && previous
         }
     }
 
     /**
      * @author Corentin (XeuWayy) Charton
-     * @desc Get the current input for the rotation
+     * @desc Return all inputs
      */
-    getRotationInput() {
-        if (this.activeInputController === 'keyboardMouse') {
-            return {
-                x:  this.keyboardMouseController.current.mouseXDelta,
-                y: this.keyboardMouseController.current.mouseYDelta
-            }
-        } else {
-            return {
-                x: this.gamepadController.current.rightStickX,
-                y: this.gamepadController.current.rightStickY
-            }
-        }
+    getInputs() {
+        return this.inputs
     }
 }
 

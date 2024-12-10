@@ -22,6 +22,8 @@ class Player {
         this.maxJumps = 2
         this.jumpPressed = false
 
+        this.cameraHeightModifier = 1.09
+
         this.direction = new THREE.Vector3()
         this.right = new THREE.Vector3()
         this.forward = new THREE.Vector3()
@@ -39,7 +41,7 @@ class Player {
 
         this.rigidBody = this.physics.world.createRigidBody(capsuleDesc)
 
-        const colliderDesc = RAPIER.ColliderDesc.capsule(0.6, 0.5)
+        const colliderDesc = RAPIER.ColliderDesc.capsule(0.55, 0.5)
             .setMass(0.75)
             .setRestitution(0.3)
             .setFriction(0.7)
@@ -66,23 +68,29 @@ class Player {
 
     update() {
         if (!this.fpsCamera.isInteractingWithArcade) {
-            const movementInput = this.inputManager.getMovementInput()
+            const movementInput = this.inputManager.getInputs()
             const forwardVelocity = movementInput.forward * 10
             const strafeVelocity = movementInput.strafe * 10
             const jumping = movementInput.jump
+            const crouch = movementInput.crouch
 
             this.checkPlayerOnGround()
 
-            if (jumping && !this.jumpPressed) {
+            if (jumping.pressed) {
                 if (this.onGround || this.jumpCount < this.maxJumps) {
                     this.rigidBody.applyImpulse(new THREE.Vector3(0, 5, 0), true)
                     this.jumpCount++
                 }
-                this.jumpPressed = true
+
             }
 
-            if (!jumping) {
-                this.jumpPressed = false
+            if (crouch.held) {
+                this.collider.setHalfHeight(0.3)
+                this.cameraHeightModifier = 1.4
+            } else if (crouch.released) {
+                this.collider.setHalfHeight(0.6)
+                this.cameraHeightModifier = 1.09
+                this.rigidBody.applyImpulse(new THREE.Vector3(0, 0.2, 0), true)
             }
 
             this.fpsCamera.headBobbingActive = this.onGround && (forwardVelocity !== 0 || strafeVelocity !== 0)
@@ -110,7 +118,9 @@ class Player {
 
             const position = this.rigidBody.translation()
             const oldy = this.camera.position.y
-            this.camera.position.set(position.x, position.y - 1.09 + oldy, position.z)
+            this.camera.position.set(position.x, position.y - this.cameraHeightModifier + oldy, position.z)
+            console.log(this.camera.position);
+            
             this.camera.lookAt(this.fpsCamera.focusTarget())
         }
     }

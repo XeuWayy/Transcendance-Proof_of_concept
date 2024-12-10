@@ -51,10 +51,10 @@ class FirstPersonCamera {
      * @desc Calculate the rotation of camera based on the mouse input
      */
     updateRotation() {
-        const lookInput = this.inputManager.getRotationInput()
-
-        const horizontalRotation = lookInput.x
-        const verticalRotation = lookInput.y
+        const lookInput = this.inputManager.getInputs()
+        
+        const horizontalRotation = lookInput.rotation.x
+        const verticalRotation = lookInput.rotation.y
 
         this.phi += -horizontalRotation
         this.theta = THREE.MathUtils.clamp(
