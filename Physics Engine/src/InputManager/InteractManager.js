@@ -85,7 +85,7 @@ class InteractManager {
             
             newPosition.y = cameraPosition.y
         
-            this.currentObject.rapierCollider.parent().setTranslation(newPosition, true);
+            this.currentObject.rapierCollider.parent().setTranslation(newPosition, true)
         
             const lookAtPos = new THREE.Vector3().copy(cameraPosition)
             lookAtPos.y = newPosition.y
@@ -102,9 +102,6 @@ class InteractManager {
     
         if (inputs.interact.pressed) {
             this.checkForInteraction()
-            if (this.currentObject && this.currentObject.type === 'take') {
-                this.initialY = this.currentObject.rapierCollider.parent().translation().y
-            }
         }
     }
 }

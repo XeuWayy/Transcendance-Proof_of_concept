@@ -5,7 +5,7 @@ class FirstPersonCamera {
     /**
      * @author Corentin (XeuWayy) Charton
      * @desc Construct a first person camera
-     * @param cameraClass The Camera.js class
+     * @param camera The camera instance
      */
     constructor(camera) {
         this.camera = camera
@@ -27,8 +27,8 @@ class FirstPersonCamera {
 
         this.bobbingPhaseOffset = Math.PI / 2
 
-        this.currentVerticalOffset = 0
-        this.currentHorizontalOffset = 0
+        this.verticalHeadBobbingOffset = 0
+        this.horizontalHeadBobbingOffset = 0
         this.transitionSpeed = 8
     }
 
@@ -51,7 +51,7 @@ class FirstPersonCamera {
      */
     updateRotation() {
         const lookInput = this.inputManager.getInputs()
-        
+
         const horizontalRotation = lookInput.rotation.x
         const verticalRotation = lookInput.rotation.y
 
@@ -72,7 +72,7 @@ class FirstPersonCamera {
 
     /**
      * @author Corentin (XeuWayy) Charton
-     * @desc Implement small camera movement to simulate human head moving
+     * @desc Calculate small camera movement to simulate human head moving
      * @param deltaTime The deltaTime between the update
      */
     updateHeadBobbing(deltaTime) {
@@ -80,34 +80,30 @@ class FirstPersonCamera {
             this.headBobbingTimer += deltaTime
 
             const verticalBob = Math.sin(this.headBobbingTimer * this.verticalBobbingFrequency) * this.verticalBobbingAmplitude
-
             const horizontalBob = Math.sin(
                 this.headBobbingTimer * this.horizontalBobbingFrequency + this.bobbingPhaseOffset
             ) * this.horizontalBobbingAmplitude
 
-            this.currentVerticalOffset += (verticalBob - this.currentVerticalOffset)
+            this.verticalHeadBobbingOffset += (verticalBob - this.verticalHeadBobbingOffset)
                 * this.transitionSpeed * deltaTime
-            this.currentHorizontalOffset += (horizontalBob - this.currentHorizontalOffset)
+            this.horizontalHeadBobbingOffset += (horizontalBob - this.horizontalHeadBobbingOffset)
                 * this.transitionSpeed * deltaTime
-
-            this.camera.position.y = this.baseHeight + this.currentVerticalOffset
-            const rightVector = new THREE.Vector3(1, 0, 0)
-            rightVector.applyQuaternion(this.camera.quaternion)
-            this.camera.position.add(
-                rightVector.multiplyScalar(this.currentHorizontalOffset)
-            )
         } else {
             this.headBobbingTimer = 0
+            this.verticalHeadBobbingOffset *= 0.9
+            this.horizontalHeadBobbingOffset *= 0.9
+        }
+    }
 
-            this.currentVerticalOffset *= 0.9
-            this.currentHorizontalOffset *= 0.9
-
-            this.camera.position.y = this.baseHeight + this.currentVerticalOffset
-            const rightVector = new THREE.Vector3(1, 0, 0)
-            rightVector.applyQuaternion(this.camera.quaternion)
-            this.camera.position.add(
-                rightVector.multiplyScalar(this.currentHorizontalOffset)
-            )
+    /**
+     * @author Corentin (XeuWayy) Charton
+     * @desc Return the current bobbing offset
+     * @returns {{vertical: number, horizontal: number}} The current calculated bobbing value
+     */
+    getHeadBobbingOffset() {
+        return {
+            vertical: this.verticalHeadBobbingOffset,
+            horizontal: this.horizontalHeadBobbingOffset
         }
     }
 

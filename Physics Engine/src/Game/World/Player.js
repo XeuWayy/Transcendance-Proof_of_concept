@@ -22,7 +22,8 @@ class Player {
         this.jumpCount = 0
         this.maxJumps = 2
 
-        this.cameraHeightModifier = 1.09
+        this.cameraHeight = 1.7
+        this.playerHeight = 1.0488626956939697
 
         this.direction = new THREE.Vector3()
         this.right = new THREE.Vector3()
@@ -86,10 +87,12 @@ class Player {
 
         if (crouch.held) {
             this.collider.setHalfHeight(0.3)
-            this.cameraHeightModifier = 1.4
+            this.cameraHeight = 1.1
+            this.playerHeight = 0.7988615036010742
         } else if (crouch.released) {
-            this.collider.setHalfHeight(0.6)
-            this.cameraHeightModifier = 1.09
+            this.collider.setHalfHeight(0.55)
+            this.cameraHeight = 1.7
+            this.playerHeight = 1.0488626956939697
             this.rigidBody.applyImpulse(new THREE.Vector3(0, 0.2, 0), true)
         }
 
@@ -117,9 +120,19 @@ class Player {
         this.rigidBody.setLinvel(this.translation, true)
 
         const position = this.rigidBody.translation()
-        const oldy = this.camera.position.y
-        
-        this.camera.position.set(position.x, position.y - this.cameraHeightModifier + oldy, position.z)
+        const headBobbingOffset = this.fpsCamera.getHeadBobbingOffset()
+
+        this.camera.position.set(
+            position.x,
+            (position.y - this.playerHeight) + this.cameraHeight + headBobbingOffset.vertical,
+            position.z
+        )
+
+        const rightVector = new THREE.Vector3(1, 0, 0)
+        rightVector.applyQuaternion(this.camera.quaternion)
+        this.camera.position.add(
+            rightVector.multiplyScalar(headBobbingOffset.horizontal)
+        )
 
         this.camera.lookAt(this.fpsCamera.focusTarget())
         this.interactManager.updateTakenObject()
