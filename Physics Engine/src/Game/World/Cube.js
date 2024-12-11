@@ -74,7 +74,7 @@ class Cube {
     addPhysicCube() {
 
         let cubeMesh = new THREE.Mesh(
-            new THREE.BoxGeometry(2.0, 2.0, 2.0),
+            new THREE.BoxGeometry(0.5, 0.5, 0.5),
             new THREE.MeshBasicMaterial({
                 color: 'yellow'
             })
@@ -87,7 +87,7 @@ class Cube {
             mass: 10,
             friction: 0.7,
             restitution: 0.3,
-            interact: {enabled: false}
+            interact: {enabled: true, type: 'take', threeMesh: cubeMesh, rapierCollider: null, action: null}
         })
         this.scene.add(cubeMesh)      
     }

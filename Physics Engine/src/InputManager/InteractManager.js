@@ -24,11 +24,17 @@ class InteractManager {
     }
 
     stopInteraction() {
+        this.currentlyInteracting = false
 
         if (this.currentObject.type === 'zoom') {
             this.currentObject.action()
             this.currentObject = undefined
-            this.currentlyInteracting = false
+            return
+        }
+        if (this.currentObject.type === 'take') {
+            this.currentObject.rapierCollider.parent().setBodyType(RAPIER.RigidBodyType.Dynamic)
+            this.currentObject = undefined
+            return
         }
     }
 
@@ -45,7 +51,8 @@ class InteractManager {
         const ray = new RAPIER.Ray(rayOrigin, rayDirection)
         this.game.physics.world.intersectionsWithRay(ray, rayLength, true, (object) => {
             const find = this.interactList.find(interact => interact.rapierCollider.handle === object.collider.handle)
-            if (find) {
+
+            if (find && !this.currentlyInteracting) {
                 this.currentlyInteracting = true
                 this.currentObject = find
                 if (find.type === 'zoom') {
@@ -60,6 +67,17 @@ class InteractManager {
 
         if (inputs.interact.pressed) {
             this.checkForInteraction();
+        }
+
+        if (this.currentlyInteracting && this.currentObject.type === 'take') {
+        
+            this.currentObject.rapierCollider.parent().setBodyType(RAPIER.RigidBodyType.Fixed)
+
+            const offset = new THREE.Vector3(2, 0, 2)
+            const cameraPosition = this.cameraInstance.position.add(offset)
+            const cameraDirection = this.cameraInstance.getWorldDirection(new THREE.Vector3())
+
+            this.currentObject.rapierCollider.parent().setTranslation(cameraPosition, true)
         }
     }
 }

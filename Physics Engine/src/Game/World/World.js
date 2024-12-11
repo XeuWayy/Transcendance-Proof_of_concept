@@ -29,8 +29,11 @@ class World {
         })
     }
 
-    addDynamicObject(name, threeMesh, rapierBody, offset3D) {
-        this.dynamicObjects.push({name, threeMesh, rapierBody, offset3D})
+    addDynamicObject(name, threeMesh, rapierBody, interact) {
+        this.dynamicObjects.push({name, threeMesh, rapierBody})
+        if (interact.enabled) {
+            this.interactManager.interactList.push(interact)
+        }
     }
 
     addFixedObject(name, threeMesh, rapierBody, interact) {
@@ -54,6 +57,7 @@ class World {
             this.dynamicObjects.forEach(({ name, threeMesh, rapierBody}) => {
                 const position = rapierBody.translation()
                 const rotation = rapierBody.rotation()
+
                 threeMesh.position.set(position.x, position.y , position.z)
                 threeMesh.quaternion.set(rotation.x, rotation.y, rotation.z, rotation.w)
             })

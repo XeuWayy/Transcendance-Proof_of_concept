@@ -66,7 +66,7 @@ class Player {
     }
 
     update() {
-        if (this.interactManager.currentlyInteracting) {
+        if (this.interactManager.currentlyInteracting && (this.interactManager.currentObject && this.interactManager.currentObject.type === 'zoom')) {
             return
         }
         const movementInput = this.inputManager.getInputs()
@@ -82,7 +82,6 @@ class Player {
                 this.rigidBody.applyImpulse(new THREE.Vector3(0, 4, 0), true)
                 this.jumpCount++
             }
-
         }
 
         if (crouch.held) {
