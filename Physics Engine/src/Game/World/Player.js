@@ -118,9 +118,11 @@ class Player {
 
         const position = this.rigidBody.translation()
         const oldy = this.camera.position.y
-        this.camera.position.set(position.x, position.y - this.cameraHeightModifier + oldy, position.z)
         
+        this.camera.position.set(position.x, position.y - this.cameraHeightModifier + oldy, position.z)
+
         this.camera.lookAt(this.fpsCamera.focusTarget())
+        this.interactManager.updateTakenObject()
     }
 
 }

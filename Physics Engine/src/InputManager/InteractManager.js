@@ -44,14 +44,17 @@ class InteractManager {
             this.stopInteraction()
             return
         }
+
         const rayOrigin = this.cameraInstance.position
+
         const rayDirection = this.cameraInstance.getWorldDirection(new THREE.Vector3())
         const rayLength = 2.5
 
         const ray = new RAPIER.Ray(rayOrigin, rayDirection)
         this.game.physics.world.intersectionsWithRay(ray, rayLength, true, (object) => {
+            
             const find = this.interactList.find(interact => interact.rapierCollider.handle === object.collider.handle)
-
+            
             if (find && !this.currentlyInteracting) {
                 this.currentlyInteracting = true
                 this.currentObject = find
@@ -62,22 +65,46 @@ class InteractManager {
         });
     }
 
-    update () {
-        const inputs = this.inputManager.getInputs();
-
-        if (inputs.interact.pressed) {
-            this.checkForInteraction();
-        }
-
+    updateTakenObject() {
         if (this.currentlyInteracting && this.currentObject.type === 'take') {
-        
             this.currentObject.rapierCollider.parent().setBodyType(RAPIER.RigidBodyType.Fixed)
-
-            const offset = new THREE.Vector3(2, 0, 2)
-            const cameraPosition = this.cameraInstance.position.add(offset)
+        
+            const cameraPosition = this.cameraInstance.position
             const cameraDirection = this.cameraInstance.getWorldDirection(new THREE.Vector3())
+            
+            const rightVector = new THREE.Vector3()
+            rightVector.crossVectors(cameraDirection, new THREE.Vector3(0, 1, 0)).normalize()
+            
+            const forwardDistance = 2
+            const rightOffset = 1.5
+            
+            const newPosition = new THREE.Vector3()
+                .copy(cameraPosition)
+                .add(cameraDirection.multiplyScalar(forwardDistance))
+                .add(rightVector.multiplyScalar(rightOffset))
+            
+            newPosition.y = cameraPosition.y
+        
+            this.currentObject.rapierCollider.parent().setTranslation(newPosition, true);
+        
+            const lookAtPos = new THREE.Vector3().copy(cameraPosition)
+            lookAtPos.y = newPosition.y
+            this.currentObject.rapierCollider.parent().setRotation(
+                new THREE.Quaternion().setFromRotationMatrix(
+                    new THREE.Matrix4().lookAt(newPosition, lookAtPos, new THREE.Vector3(0, 1, 0))
+                )
+            );
+        }
+    }
 
-            this.currentObject.rapierCollider.parent().setTranslation(cameraPosition, true)
+    update() {
+        const inputs = this.inputManager.getInputs();
+    
+        if (inputs.interact.pressed) {
+            this.checkForInteraction()
+            if (this.currentObject && this.currentObject.type === 'take') {
+                this.initialY = this.currentObject.rapierCollider.parent().translation().y
+            }
         }
     }
 }
