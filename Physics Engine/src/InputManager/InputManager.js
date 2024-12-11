@@ -3,10 +3,10 @@ import GamepadController from "./GamepadController.js"
 import InteractManager from "./InteractManager.js"
 
 class InputManager {
-    constructor(cameraClass) {
+    constructor() {
         this.keyboardMouseController = new KeyboardMouseController()
         this.gamepadController = new GamepadController()
-        this.interactManager = new InteractManager(cameraClass, this)
+        this.interactManager = new InteractManager()
         this.activeInputController = 'keyboardMouse'
         this.activeInputControlMode = 'moving'
 

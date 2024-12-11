@@ -89,7 +89,7 @@ class Pong{
             mass: 60,
             friction: 1.2,
             restitution: 0.2,
-            offset: {x: 0, y: 0, z: 0}
+            interact: {enabled: false}
         })
 
         const tvTableBody = this.physics.createBox({
@@ -99,7 +99,7 @@ class Pong{
             mass: 10,
             friction: 1.2,
             restitution: 0.2,
-            offset: {x: 0, y: 0, z: 0}
+            interact: {enabled: false}
         })
 
         const sadTvBody = this.physics.createBox({
@@ -109,7 +109,7 @@ class Pong{
             mass: 15,
             friction: 1.2,
             restitution: 0.2,
-            offset: {x: 0, y: 0, z: 0}
+            interact: {enabled: false}
         })
 
         const coolerTvBody = this.physics.createBox({
@@ -119,7 +119,7 @@ class Pong{
             mass: 25,
             friction: 1.2,
             restitution: 0.2,
-            offset: {x: 0, y: 0, z: 0}
+            interact: {enabled: false}
         })
     }
 

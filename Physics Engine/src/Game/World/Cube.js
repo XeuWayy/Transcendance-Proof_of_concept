@@ -66,7 +66,7 @@ class Cube {
             mass: 1000,
             friction: 0.7,
             restitution: 0,
-            offset: {x: 0, y: 0, z: 0}
+            interact: {enabled: false}
         })
         
     }
@@ -87,7 +87,7 @@ class Cube {
             mass: 10,
             friction: 0.7,
             restitution: 0.3,
-            offset: {x: 0, y: 0, z: 0}
+            interact: {enabled: false}
         })
         this.scene.add(cubeMesh)      
     }

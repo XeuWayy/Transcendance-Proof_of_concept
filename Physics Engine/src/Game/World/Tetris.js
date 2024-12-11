@@ -14,23 +14,11 @@ class Tetris {
         this.physics = this.game.physics
         this.objectsToIntersect = []
 
+        this.isInteractingWithArcade = false
+        
         this.setModel()
-       this.addArcadeToPhysics()
+        this.addArcadeToPhysics()
         this.setTetrisGame()
-        window.addEventListener('keydown', (event) => {
-            if (event.code === 'KeyE') {
-                const cameraDirection = this.camera.instance.getWorldDirection(new THREE.Vector3())
-
-                const raycast = new THREE.Raycaster
-                raycast.camera = this.camera
-                raycast.far = 1.5
-                raycast.set(this.camera.instance.position, cameraDirection)
-                const intersects = raycast.intersectObjects(this.objectsToIntersect, true)
-                if (intersects.length > 0) {
-                    this.centerCameraOnArcade()
-                }
-            }
-        })
     }
 
     setModel() {
@@ -73,17 +61,17 @@ class Tetris {
             mass: 100,
             friction: 0.7,
             restitution: 0,
-            offset: {x: 0, y: 0, z: 0}
+            interact: {enabled: true, type: 'zoom', threeObject: this.tetrisMachine, rapierCollider: null, action: this.centerCameraOnArcade.bind(this)}
         })
     }
 
     centerCameraOnArcade() {
-        if (!this.camera.fpsCamera.isInteractingWithArcade) {
-            this.camera.fpsCamera.isInteractingWithArcade= true
+        if (!this.isInteractingWithArcade) {
+            this.isInteractingWithArcade= true
             this.camera.instance.position.set(-15.03, 1.7, -26.15)
             this.camera.instance.rotation.set(-0.4940008349279439, -0.0017608863389264688, -0.0009483038705260853)
-        }  else {
-            this.camera.fpsCamera.isInteractingWithArcade = false
+        } else {
+            this.isInteractingWithArcade = false
             this.camera.instance.position.set(-15, 1.7, -25.15)
         }
     }

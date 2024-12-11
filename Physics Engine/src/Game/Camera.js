@@ -23,7 +23,7 @@ class Camera {
         this.instance.position.set(0, 1.7, 0)
         this.scene.add(this.instance)
         
-        this.fpsCamera = new FirstPersonCamera(this)
+        this.fpsCamera = new FirstPersonCamera(this.instance)
     }
 
     setCrosshair() {

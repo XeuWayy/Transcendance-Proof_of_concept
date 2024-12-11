@@ -27,6 +27,7 @@ class Game {
         this.gui = new GUI({ width: 340 })
         this.debugObject = {}
 
+        this.gameReady = false
         this.sizes = new Sizes()
         this.time = new Time()
         this.scene = new THREE.Scene()
@@ -57,12 +58,15 @@ class Game {
     }
 
     update() {
-        this.stats.begin()
-        this.physics.update()
-        this.camera.update()
-        this.world.update()
-        this.renderer.update()
-        this.stats.end()
+        if (this.gameReady) {
+            this.stats.begin()
+            this.physics.update()
+            this.camera.update()
+            this.world.update()
+            this.renderer.update()
+            this.stats.end()
+        }
+
     }
 }
 

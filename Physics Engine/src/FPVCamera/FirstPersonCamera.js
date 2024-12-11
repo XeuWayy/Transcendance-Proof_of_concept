@@ -7,12 +7,11 @@ class FirstPersonCamera {
      * @desc Construct a first person camera
      * @param cameraClass The Camera.js class
      */
-    constructor(cameraClass) {
-        this.camera = cameraClass.instance
+    constructor(camera) {
+        this.camera = camera
         
-        this.inputManager = new InputManager(cameraClass)
-
-        this.isInteractingWithArcade = false
+        this.inputManager = new InputManager()
+        this.interactManager = this.inputManager.interactManager
 
         this.phi = 0
         this.theta = 0
@@ -39,11 +38,11 @@ class FirstPersonCamera {
      * @param deltaTime The deltaTime between the update
      */
     update (deltaTime) {
-        if (!this.isInteractingWithArcade) {
+        if (!this.interactManager.currentlyInteracting || this.interactManager.currentObject.type !== 'zoom') {
             this.updateRotation()
             this.updateHeadBobbing(deltaTime)
-            this.inputManager.update()
         }
+        this.inputManager.update()
     }
 
     /**

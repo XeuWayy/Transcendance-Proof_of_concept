@@ -24,7 +24,7 @@ class Physics {
         })
     }
 
-    createBox({name, threeObject, type, mass, friction, restitution, offset}) {
+    createBox({name, threeObject, type, mass, friction, restitution, interact}) {
         if (!this.world) {
             return
         }
@@ -54,12 +54,13 @@ class Physics {
                 ))
         }
         const rigidBody = this.world.createRigidBody(rigidBodyDesc)
-        this.world.createCollider(colliderDesc, rigidBody)
+        const collider = this.world.createCollider(colliderDesc, rigidBody)
 
+        interact.rapierCollider = collider
         if (type === 'fixed') {
-            this.game.world.addFixedObject(name, threeObject, rigidBody, offset)
+            this.game.world.addFixedObject(name, threeObject, rigidBody, interact)
         } else {
-            this.game.world.addDynamicObject(name, threeObject, rigidBody, offset)
+            this.game.world.addDynamicObject(name, threeObject, rigidBody, interact)
         }
 
         return rigidBody

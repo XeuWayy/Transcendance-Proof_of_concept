@@ -12,6 +12,7 @@ class Player {
         this.camera = this.game.camera.instance
         this.fpsCamera = this.game.camera.fpsCamera
         this.inputManager = this.game.camera.fpsCamera.inputManager
+        this.interactManager = this.inputManager.interactManager
 
         this.rayInformation = {
             rayDirection: new THREE.Vector3(0, -1, 0),
@@ -46,7 +47,6 @@ class Player {
             .setFriction(0.7)
 
         this.collider = this.physics.world.createCollider(colliderDesc, this.rigidBody)
-
     }
 
     checkPlayerOnGround() {
@@ -66,61 +66,62 @@ class Player {
     }
 
     update() {
-        if (!this.fpsCamera.isInteractingWithArcade) {
-            const movementInput = this.inputManager.getInputs()
-            const forwardVelocity = movementInput.forward * 10
-            const strafeVelocity = movementInput.strafe * 10
-            const jumping = movementInput.jump
-            const crouch = movementInput.crouch
-
-            this.checkPlayerOnGround()
-
-            if (jumping.pressed) {
-                if (this.onGround || this.jumpCount < this.maxJumps) {
-                    this.rigidBody.applyImpulse(new THREE.Vector3(0, 4, 0), true)
-                    this.jumpCount++
-                }
-
-            }
-
-            if (crouch.held) {
-                this.collider.setHalfHeight(0.3)
-                this.cameraHeightModifier = 1.4
-            } else if (crouch.released) {
-                this.collider.setHalfHeight(0.6)
-                this.cameraHeightModifier = 1.09
-                this.rigidBody.applyImpulse(new THREE.Vector3(0, 0.2, 0), true)
-            }
-
-            this.fpsCamera.headBobbingActive = this.onGround && (forwardVelocity !== 0 || strafeVelocity !== 0)
-
-            this.camera.getWorldDirection(this.direction)
-            this.direction.y = 0
-            this.direction.normalize()
-
-            this.right.crossVectors(this.camera.up, this.direction).normalize()
-
-            const forward = this.direction.multiplyScalar(forwardVelocity)
-            const strafe = this.right.multiplyScalar(strafeVelocity)
-
-            this.translation = new THREE.Vector3()
-            this.translation.add(forward)
-            this.translation.add(strafe)
-
-            const currentLinvel = this.rigidBody.linvel()
-
-            if (currentLinvel) {
-                this.translation.y = currentLinvel.y
-            }
-
-            this.rigidBody.setLinvel(this.translation, true)
-
-            const position = this.rigidBody.translation()
-            const oldy = this.camera.position.y
-            this.camera.position.set(position.x, position.y - this.cameraHeightModifier + oldy, position.z)
-            
-            this.camera.lookAt(this.fpsCamera.focusTarget())
+        if (this.interactManager.currentlyInteracting) {
+            return
         }
+        const movementInput = this.inputManager.getInputs()
+        const forwardVelocity = movementInput.forward * 10
+        const strafeVelocity = movementInput.strafe * 10
+        const jumping = movementInput.jump
+        const crouch = movementInput.crouch
+
+        this.checkPlayerOnGround()
+
+        if (jumping.pressed) {
+            if (this.onGround || this.jumpCount < this.maxJumps) {
+                this.rigidBody.applyImpulse(new THREE.Vector3(0, 4, 0), true)
+                this.jumpCount++
+            }
+
+        }
+
+        if (crouch.held) {
+            this.collider.setHalfHeight(0.3)
+            this.cameraHeightModifier = 1.4
+        } else if (crouch.released) {
+            this.collider.setHalfHeight(0.6)
+            this.cameraHeightModifier = 1.09
+            this.rigidBody.applyImpulse(new THREE.Vector3(0, 0.2, 0), true)
+        }
+
+        this.fpsCamera.headBobbingActive = this.onGround && (forwardVelocity !== 0 || strafeVelocity !== 0)
+
+        this.camera.getWorldDirection(this.direction)
+        this.direction.y = 0
+        this.direction.normalize()
+
+        this.right.crossVectors(this.camera.up, this.direction).normalize()
+
+        const forward = this.direction.multiplyScalar(forwardVelocity)
+        const strafe = this.right.multiplyScalar(strafeVelocity)
+
+        this.translation = new THREE.Vector3()
+        this.translation.add(forward)
+        this.translation.add(strafe)
+
+        const currentLinvel = this.rigidBody.linvel()
+
+        if (currentLinvel) {
+            this.translation.y = currentLinvel.y
+        }
+
+        this.rigidBody.setLinvel(this.translation, true)
+
+        const position = this.rigidBody.translation()
+        const oldy = this.camera.position.y
+        this.camera.position.set(position.x, position.y - this.cameraHeightModifier + oldy, position.z)
+        
+        this.camera.lookAt(this.fpsCamera.focusTarget())
     }
 
 }

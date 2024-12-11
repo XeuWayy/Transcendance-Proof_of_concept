@@ -11,6 +11,7 @@ class World {
         this.game = new Game()
         this.scene =  this.game.scene
         this.ressources = this.game.ressources
+        this.interactManager = this.game.camera.fpsCamera.inputManager.interactManager
 
         this.loaded = false
         this.dynamicObjects = []
@@ -18,6 +19,7 @@ class World {
 
         this.ressources.on('loaded', () => {
             this.loaded = true
+            this.game.gameReady = true
             this.environment = new Environment()
             this.ground = new Ground()
             this.cube = new Cube()
@@ -31,8 +33,11 @@ class World {
         this.dynamicObjects.push({name, threeMesh, rapierBody, offset3D})
     }
 
-    addFixedObject(name, threeMesh, rapierBody) {
+    addFixedObject(name, threeMesh, rapierBody, interact) {
         this.fixedObjects.push({name, threeMesh, rapierBody})
+        if (interact.enabled) {
+            this.interactManager.interactList.push(interact)
+        }
     }
 
     removeDynamicObject(name) {
@@ -46,10 +51,10 @@ class World {
     update() {
         if (this.loaded) {
             this.player.update()
-            this.dynamicObjects.forEach(({ name, threeMesh, rapierBody, offset3D}) => {
+            this.dynamicObjects.forEach(({ name, threeMesh, rapierBody}) => {
                 const position = rapierBody.translation()
                 const rotation = rapierBody.rotation()
-                threeMesh.position.set(position.x + offset3D.x, position.y + offset3D.y , position.z + offset3D.z)
+                threeMesh.position.set(position.x, position.y , position.z)
                 threeMesh.quaternion.set(rotation.x, rotation.y, rotation.z, rotation.w)
             })
 

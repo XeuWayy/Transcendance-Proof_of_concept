@@ -57,7 +57,7 @@ class Ground {
         this.ground.position.y = 0
         this.scene.add(this.ground)
 
-        this.world.addFixedObject('ground', this.ground, this.groundCollider)
+        this.world.addFixedObject('ground', this.ground, this.groundCollider, {enabled: false})
     }
 }
 
