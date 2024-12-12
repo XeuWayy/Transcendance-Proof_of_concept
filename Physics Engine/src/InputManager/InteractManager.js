@@ -9,6 +9,7 @@ class InteractManager {
         this.currentlyInteracting = false
         this.currentObject = undefined
 
+        this.objectCurrentPosition = new THREE.Vector3()
         this.load()
     }
 
@@ -36,6 +37,8 @@ class InteractManager {
         }
         if (this.currentObject.type === 'take') {
             this.currentObject.rapierCollider.parent().setBodyType(RAPIER.RigidBodyType.Dynamic)
+            this.currentObject.rapierCollider.setActiveEvents(RAPIER.ActiveEvents.COLLISION_EVENTS)
+            this.currentObject.rapierCollider.setEnabled(true)
 
             const playerLinvel = this.world.player.rigidBody.linvel()
             playerLinvel.x *= 1.15
@@ -60,7 +63,6 @@ class InteractManager {
 
         const ray = new RAPIER.Ray(rayOrigin, rayDirection)
         this.game.physics.world.intersectionsWithRay(ray, rayLength, true, (object) => {
-            
             const find = this.interactList.find(interact => interact.rapierCollider.handle === object.collider.handle)
             
             if (find && !this.currentlyInteracting) {
@@ -69,14 +71,20 @@ class InteractManager {
                 if (find.type === 'zoom') {
                     find.action()
                 }
+
             }
-        });
+        })
+
+        if (this.currentlyInteracting && this.currentObject.type === 'take') {
+            this.objectCurrentPosition = this.currentObject.threeMesh.position
+            this.currentObject.rapierCollider.parent().setBodyType(RAPIER.RigidBodyType.Fixed)
+            this.currentObject.rapierCollider.setActiveEvents(RAPIER.ActiveEvents.NONE)
+            this.currentObject.rapierCollider.setEnabled(false)
+        }
     }
 
     updateTakenObject() {
         if (this.currentlyInteracting && this.currentObject.type === 'take') {
-            this.currentObject.rapierCollider.parent().setBodyType(RAPIER.RigidBodyType.Fixed)
-
             const cameraPosition = this.cameraInstance.position
             const cameraDirection = this.cameraInstance.getWorldDirection(new THREE.Vector3())
 
@@ -97,20 +105,37 @@ class InteractManager {
 
             newPosition.y = cameraPosition.y + levitationOffsetY
 
-            this.currentObject.rapierCollider.parent().setTranslation(newPosition, true);
+            const playerVelocity = this.world.player.rigidBody.linvel()
+            const velocityMagnitude = Math.abs(playerVelocity.x) +
+                Math.abs(playerVelocity.y) +
+                Math.abs(playerVelocity.z)
+
+            const lerpFactor = velocityMagnitude > 0.1 ? 0.34 : 0.05
+
+            this.objectCurrentPosition.lerp(newPosition, lerpFactor)
+
+            this.currentObject.rapierCollider.parent().setTranslation(this.objectCurrentPosition, true)
 
             const lookAtPos = new THREE.Vector3().copy(cameraPosition)
-            lookAtPos.y = newPosition.y
-            this.currentObject.rapierCollider.parent().setRotation(
-                new THREE.Quaternion().setFromRotationMatrix(
-                    new THREE.Matrix4().lookAt(newPosition, lookAtPos, new THREE.Vector3(0, 1, 0))
-                )
+            lookAtPos.y = this.objectCurrentPosition.y
+
+            const baseRotation = new THREE.Quaternion().setFromRotationMatrix(
+                new THREE.Matrix4().lookAt(this.objectCurrentPosition, lookAtPos, new THREE.Vector3(0, 1, 0))
             )
+
+            const rotationOffset = new THREE.Quaternion()
+            rotationOffset.setFromAxisAngle(
+                new THREE.Vector3(0, 1, 0),
+                Math.sin(time * 0.4) * 0.3
+            )
+
+            const finalRotation = baseRotation.multiply(rotationOffset)
+            this.currentObject.rapierCollider.parent().setRotation(finalRotation)
         }
     }
 
     update() {
-        const inputs = this.inputManager.getInputs();
+        const inputs = this.inputManager.getInputs()
     
         if (inputs.interact.pressed) {
             this.checkForInteraction()
