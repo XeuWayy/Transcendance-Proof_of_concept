@@ -119,7 +119,7 @@ class Pong{
             mass: 25,
             friction: 1.2,
             restitution: 0.2,
-            interact: {enabled: false}
+            interact: {enabled: true, type: 'take', threeMesh: this.model.coolerTv, rapierCollider: null, action: null}
         })
     }
 
