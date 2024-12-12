@@ -20,7 +20,8 @@ class InteractManager {
         
         this.camera = this.game.camera
         this.cameraInstance = this.camera.instance
-        this.inputManager = this.camera.fpsCamera.inputManager   
+        this.inputManager = this.camera.fpsCamera.inputManager
+        this.world =  this.game.world
     }
 
     stopInteraction() {
@@ -33,8 +34,13 @@ class InteractManager {
         }
         if (this.currentObject.type === 'take') {
             this.currentObject.rapierCollider.parent().setBodyType(RAPIER.RigidBodyType.Dynamic)
+
+            const playerLinvel = this.world.player.rigidBody.linvel()
+            playerLinvel.x *= 1.15
+            playerLinvel.z *= 1.15
+
+            this.currentObject.rapierCollider.parent().setLinvel(playerLinvel, true)
             this.currentObject = undefined
-            return
         }
     }
 
