@@ -36,8 +36,6 @@ class InteractManager {
             return
         }
         if (this.currentObject.type === 'take') {
-            this.currentObject.rapierCollider.parent().setBodyType(RAPIER.RigidBodyType.Dynamic)
-            this.currentObject.rapierCollider.setActiveEvents(RAPIER.ActiveEvents.COLLISION_EVENTS)
             this.currentObject.rapierCollider.setEnabled(true)
 
             const playerLinvel = this.world.player.rigidBody.linvel()
@@ -77,14 +75,33 @@ class InteractManager {
 
         if (this.currentlyInteracting && this.currentObject.type === 'take') {
             this.objectCurrentPosition = this.currentObject.threeMesh.position
-            this.currentObject.rapierCollider.parent().setBodyType(RAPIER.RigidBodyType.Fixed)
-            this.currentObject.rapierCollider.setActiveEvents(RAPIER.ActiveEvents.NONE)
             this.currentObject.rapierCollider.setEnabled(false)
         }
     }
 
+    throwTakenObject() {
+        this.currentlyInteracting = false
+        const cameraPosition = this.cameraInstance.position
+        const cameraDirection = this.cameraInstance.getWorldDirection(new THREE.Vector3()).normalize()
+
+        const throwSpeed = 10
+        const velocity = cameraDirection.clone().multiplyScalar(throwSpeed)
+
+        this.currentObject.rapierCollider.setEnabled(true)
+        this.currentObject.rapierCollider.parent().setTranslation(cameraPosition, true)
+        this.currentObject.rapierCollider.parent().setLinvel(velocity, true)
+
+        this.currentObject = undefined
+    }
+
     updateTakenObject() {
         if (this.currentlyInteracting && this.currentObject.type === 'take') {
+            const inputs = this.inputManager.getInputs()
+            if (inputs.throw.pressed){
+                this.throwTakenObject()
+                return
+            }
+
             const cameraPosition = this.cameraInstance.position
             const cameraDirection = this.cameraInstance.getWorldDirection(new THREE.Vector3())
 
@@ -136,7 +153,7 @@ class InteractManager {
 
     update() {
         const inputs = this.inputManager.getInputs()
-    
+
         if (inputs.interact.pressed) {
             this.checkForInteraction()
         }

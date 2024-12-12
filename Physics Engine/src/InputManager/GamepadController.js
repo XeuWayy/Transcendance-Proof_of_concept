@@ -8,6 +8,7 @@ class GamepadController {
             buttons0: false,
             buttons1: false,
             buttons4: false,
+            buttons7: false,
             isConnected: false
         }
         this.deadzone = 0.05
@@ -61,6 +62,7 @@ class GamepadController {
         this.current.buttons0 = gamepad.buttons[0].pressed
         this.current.buttons1 = gamepad.buttons[1].pressed
         this.current.buttons4 = gamepad.buttons[4].pressed
+        this.current.buttons7 = gamepad.buttons[7].pressed
 
     }
 }
