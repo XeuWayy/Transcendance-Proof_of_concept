@@ -82,13 +82,20 @@ class InteractManager {
     throwTakenObject() {
         this.currentlyInteracting = false
         const cameraPosition = this.cameraInstance.position
+
         const cameraDirection = this.cameraInstance.getWorldDirection(new THREE.Vector3()).normalize()
 
         const throwSpeed = 10
         const velocity = cameraDirection.clone().multiplyScalar(throwSpeed)
 
+        const newPosition = new THREE.Vector3()
+        .copy(cameraPosition)
+        .add(cameraDirection.multiplyScalar(2))
+
+        newPosition.y = cameraPosition.y
+
         this.currentObject.rapierCollider.setEnabled(true)
-        this.currentObject.rapierCollider.parent().setTranslation(cameraPosition, true)
+        this.currentObject.rapierCollider.parent().setTranslation(newPosition, true)
         this.currentObject.rapierCollider.parent().setLinvel(velocity, true)
 
         this.currentObject = undefined
