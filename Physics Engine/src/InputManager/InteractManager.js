@@ -31,6 +31,8 @@ class InteractManager {
         this.currentlyInteracting = false
 
         if (this.currentObject.type === 'zoom') {
+            this.inputManager.activeInputControlMode = 'moving'
+            this.inputManager.updateMovingMode()
             this.currentObject.action()
             this.currentObject = undefined
             return
@@ -67,6 +69,7 @@ class InteractManager {
                 this.currentlyInteracting = true
                 this.currentObject = find
                 if (find.type === 'zoom') {
+                    this.inputManager.activeInputControlMode = 'playingGame'
                     find.action()
                 }
 
@@ -161,7 +164,7 @@ class InteractManager {
     update() {
         const inputs = this.inputManager.getInputs()
 
-        if (inputs.interact.pressed) {
+        if (inputs && inputs.interact.pressed) {
             this.checkForInteraction()
         }
     }

@@ -121,7 +121,22 @@ class InputManager {
     }
 
     updatePlayingMode() {
+        let currentInteract
+        if (this.activeInputController === 'keyboardMouse') {
+            currentInteract = this.keyboardMouseController.keys['KeyE']? this.keyboardMouseController.keys['KeyE'] : false
 
+            this.inputs = {
+                interact: this.computeActionState(currentInteract, this.previousInputs.interact)
+            }
+        } else {
+            currentInteract = this.gamepadController.current.bButton
+
+            this.inputs = {
+                interact: this.computeActionState(currentInteract, this.previousInputs.interact)
+            }
+        }
+
+        this.previousInputs.interact = currentInteract
     }
 
     /**
