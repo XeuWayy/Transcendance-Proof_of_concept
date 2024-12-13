@@ -72,8 +72,8 @@ class Player {
             return
         }
         const movementInput = this.inputManager.getInputs()
-        const forwardVelocity = movementInput.forward * 600 * this.game.time.deltaInSecond
-        const strafeVelocity = movementInput.strafe * 600 * this.game.time.deltaInSecond
+        const forwardVelocity = movementInput.forward * 10
+        const strafeVelocity = movementInput.strafe * 10
         const jumping = movementInput.jump
         const crouch = movementInput.crouch
 
@@ -137,9 +137,6 @@ class Player {
 
         this.camera.lookAt(this.fpsCamera.focusTarget())
         this.interactManager.updateTakenObject()
-
-        console.log('speed', this.rigidBody.linvel().x + this.rigidBody.linvel().z);
-        
     }
 
 }

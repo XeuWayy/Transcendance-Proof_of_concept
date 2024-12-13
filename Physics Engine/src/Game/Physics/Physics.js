@@ -7,6 +7,7 @@ class Physics {
     constructor() {
         this.game = new Game()
         this.scene = this.game.scene
+        this.time = this.game.time
 
         this.initPhysics()
         this.enabled = true
@@ -17,7 +18,6 @@ class Physics {
         import('@dimforge/rapier3d').then(RAPIER => {
             const gravity = { x: 0.0, y: -9.81, z: 0.0 }
             this.world = new RAPIER.World(gravity)
-
             this.mesh = new THREE.LineSegments(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: 0xffffff, vertexColors: true }))
             this.mesh.frustumCulled = false
             this.scene.add(this.mesh)
@@ -68,6 +68,7 @@ class Physics {
 
     update() {
         if (this.world) {
+            this.world.timestep = this.time.deltaInSecond
             this.world.step()
 
             if (this.enabled) {
