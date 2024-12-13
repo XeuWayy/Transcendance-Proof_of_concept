@@ -12,6 +12,7 @@ class InputManager {
 
         this.previousInputs = {
             jump: false,
+            run: false,
             crouch: false,
             interact: false,
             throw: false
@@ -22,6 +23,7 @@ class InputManager {
             forward: 0,
             strafe: 0,
             jump: { pressed: false, held: false, released: false },
+            run: { pressed: false, held: false, released: false },
             crouch: { pressed: false, held: false, released: false },
             interact: { pressed: false, held: false, released: false },
             throw: { pressed: false, held: false, released: false },
@@ -67,11 +69,12 @@ class InputManager {
     }
 
     updateMovingMode () {
-        let currentJump, currentCrouch, currentInteract, currentThrow
+        let currentJump, currentRun, currentCrouch, currentInteract, currentThrow
 
         if (this.activeInputController === 'keyboardMouse') {
             currentJump = this.keyboardMouseController.keys['Space'] ? this.keyboardMouseController.keys['Space'] : false
-            currentCrouch = this.keyboardMouseController.keys['ShiftLeft']? this.keyboardMouseController.keys['ShiftLeft'] : false
+            currentRun = this.keyboardMouseController.keys['ShiftLeft'] ? this.keyboardMouseController.keys['ShiftLeft'] : false
+            currentCrouch = this.keyboardMouseController.keys['KeyC']? this.keyboardMouseController.keys['KeyC'] : false
             currentInteract = this.keyboardMouseController.keys['KeyE']? this.keyboardMouseController.keys['KeyE'] : false
             currentThrow = this.keyboardMouseController.current.leftButton
 
@@ -79,6 +82,7 @@ class InputManager {
                 forward: (this.keyboardMouseController.keys['KeyW'] ? 1 : 0) + (this.keyboardMouseController.keys['KeyS'] ? -1 : 0),
                 strafe: (this.keyboardMouseController.keys['KeyA'] ? 1 : 0) + (this.keyboardMouseController.keys['KeyD'] ? -1 : 0),
                 jump: this.computeActionState(currentJump, this.previousInputs.jump),
+                run: this.computeActionState(currentRun, this.previousInputs.run),
                 crouch: this.computeActionState(currentCrouch, this.previousInputs.crouch),
                 interact: this.computeActionState(currentInteract, this.previousInputs.interact),
                 throw: this.computeActionState(currentThrow, this.previousInputs.throw),
@@ -89,6 +93,7 @@ class InputManager {
             }
         } else {
             currentJump = this.gamepadController.current.buttons0
+            currentRun = this.gamepadController.current.buttons10
             currentCrouch = this.gamepadController.current.buttons4
             currentInteract = this.gamepadController.current.buttons1
             currentThrow = this.gamepadController.current.buttons7
@@ -98,6 +103,7 @@ class InputManager {
                 forward: -this.gamepadController.current.leftStickY,
                 strafe: -this.gamepadController.current.leftStickX,
                 jump: this.computeActionState(currentJump, this.previousInputs.jump),
+                run: this.computeActionState(currentRun, this.previousInputs.run),
                 crouch: this.computeActionState(currentCrouch, this.previousInputs.crouch),
                 interact: this.computeActionState(currentInteract, this.previousInputs.interact),
                 throw: this.computeActionState(currentThrow, this.previousInputs.throw),
@@ -109,6 +115,7 @@ class InputManager {
         }
 
         this.previousInputs.jump = currentJump
+        this.previousInputs.run = currentRun
         this.previousInputs.crouch = currentCrouch
         this.previousInputs.interact = currentInteract
         this.previousInputs.throw = currentThrow

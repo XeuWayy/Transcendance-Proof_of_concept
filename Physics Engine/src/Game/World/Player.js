@@ -13,13 +13,14 @@ class Player {
         this.fpsCamera = this.game.camera.fpsCamera
         this.inputManager = this.game.camera.fpsCamera.inputManager
         this.interactManager = this.inputManager.interactManager
-        this.time = this.game.time
 
         this.rayInformation = {
             rayDirection: new THREE.Vector3(0, -1, 0),
             rayLength: 1.10
         }
 
+        this.playerSpeed = 8
+        this.playerCrouched = false
         this.jumpCount = 0
         this.maxJumps = 2
 
@@ -72,9 +73,10 @@ class Player {
             return
         }
         const movementInput = this.inputManager.getInputs()
-        const forwardVelocity = movementInput.forward * 10
-        const strafeVelocity = movementInput.strafe * 10
+        const forwardVelocity = movementInput.forward * this.playerSpeed
+        const strafeVelocity = movementInput.strafe * this.playerSpeed
         const jumping = movementInput.jump
+        const run = movementInput.run
         const crouch = movementInput.crouch
 
         this.checkPlayerOnGround()
@@ -86,15 +88,31 @@ class Player {
             }
         }
 
-        if (crouch.held) {
-            this.collider.setHalfHeight(0.3)
-            this.cameraHeight = 1.1
-            this.playerHeight = 0.7988615036010742
-        } else if (crouch.released) {
-            this.collider.setHalfHeight(0.55)
-            this.cameraHeight = 1.7
-            this.playerHeight = 1.0488626956939697
-            this.rigidBody.applyImpulse(new THREE.Vector3(0, 0.2, 0), true)
+        if (run.pressed) {
+            this.playerSpeed *= 2
+        } else if (run.released) {
+            this.playerSpeed *= 0.5
+        }
+
+        if (crouch.pressed) {
+            if (!this.playerCrouched) {
+                this.playerCrouched = true
+                this.collider.setHalfHeight(0.3)
+                this.cameraHeight = 1.1
+                this.playerHeight = 0.7988615036010742
+                this.playerSpeed *= 0.5
+                this.fpsCamera.verticalBobbingFrequency *= 0.5
+                this.fpsCamera.verticalBobbingAmplitude *= 0.5
+            } else {
+                this.playerCrouched = false
+                this.collider.setHalfHeight(0.55)
+                this.cameraHeight = 1.7
+                this.playerHeight = 1.0488626956939697
+                this.playerSpeed *= 2
+                this.fpsCamera.verticalBobbingFrequency *= 2
+                this.fpsCamera.verticalBobbingAmplitude *= 2
+                this.rigidBody.applyImpulse(new THREE.Vector3(0, 0.2, 0), true)
+            }
         }
 
         this.fpsCamera.headBobbingActive = this.onGround && (forwardVelocity !== 0 || strafeVelocity !== 0)
