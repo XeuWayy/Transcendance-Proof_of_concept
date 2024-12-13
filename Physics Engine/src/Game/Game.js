@@ -22,6 +22,7 @@ class Game {
         singletonGame = this
 
         this.canvas = canvas
+        this.isFirefoxbasedbrowser = navigator.userAgent.includes("Firefox")
 
         // Debug
         this.gui = new GUI({ width: 340 })

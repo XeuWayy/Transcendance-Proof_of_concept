@@ -1,15 +1,19 @@
+import Game from "../Game/Game.js"
+
 class GamepadController {
     constructor() {
+        this.game = new Game()
+        this.isFirefoxbasedbrowser = this.game.isFirefoxbasedbrowser
         this.current = {
             leftStickX: 0,
             leftStickY: 0,
             rightStickX: 0,
             rightStickY: 0,
-            buttons0: false,
-            buttons1: false,
-            buttons4: false,
-            buttons7: false,
-            buttons10: false,
+            aButton: false,
+            bButton: false,
+            rTrigger: false,
+            rJoyButton: false,
+            lJoyButton: false,
             isConnected: false
         }
         this.deadzone = 0.05
@@ -58,13 +62,20 @@ class GamepadController {
         this.current.leftStickX = this.applyDeadzone(gamepad.axes[0])
         this.current.leftStickY = this.applyDeadzone(gamepad.axes[1])
 
-        this.current.rightStickX = this.applyDeadzone(gamepad.axes[2]) * this.lookSensivity
-        this.current.rightStickY = this.applyDeadzone(gamepad.axes[3]) * this.lookSensivity
-        this.current.buttons0 = gamepad.buttons[0].pressed
-        this.current.buttons1 = gamepad.buttons[1].pressed
-        this.current.buttons4 = gamepad.buttons[4].pressed
-        this.current.buttons7 = gamepad.buttons[7].pressed
-        this.current.buttons10 = gamepad.buttons[10].pressed
+        if (this.isFirefoxbasedbrowser) {
+            this.current.rightStickX = this.applyDeadzone(gamepad.axes[4]) * this.lookSensivity
+            this.current.rightStickY = this.applyDeadzone(gamepad.axes[5]) * this.lookSensivity
+            this.current.rTrigger = gamepad.axes[6] > -1 && gamepad.axes[6] !== 0
+        } else {
+          this.current.rightStickX = this.applyDeadzone(gamepad.axes[2]) * this.lookSensivity
+          this.current.rightStickY = this.applyDeadzone(gamepad.axes[3]) * this.lookSensivity
+          this.current.rTrigger = gamepad.buttons[7].pressed
+        }
+
+        this.current.aButton = gamepad.buttons[0].pressed
+        this.current.bButton = gamepad.buttons[1].pressed
+        this.current.rJoyButton = gamepad.buttons[11].pressed
+        this.current.lJoyButton = gamepad.buttons[10].pressed
     }
 }
 

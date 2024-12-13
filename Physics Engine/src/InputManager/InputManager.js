@@ -92,12 +92,11 @@ class InputManager {
                 }
             }
         } else {
-            currentJump = this.gamepadController.current.buttons0
-            currentRun = this.gamepadController.current.buttons10
-            currentCrouch = this.gamepadController.current.buttons4
-            currentInteract = this.gamepadController.current.buttons1
-            currentThrow = this.gamepadController.current.buttons7
-
+            currentJump = this.gamepadController.current.aButton
+            currentRun = this.gamepadController.current.lJoyButton
+            currentCrouch = this.gamepadController.current.rJoyButton
+            currentInteract = this.gamepadController.current.bButton
+            currentThrow = this.gamepadController.current.rTrigger
 
             this.inputs = {
                 forward: -this.gamepadController.current.leftStickY,
