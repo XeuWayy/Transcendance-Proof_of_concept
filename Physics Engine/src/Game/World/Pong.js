@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from 'three/webgpu'
 
 import Game from "../Game.js"
 import crtVertex from "../../shaders/crtScreen/vertex.glsl"
@@ -68,15 +68,18 @@ class Pong{
 
         const coolTvPong = new THREE.Mesh(
             new THREE.PlaneGeometry(0.914, 0.686, 128, 128),
-            new THREE.ShaderMaterial({
-                uniforms: {
-                    videoTexture: { value: pongTexture }
-                },
-                vertexShader: crtVertex,
-                fragmentShader: crtFragment,
+            new THREE.MeshBasicMaterial({
+                /* uniforms: {
+                     videoTexture: { value: this.canvasTexture }
+                 },
+                 vertexShader: crtVertex,
+                 fragmentShader: crtFragment,*/
+                map: pongTexture,
+                //color: '#FFFFFF',
                 side: THREE.DoubleSide
-            }))
-        coolTvPong.position.set(0.15, -0.15, -0.3865)
+            })
+        )
+        coolTvPong.position.set(0.15, -0.15, -0.55)
         coolTvPong.rotation.y = Math.PI
         this.model.coolerTv.add(coolTvPong)
     }

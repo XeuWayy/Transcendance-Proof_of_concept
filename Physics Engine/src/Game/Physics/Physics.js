@@ -1,4 +1,4 @@
-import * as THREE from "three"
+import * as THREE from "three/webgpu"
 import * as RAPIER from "@dimforge/rapier3d";
 
 import Game from "../Game.js"
@@ -18,9 +18,17 @@ class Physics {
         import('@dimforge/rapier3d').then(RAPIER => {
             const gravity = { x: 0.0, y: -9.81, z: 0.0 }
             this.world = new RAPIER.World(gravity)
-            this.mesh = new THREE.LineSegments(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: 0xffffff, vertexColors: true }))
-            this.mesh.frustumCulled = false
-            this.scene.add(this.mesh)
+
+            this.geometry = new THREE.BufferGeometry()
+            this.geometry.setAttribute('position', new THREE.Float32BufferAttribute([], 3))
+            this.geometry.setAttribute('color', new THREE.Float32BufferAttribute([], 4))
+
+            this.material = new THREE.LineBasicNodeMaterial({vertexColors: true})
+
+            this.lineSegments = new THREE.LineSegments(this.geometry, this.material)
+            this.lineSegments.frustumCulled = false
+
+            this.scene.add(this.lineSegments)
         })
     }
 
@@ -73,11 +81,18 @@ class Physics {
 
             if (this.enabled) {
                 const { vertices, colors } = this.world.debugRender()
-                this.mesh.geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3))
-                this.mesh.geometry.setAttribute('color', new THREE.BufferAttribute(colors, 4))
-                this.mesh.visible = true
+
+                this.geometry.attributes.position.array = vertices
+                this.geometry.attributes.position.count = vertices.length / 3
+                this.geometry.attributes.position.needsUpdate = true
+
+                this.geometry.attributes.color.array = colors
+                this.geometry.attributes.color.count = colors.length / 4
+                this.geometry.attributes.color.needsUpdate = true
+
+                this.lineSegments.visible = true
             } else {
-                this.mesh.visible = false
+                this.lineSegments.visible = false
             }
 
         }

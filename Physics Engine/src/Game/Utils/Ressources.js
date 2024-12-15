@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from 'three/webgpu'
 import {REVISION} from "three"
 import {GLTFLoader} from "three/addons";
 import {MeshoptDecoder} from "three/addons/libs/meshopt_decoder.module.js";
@@ -32,7 +32,7 @@ class Ressources extends EventEmitter {
         const THREE_PATH = `https://unpkg.com/three@0.${REVISION}.x`
         this.loaders.ktx2Loader = new KTX2Loader()
         this.loaders.ktx2Loader.setTranscoderPath(`${THREE_PATH}/examples/jsm/libs/basis/`)
-        this.loaders.ktx2Loader.detectSupport(this.renderer.instance)
+        this.loaders.ktx2Loader.detectSupportAsync(this.renderer.instance)
 
         this.loaders.gltfLoader = new GLTFLoader()
         this.loaders.gltfLoader.setMeshoptDecoder(MeshoptDecoder)

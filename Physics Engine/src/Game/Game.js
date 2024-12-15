@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from 'three/webgpu'
 import Stats from "three/addons/libs/stats.module.js"
 import GUI from 'lil-gui'
 
@@ -67,7 +67,6 @@ class Game {
             this.renderer.update()
             this.stats.end()
         }
-
     }
 }
 

@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from 'three/webgpu'
 import Game from "./Game.js"
 
 
@@ -15,11 +15,13 @@ class Renderer {
     }
 
     setInstance() {
-        this.instance = new THREE.WebGLRenderer({
+        this.instance = new THREE.WebGPURenderer({
             canvas: this.canvas,
             antialias: true,
-            alpha: true
+            alpha: true,
+            forceWebGL: false
         })
+        console.log(this.instance);
         this.instance.setSize(this.sizes.width, this.sizes.height)
         this.instance.setPixelRatio(this.sizes.pixelRatio)
 
@@ -34,7 +36,7 @@ class Renderer {
     }
 
     update() {
-        this.instance.render(this.scene, this.camera.instance)
+        this.instance.renderAsync(this.scene, this.camera.instance)
     }
 }
 

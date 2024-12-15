@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from 'three/webgpu'
 
 import Game from "../Game.js"
 import flatCrtVertex from "../../shaders/flatCrt/vertex.glsl"
@@ -38,12 +38,13 @@ class Tetris {
 
         const tetrisGame = new THREE.Mesh(
             new THREE.PlaneGeometry(0.475, 0.352, 128, 128),
-            new THREE.ShaderMaterial({
-                uniforms: {
+            new THREE.MeshBasicNodeMaterial({
+               /* uniforms: {
                     videoTexture: { value: this.canvasTexture }
                 },
                 vertexShader: flatCrtVertex,
-                fragmentShader: flatCrtFragment,
+                fragmentShader: flatCrtFragment,*/
+                map: this.canvasTexture,
                 side: THREE.DoubleSide
             })
         )

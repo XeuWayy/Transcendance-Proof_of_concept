@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from 'three/webgpu'
 
 import Game from "./Game.js"
 import FirstPersonCamera from "../FPVCamera/FirstPersonCamera.js"
@@ -14,7 +14,7 @@ class Camera {
         this.time = this.game.time
 
         this.setInstance()
-        this.setCrosshair()
+        //this.setCrosshair()
     }
 
     setInstance() {
