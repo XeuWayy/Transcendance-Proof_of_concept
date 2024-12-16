@@ -85,8 +85,9 @@ class Pong{
     }
 
     addPhysics() {
-        const sofaBody = this.physics.createBox({
+        const sofaBody = this.physics.createPhysics({
             name: 'sofa',
+            colliderType: 'sphere',
             threeObject: this.model.sofa,
             type: 'dynamic',
             mass: 60,
@@ -95,8 +96,9 @@ class Pong{
             interact: {enabled: false}
         })
 
-        const tvTableBody = this.physics.createBox({
+        const tvTableBody = this.physics.createPhysics({
             name: 'tvTable',
+            colliderType: 'box',
             threeObject: this.model.tvTable,
             type: 'dynamic',
             mass: 10,
@@ -105,8 +107,9 @@ class Pong{
             interact: {enabled: false}
         })
 
-        const sadTvBody = this.physics.createBox({
+        const sadTvBody = this.physics.createPhysics({
             name: 'sadTv',
+            colliderType: 'box',
             threeObject: this.model.sadTv,
             type: 'dynamic',
             mass: 15,
@@ -115,8 +118,9 @@ class Pong{
             interact: {enabled: false}
         })
 
-        const coolerTvBody = this.physics.createBox({
+        const coolerTvBody = this.physics.createPhysics({
             name: 'coolerTv',
+            colliderType: 'box',
             threeObject: this.model.coolerTv,
             type: 'dynamic',
             mass: 25,

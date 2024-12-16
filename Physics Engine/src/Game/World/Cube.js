@@ -59,8 +59,9 @@ class Cube {
     }
 
     addCubeToPhysic(threeMesh) {
-            const physicsBox = this.physics.createBox({
+            const physicsBox = this.physics.createPhysics({
             name: 'Cube',
+            colliderType: 'box',
             threeObject: threeMesh,
             type: 'fixed',
             mass: 1000,
@@ -80,8 +81,9 @@ class Cube {
             })
         )
 
-        const cubeBody = this.physics.createBox({
+        const cubeBody = this.physics.createPhysics({
             name: 'smallCube',
+            colliderType: 'box',
             threeObject: cubeMesh,
             type: 'dynamic',
             mass: 10,

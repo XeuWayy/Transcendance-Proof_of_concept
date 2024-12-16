@@ -55,8 +55,9 @@ class Tetris {
     }
 
     addArcadeToPhysics() {
-        const tetrisBody = this.physics.createBox({
+        const tetrisBody = this.physics.createPhysics({
             name: 'tetrisMachine',
+            colliderType: 'box',
             threeObject: this.tetrisMachine,
             type: 'fixed',
             mass: 100,

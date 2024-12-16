@@ -32,22 +32,62 @@ class Physics {
         })
     }
 
-    createBox({name, threeObject, type, mass, friction, restitution, interact}) {
+    createPhysics({name, colliderType, threeObject, type, mass, friction, restitution, interact}) {
         if (!this.world) {
             return
         }
 
-        const threeObjectBox = new THREE.Box3().setFromObject(threeObject)
-        const threeObjectVector = new THREE.Vector3()
-        threeObjectBox.getSize(threeObjectVector)
-
         const position = threeObject.position
         const quaternion = threeObject.quaternion
 
-        const colliderDesc = RAPIER.ColliderDesc.cuboid(threeObjectVector.x * 0.5, threeObjectVector.y * 0.5, threeObjectVector.z * 0.5)
-            .setMass(mass)
-            .setFriction(friction)
-            .setRestitution(restitution)
+        let colliderDesc
+
+        if (colliderType === 'convexHull' || colliderType === 'trimesh') {
+            console.log(threeObject);
+            const positions = new Float32Array(threeObject.geometry.attributes.position.array)
+            const indices = new Uint32Array(threeObject.geometry.index.array)
+
+            switch (colliderType) {
+                case 'convexHull':
+                    colliderDesc = RAPIER.ColliderDesc.convexHull(positions)
+                        .setMass(mass)
+                        .setFriction(friction)
+                        .setRestitution(restitution)
+                    break
+                case 'trimesh':
+                    colliderDesc = RAPIER.ColliderDesc.trimesh(positions, indices)
+                        .setMass(mass)
+                        .setFriction(friction)
+                        .setRestitution(restitution)
+                    break
+            }
+        } else {
+            const threeObjectBox = new THREE.Box3().setFromObject(threeObject)
+            const threeObjectVector = new THREE.Vector3()
+            threeObjectBox.getSize(threeObjectVector)
+
+            switch (colliderType) {
+                case 'box':
+                    colliderDesc = RAPIER.ColliderDesc.cuboid(threeObjectVector.x * 0.5, threeObjectVector.y * 0.5, threeObjectVector.z * 0.5)
+                        .setMass(mass)
+                        .setFriction(friction)
+                        .setRestitution(restitution)
+                    break
+                case 'cylinder':
+                    colliderDesc = RAPIER.ColliderDesc.cylinder(threeObjectVector.y * 0.5, threeObjectVector.x * 0.5)
+                        .setMass(mass)
+                        .setFriction(friction)
+                        .setRestitution(restitution)
+                    break
+                case 'sphere':
+                    colliderDesc = RAPIER.ColliderDesc.ball(threeObjectVector.x * 0.5)
+                        .setMass(mass)
+                        .setFriction(friction)
+                        .setRestitution(restitution)
+                    break
+            }
+
+        }
 
         let rigidBodyDesc
         if (type === 'fixed') {
@@ -73,6 +113,7 @@ class Physics {
 
         return rigidBody
     }
+
 
     update() {
         if (this.world) {

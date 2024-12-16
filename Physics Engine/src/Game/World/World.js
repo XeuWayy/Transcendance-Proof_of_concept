@@ -5,6 +5,7 @@ import Cube from "./Cube.js"
 import Pong from "./Pong.js"
 import Tetris from "./Tetris.js"
 import Player from "./Player.js"
+import Test from "./Test.js"
 
 class World {
     constructor() {
@@ -26,6 +27,7 @@ class World {
             this.pong = new Pong()
             this.tetris = new Tetris()
             this.player = new Player()
+            this.test = new Test()
         })
     }
 
