@@ -40,58 +40,67 @@ class Physics {
         const position = threeObject.position
         const quaternion = threeObject.quaternion
 
+        const boundingBox = new THREE.Box3().setFromObject(threeObject)
+        const center = new THREE.Vector3()
+        boundingBox.getCenter(center)
+
+        const offset = center.sub(threeObject.position)
+
         let colliderDesc
 
         if (colliderType === 'convexHull' || colliderType === 'trimesh') {
-            console.log(threeObject);
-            const positions = new Float32Array(threeObject.geometry.attributes.position.array)
-            const indices = new Uint32Array(threeObject.geometry.index.array)
+            const positions = new Float32Array(threeObject.geometry.attributes.position.array);
+            const indices = new Uint32Array(threeObject.geometry.index.array);
 
             switch (colliderType) {
                 case 'convexHull':
                     colliderDesc = RAPIER.ColliderDesc.convexHull(positions)
+                        .setTranslation(offset.x, offset.y, offset.z)
                         .setMass(mass)
                         .setFriction(friction)
-                        .setRestitution(restitution)
-                    break
+                        .setRestitution(restitution);
+                    break;
                 case 'trimesh':
                     colliderDesc = RAPIER.ColliderDesc.trimesh(positions, indices)
+                        .setTranslation(offset.x, offset.y, offset.z)
                         .setMass(mass)
                         .setFriction(friction)
-                        .setRestitution(restitution)
-                    break
+                        .setRestitution(restitution);
+                    break;
             }
         } else {
-            const threeObjectBox = new THREE.Box3().setFromObject(threeObject)
-            const threeObjectVector = new THREE.Vector3()
-            threeObjectBox.getSize(threeObjectVector)
+            const threeObjectBox = new THREE.Box3().setFromObject(threeObject);
+            const threeObjectVector = new THREE.Vector3();
+            threeObjectBox.getSize(threeObjectVector);
 
             switch (colliderType) {
                 case 'box':
                     colliderDesc = RAPIER.ColliderDesc.cuboid(threeObjectVector.x * 0.5, threeObjectVector.y * 0.5, threeObjectVector.z * 0.5)
+                        .setTranslation(offset.x, offset.y, offset.z)
                         .setMass(mass)
                         .setFriction(friction)
-                        .setRestitution(restitution)
-                    break
+                        .setRestitution(restitution);
+                    break;
                 case 'cylinder':
                     colliderDesc = RAPIER.ColliderDesc.cylinder(threeObjectVector.y * 0.5, threeObjectVector.x * 0.5)
+                        .setTranslation(offset.x, offset.y, offset.z)
                         .setMass(mass)
                         .setFriction(friction)
-                        .setRestitution(restitution)
-                    break
+                        .setRestitution(restitution);
+                    break;
                 case 'sphere':
                     colliderDesc = RAPIER.ColliderDesc.ball(threeObjectVector.x * 0.5)
+                        .setTranslation(offset.x, offset.y, offset.z)
                         .setMass(mass)
                         .setFriction(friction)
-                        .setRestitution(restitution)
-                    break
+                        .setRestitution(restitution);
+                    break;
             }
-
         }
 
-        let rigidBodyDesc
+        let rigidBodyDesc;
         if (type === 'fixed') {
-            rigidBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(position.x, position.y, position.z)
+            rigidBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(position.x, position.y, position.z);
         } else {
             rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic().setTranslation(position.x, position.y, position.z)
                 .setRotation(new RAPIER.Quaternion(
@@ -99,19 +108,20 @@ class Physics {
                     quaternion.y,
                     quaternion.z,
                     quaternion.w
-                ))
+                ));
         }
-        const rigidBody = this.world.createRigidBody(rigidBodyDesc)
-        const collider = this.world.createCollider(colliderDesc, rigidBody)
 
-        interact.rapierCollider = collider
+        const rigidBody = this.world.createRigidBody(rigidBodyDesc);
+        const collider = this.world.createCollider(colliderDesc, rigidBody);
+
+        interact.rapierCollider = collider;
         if (type === 'fixed') {
-            this.game.world.addFixedObject(name, threeObject, rigidBody, interact)
+            this.game.world.addFixedObject(name, threeObject, rigidBody, interact);
         } else {
-            this.game.world.addDynamicObject(name, threeObject, rigidBody, interact)
+            this.game.world.addDynamicObject(name, threeObject, rigidBody, interact);
         }
 
-        return rigidBody
+        return rigidBody;
     }
 
 

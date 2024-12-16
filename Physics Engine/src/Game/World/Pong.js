@@ -87,7 +87,7 @@ class Pong{
     addPhysics() {
         const sofaBody = this.physics.createPhysics({
             name: 'sofa',
-            colliderType: 'sphere',
+            colliderType: 'box',
             threeObject: this.model.sofa,
             type: 'dynamic',
             mass: 60,
