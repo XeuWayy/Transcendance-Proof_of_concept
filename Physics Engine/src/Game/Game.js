@@ -14,7 +14,7 @@ import Physics from "./Physics/Physics.js"
 let singletonGame
 
 class Game {
-    constructor(canvas ) {
+    constructor(canvas) {
         if (singletonGame) {
             return singletonGame
         }

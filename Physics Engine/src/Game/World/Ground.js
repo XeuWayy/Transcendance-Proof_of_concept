@@ -39,6 +39,7 @@ class Ground {
         // Physic Ground
         this.groundColliderDesc = RAPIER.ColliderDesc.cuboid(50.0, 0.5, 50.0)
             .setRestitution(0)
+            .setTranslation(0.0, -0.5, 0.0)
         this.groundCollider = this.physics.world.createCollider(this.groundColliderDesc)
 
         // Three Ground
@@ -53,7 +54,7 @@ class Ground {
           })
         )
         this.ground.rotation.x = -Math.PI * 0.5
-        this.ground.position.y = 0
+        this.ground.position.y = -.5
         this.scene.add(this.ground)
 
         this.world.addFixedObject('ground', this.ground, this.groundCollider, {enabled: false})
