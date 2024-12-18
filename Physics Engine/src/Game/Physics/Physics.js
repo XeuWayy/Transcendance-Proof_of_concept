@@ -1,5 +1,6 @@
 import * as THREE from "three/webgpu"
-import * as RAPIER from "@dimforge/rapier3d";
+import * as RAPIER from "@dimforge/rapier3d"
+import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js'
 
 import Game from "../Game.js"
 
@@ -32,6 +33,22 @@ class Physics {
         })
     }
 
+    extractThreeGeometry(threeObject) {
+        const geometries = []
+
+        threeObject.traverse((child) => {
+            if (child.isMesh && child.geometry) {
+                geometries.push(child.geometry)
+            }
+        })
+        const merged = BufferGeometryUtils.mergeGeometries(geometries)
+
+        return {
+            positions: new Float32Array(merged.attributes.position.array),
+            indices: new Uint32Array(merged.index.array)
+        };
+    }
+
     createPhysics({name, colliderType, threeObject, type, mass, friction, restitution, interact}) {
         if (!this.world) {
             return
@@ -49,20 +66,17 @@ class Physics {
         let colliderDesc
 
         if (colliderType === 'convexHull' || colliderType === 'trimesh') {
-            const positions = new Float32Array(threeObject.geometry.attributes.position.array);
-            const indices = new Uint32Array(threeObject.geometry.index.array);
+            const data = this.extractThreeGeometry(threeObject)
 
             switch (colliderType) {
                 case 'convexHull':
-                    colliderDesc = RAPIER.ColliderDesc.convexHull(positions)
-                        .setTranslation(offset.x, offset.y, offset.z)
+                    colliderDesc = RAPIER.ColliderDesc.convexHull(data.positions)
                         .setMass(mass)
                         .setFriction(friction)
                         .setRestitution(restitution);
                     break;
                 case 'trimesh':
-                    colliderDesc = RAPIER.ColliderDesc.trimesh(positions, indices)
-                        .setTranslation(offset.x, offset.y, offset.z)
+                    colliderDesc = RAPIER.ColliderDesc.trimesh(data.positions, data.indices)
                         .setMass(mass)
                         .setFriction(friction)
                         .setRestitution(restitution);
