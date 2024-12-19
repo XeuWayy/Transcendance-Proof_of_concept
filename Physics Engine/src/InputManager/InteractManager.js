@@ -78,6 +78,18 @@ class InteractManager {
         if (this.currentlyInteracting && this.currentObject.type === 'take') {
             this.objectCurrentPosition = this.currentObject.threeMesh.position
             this.currentObject.rapierCollider.setEnabled(false)
+
+            const boundingBox = new THREE.Box3().setFromObject(this.currentObject.threeMesh)
+            const size = new THREE.Vector3()
+            boundingBox.getSize(size)
+            const center = new THREE.Vector3()
+            boundingBox.getCenter(center)
+
+            this.offset = center.sub(this.currentObject.threeMesh.position)
+
+            const distanceRatio = ((size.x + size.y + size.z) * 0.3333)
+            this.forwardDistance = Math.max(2, 2 * distanceRatio)
+            this.rightOffset = Math.max(1.5, 1.5 * distanceRatio)
         }
     }
 
@@ -117,19 +129,16 @@ class InteractManager {
             const rightVector = new THREE.Vector3()
             rightVector.crossVectors(cameraDirection, new THREE.Vector3(0, 1, 0)).normalize()
 
-            const forwardDistance = 2
-            const rightOffset = 1.5
-
             const time = this.time.current * 0.001
             let levitationOffsetX = Math.sin(time) * 0.1
             let levitationOffsetY = Math.sin(time) * 0.12
 
             const newPosition = new THREE.Vector3()
                 .copy(cameraPosition)
-                .add(cameraDirection.multiplyScalar(forwardDistance))
-                .add(rightVector.multiplyScalar(rightOffset + levitationOffsetX))
+                .add(cameraDirection.multiplyScalar(this.forwardDistance))
+                .add(rightVector.multiplyScalar(this.rightOffset + levitationOffsetX))
 
-            newPosition.y = cameraPosition.y + levitationOffsetY
+            newPosition.y = cameraPosition.y + levitationOffsetY - this.offset.y
 
             const playerVelocity = this.world.player.rigidBody.linvel()
             const velocityMagnitude = Math.abs(playerVelocity.x) +
@@ -157,7 +166,6 @@ class InteractManager {
 
             const finalRotation = baseRotation.multiply(rotationOffset)
             this.currentObject.rapierCollider.parent().setRotation(finalRotation)
-            console.log();
         }
     }
 
