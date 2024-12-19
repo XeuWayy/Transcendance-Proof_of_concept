@@ -60,5 +60,10 @@ export default [
         name: 'test',
         type: 'gltfModel',
         path: './gltf/test/test.glb'
+    },
+    {
+        name: 'stove',
+        type: 'gltfModel',
+        path: './gltf/test/gas_stove.glb'
     }
 ]

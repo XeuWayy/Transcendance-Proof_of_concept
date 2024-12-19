@@ -59,7 +59,7 @@ class Cube {
     }
 
     addCubeToPhysic(threeMesh) {
-            const physicsBox = this.physics.createPhysics({
+            this.physics.createPhysics({
             name: 'Cube',
             colliderType: 'box',
             threeObject: threeMesh,

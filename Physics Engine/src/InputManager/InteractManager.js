@@ -62,7 +62,7 @@ class InteractManager {
         const rayLength = 2.5
 
         const ray = new RAPIER.Ray(rayOrigin, rayDirection)
-        this.game.physics.world.intersectionsWithRay(ray, rayLength, true, (object) => {
+        this.game.physics.instance.intersectionsWithRay(ray, rayLength, true, (object) => {
             const find = this.interactList.find(interact => interact.rapierCollider.handle === object.collider.handle)
             
             if (find && !this.currentlyInteracting) {
@@ -72,7 +72,6 @@ class InteractManager {
                     this.inputManager.activeInputControlMode = 'playingGame'
                     find.action()
                 }
-
             }
         })
 
@@ -158,6 +157,7 @@ class InteractManager {
 
             const finalRotation = baseRotation.multiply(rotationOffset)
             this.currentObject.rapierCollider.parent().setRotation(finalRotation)
+            console.log();
         }
     }
 

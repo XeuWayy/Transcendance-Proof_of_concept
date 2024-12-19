@@ -7,7 +7,6 @@ class Player {
     constructor() {
         this.game = new Game()
         this.scene = this.game.scene
-        this.world = this.game.world
         this.physics = this.game.physics
         this.camera = this.game.camera.instance
         this.fpsCamera = this.game.camera.fpsCamera
@@ -42,14 +41,14 @@ class Player {
             .setCcdEnabled(true)
             .lockRotations()
 
-        this.rigidBody = this.physics.world.createRigidBody(capsuleDesc)
+        this.rigidBody = this.physics.instance.createRigidBody(capsuleDesc)
 
         const colliderDesc = RAPIER.ColliderDesc.capsule(0.55, 0.5)
             .setMass(0.75)
             .setRestitution(0.3)
             .setFriction(0.7)
 
-        this.collider = this.physics.world.createCollider(colliderDesc, this.rigidBody)
+        this.collider = this.physics.instance.createCollider(colliderDesc, this.rigidBody)
     }
 
     checkPlayerOnGround() {
@@ -57,7 +56,7 @@ class Player {
         const ray = new RAPIER.Ray(rayOrigin, this.rayInformation.rayDirection)
 
         this.onGround = false
-        this.physics.world.intersectionsWithRay(ray, this.rayInformation.rayLength, true, (collider) => {
+        this.physics.instance.intersectionsWithRay(ray, this.rayInformation.rayLength, true, (collider) => {
             if (collider.collider.handle !== this.collider.handle) {
                 this.onGround = true
             }

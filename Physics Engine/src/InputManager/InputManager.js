@@ -18,7 +18,7 @@ class InputManager {
             throw: false
         }
 
-        this.inputLocked = false
+
         this.inputs = {
             forward: 0,
             strafe: 0,

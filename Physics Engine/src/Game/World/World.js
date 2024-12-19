@@ -56,7 +56,7 @@ class World {
     update() {
         if (this.loaded) {
             this.player.update()
-            this.dynamicObjects.forEach(({ name, threeMesh, rapierBody}) => {
+            this.dynamicObjects.forEach(({threeMesh, rapierBody}) => {
                 const position = rapierBody.translation()
                 const rotation = rapierBody.rotation()
 

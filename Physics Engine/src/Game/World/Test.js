@@ -33,7 +33,7 @@ class Test {
         this.scene.add(this.model['BIGBALL'])
         this.scene.add(this.model['MONKE'].at(0))
 
-        const cubeBody = this.physics.createPhysics({
+        this.physics.createPhysics({
             name: 'testCube',
             colliderType: 'box',
             threeObject: this.model['CubeGoBRRRR'].at(0),
@@ -44,7 +44,7 @@ class Test {
             interact: {enabled: true, type: 'take', threeMesh: this.model['CubeGoBRRRR'].at(0), rapierCollider: null, action: null}
         })
 
-        const cylinderBody = this.physics.createPhysics({
+        this.physics.createPhysics({
             name: 'testCylinder',
             colliderType: 'cylinder',
             threeObject: this.model['BIGROUND'],
@@ -55,7 +55,7 @@ class Test {
             interact: {enabled: true, type: 'take', threeMesh: this.model['BIGROUND'], rapierCollider: null, action: null}
         })
 
-        const sphereBody = this.physics.createPhysics({
+        this.physics.createPhysics({
             name: 'testSphere',
             colliderType: 'sphere',
             threeObject: this.model['BIGBALL'],
@@ -66,7 +66,7 @@ class Test {
             interact: {enabled: true, type: 'take', threeMesh: this.model['BIGBALL'], rapierCollider: null, action: null}
         })
 
-        const suzanneBody = this.physics.createPhysics({
+        this.physics.createPhysics({
             name: 'testSuzanne',
             colliderType: 'convexHull',
             threeObject: this.model['MONKE'].at(0),
@@ -76,6 +76,22 @@ class Test {
             restitution: 0.3,
             interact: {enabled: true, type: 'take', threeMesh: this.model['MONKE'].at(0), rapierCollider: null, action: null}
         })
+
+        this.stove = this.ressources.items.stove.scene
+
+        this.physics.createPhysics({
+            name: 'testCube',
+            colliderType: 'box',
+            threeObject: this.stove,
+            type: 'dynamic',
+            mass: 10,
+            friction: 0.7,
+            restitution: 0.3,
+            interact: {enabled: true, type: 'take', threeMesh: this.stove, rapierCollider: null, action: null}
+        })
+
+        this.scene.add(this.stove)
+
     }
 }
 

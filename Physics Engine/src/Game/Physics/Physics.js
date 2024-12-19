@@ -1,8 +1,8 @@
-import * as THREE from "three/webgpu"
-import * as RAPIER from "@dimforge/rapier3d"
-import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js'
+import * as THREE from "three/webgpu";
+import * as RAPIER from "@dimforge/rapier3d";
+import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 
-import Game from "../Game.js"
+import Game from "../Game.js";
 
 class Physics {
     constructor() {
@@ -18,7 +18,7 @@ class Physics {
     async initPhysics() {
         import('@dimforge/rapier3d').then(RAPIER => {
             const gravity = { x: 0.0, y: -9.81, z: 0.0 }
-            this.world = new RAPIER.World(gravity)
+            this.instance = new RAPIER.World(gravity)
 
             this.geometry = new THREE.BufferGeometry()
             this.geometry.setAttribute('position', new THREE.Float32BufferAttribute([], 3))
@@ -50,18 +50,12 @@ class Physics {
     }
 
     createPhysics({name, colliderType, threeObject, type, mass, friction, restitution, interact}) {
-        if (!this.world) {
+        if (!this.instance) {
             return
         }
 
         const position = threeObject.position
         const quaternion = threeObject.quaternion
-
-        const boundingBox = new THREE.Box3().setFromObject(threeObject)
-        const center = new THREE.Vector3()
-        boundingBox.getCenter(center)
-
-        const offset = center.sub(threeObject.position)
 
         let colliderDesc
 
@@ -86,6 +80,11 @@ class Physics {
             const threeObjectBox = new THREE.Box3().setFromObject(threeObject);
             const threeObjectVector = new THREE.Vector3();
             threeObjectBox.getSize(threeObjectVector);
+
+            const center = new THREE.Vector3()
+            threeObjectBox.getCenter(center)
+
+            const offset = center.sub(threeObject.position)
 
             switch (colliderType) {
                 case 'box':
@@ -114,7 +113,7 @@ class Physics {
 
         let rigidBodyDesc;
         if (type === 'fixed') {
-            rigidBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(position.x, position.y, position.z);
+            rigidBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(position.x, position.y, position.z)
         } else {
             rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic().setTranslation(position.x, position.y, position.z)
                 .setRotation(new RAPIER.Quaternion(
@@ -125,41 +124,37 @@ class Physics {
                 ));
         }
 
-        const rigidBody = this.world.createRigidBody(rigidBodyDesc);
-        const collider = this.world.createCollider(colliderDesc, rigidBody);
+        const rigidBody = this.instance.createRigidBody(rigidBodyDesc);
+        interact.rapierCollider = this.instance.createCollider(colliderDesc, rigidBody)
 
-        interact.rapierCollider = collider;
         if (type === 'fixed') {
-            this.game.world.addFixedObject(name, threeObject, rigidBody, interact);
+            this.game.world.addFixedObject(name, threeObject, rigidBody, interact)
         } else {
-            this.game.world.addDynamicObject(name, threeObject, rigidBody, interact);
+            this.game.world.addDynamicObject(name, threeObject, rigidBody, interact)
         }
-
-        return rigidBody;
     }
 
 
     update() {
-        if (this.world) {
-            this.world.timestep = this.time.deltaInSecond
-            this.world.step()
+        if (this.instance) {
+            this.instance.timestep = this.time.deltaInSecond
+            this.instance.step()
 
             if (this.enabled) {
-                const { vertices, colors } = this.world.debugRender()
+                const { vertices, colors } = this.instance.debugRender()
 
                 this.geometry.attributes.position.array = vertices
-                this.geometry.attributes.position.count = vertices.length / 3
+                this.geometry.attributes.position.count = Math.round(vertices.length * 0.3333)
                 this.geometry.attributes.position.needsUpdate = true
 
                 this.geometry.attributes.color.array = colors
-                this.geometry.attributes.color.count = colors.length / 4
+                this.geometry.attributes.color.count = colors.length * 0.25
                 this.geometry.attributes.color.needsUpdate = true
 
                 this.lineSegments.visible = true
             } else {
                 this.lineSegments.visible = false
             }
-
         }
     }
 }
