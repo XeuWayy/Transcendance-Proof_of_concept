@@ -81,7 +81,7 @@ class Cube {
             })
         )
 
-        const cubeBody = this.physics.createPhysics({
+        this.physics.createPhysics({
             name: 'smallCube',
             colliderType: 'box',
             threeObject: cubeMesh,

@@ -1,8 +1,6 @@
 import * as THREE from 'three/webgpu'
 
 import Game from "../Game.js"
-import flatCrtVertex from "../../shaders/flatCrt/vertex.glsl"
-import flatCrtFragment from "../../shaders/flatCrt/fragment.glsl"
 
 class Tetris {
     constructor() {
@@ -12,6 +10,7 @@ class Tetris {
         this.ressources = this.game.ressources
         this.camera = this.game.camera
         this.physics = this.game.physics
+        this.shaders = this.game.shaders
         this.objectsToIntersect = []
 
         this.isInteractingWithArcade = false
@@ -36,17 +35,15 @@ class Tetris {
         this.canvasTexture = new THREE.CanvasTexture(this.tetrisCanvas)
         this.canvasTexture.colorSpace = THREE.SRGBColorSpace
 
+        const tetrisMaterial = new THREE.MeshBasicNodeMaterial({
+            side: THREE.FrontSide
+        })
+
+        tetrisMaterial.fragmentNode = this.shaders.flatCrtShader(this.canvasTexture)
+
         const tetrisGame = new THREE.Mesh(
             new THREE.PlaneGeometry(0.475, 0.352, 128, 128),
-            new THREE.MeshBasicNodeMaterial({
-               /* uniforms: {
-                    videoTexture: { value: this.canvasTexture }
-                },
-                vertexShader: flatCrtVertex,
-                fragmentShader: flatCrtFragment,*/
-                map: this.canvasTexture,
-                side: THREE.DoubleSide
-            })
+            tetrisMaterial
         )
         tetrisGame.position.set(-15.034, 1.553, -26.474)
         tetrisGame.rotation.x = -Math.PI * 0.15

@@ -10,6 +10,7 @@ import World from "./World/World.js"
 import sources from "./sources.js"
 import Ressources from "./Utils/Ressources.js"
 import Physics from "./Physics/Physics.js"
+import Shaders from "./Utils/Shaders.js"
 
 let singletonGame
 
@@ -37,6 +38,7 @@ class Game {
         this.ressources = new Ressources(sources)
         this.physics = new Physics()
         this.world = new World()
+        this.shaders = new Shaders()
 
         this.sizes.on('resize', () => {
             this.resize()
