@@ -6,7 +6,7 @@ class Shaders {
     }
 
     flatCrtShader(videoTexture) {
-        const crtEffect = Fn(() => {
+        return Fn(() => {
             const offset = 0.0025
             const scanlineFrequency = 800.0
 
@@ -23,7 +23,6 @@ class Shaders {
             baseColor.rgb = mix(baseColor, vec3(1.0), 0.01)
             return baseColor
         })()
-        return crtEffect
     }
 }
 
