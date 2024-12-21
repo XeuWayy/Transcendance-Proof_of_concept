@@ -32,13 +32,13 @@ class Game {
         this.gameReady = false
         this.sizes = new Sizes()
         this.time = new Time()
+        this.shaders = new Shaders()
         this.scene = new THREE.Scene()
         this.camera = new Camera()
         this.renderer = new Renderer()
         this.ressources = new Ressources(sources)
         this.physics = new Physics()
         this.world = new World()
-        this.shaders = new Shaders()
 
         this.sizes.on('resize', () => {
             this.resize()
