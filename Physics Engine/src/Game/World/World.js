@@ -21,12 +21,12 @@ class World {
         this.ressources.on('loaded', () => {
             this.loaded = true
             this.game.gameReady = true
+            this.player = new Player()
             this.environment = new Environment()
             this.ground = new Ground()
             this.cube = new Cube()
             this.pong = new Pong()
             this.tetris = new Tetris()
-            this.player = new Player()
             this.test = new Test()
         })
     }

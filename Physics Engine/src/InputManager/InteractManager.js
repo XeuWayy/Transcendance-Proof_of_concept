@@ -24,6 +24,7 @@ class InteractManager {
         this.cameraInstance = this.camera.instance
         this.inputManager = this.camera.fpsCamera.inputManager
         this.world = this.game.world
+        this.player = this.game.world.player
         this.time = this.game.time
     }
 

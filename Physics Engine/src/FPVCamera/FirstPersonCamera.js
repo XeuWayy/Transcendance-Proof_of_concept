@@ -1,5 +1,7 @@
 import * as THREE from 'three/webgpu'
+
 import InputManager from "../InputManager/InputManager.js"
+import Game from "../Game/Game.js"
 
 class FirstPersonCamera {
     /**
@@ -9,7 +11,9 @@ class FirstPersonCamera {
      */
     constructor(camera) {
         this.camera = camera
-        
+
+        this.game = new Game()
+
         this.inputManager = new InputManager()
         this.interactManager = this.inputManager.interactManager
 
@@ -30,6 +34,16 @@ class FirstPersonCamera {
         this.verticalHeadBobbingOffset = 0
         this.horizontalHeadBobbingOffset = 0
         this.transitionSpeed = 8
+
+        this.loadPlayerClass()
+    }
+
+    async loadPlayerClass() {
+        while (this.game.world === undefined || this.game.world.player === undefined) {
+            await new Promise(resolve => setTimeout(resolve, 100))
+        }
+
+        this.player  = this.game.world.player
     }
 
     /**
@@ -38,7 +52,7 @@ class FirstPersonCamera {
      * @param deltaTime The deltaTime between the update
      */
     update (deltaTime) {
-        if (!this.interactManager.currentlyInteracting || this.interactManager.currentObject.type !== 'zoom') {
+        if (this.player && this.player.cameraControlEnabled) {
             this.updateRotation()
             this.updateHeadBobbing(deltaTime)
         }
@@ -110,7 +124,7 @@ class FirstPersonCamera {
     /**
      * @author Corentin (XeuWayy) Charton
      * @desc Give an update look at position for the camera
-     * @returns {Vector3} The look at position
+     * @returns {THREE.Vector3} The look at position
      */
     focusTarget() {
         let pos = new THREE.Vector3(this.camera.position.x, this.camera.position.y, this.camera.position.z)

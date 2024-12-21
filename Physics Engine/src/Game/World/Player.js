@@ -13,6 +13,8 @@ class Player {
         this.inputManager = this.game.camera.fpsCamera.inputManager
         this.interactManager = this.inputManager.interactManager
 
+        this.cameraControlEnabled = true
+
         this.rayInformation = {
             rayDirection: new THREE.Vector3(0, -1, 0),
             rayLength: 1.10
@@ -68,7 +70,7 @@ class Player {
     }
 
     update() {
-        if (this.interactManager.currentlyInteracting && (this.interactManager.currentObject && this.interactManager.currentObject.type === 'zoom')) {
+        if (!this.cameraControlEnabled) {
             return
         }
         const movementInput = this.inputManager.getInputs()

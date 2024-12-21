@@ -11,9 +11,20 @@ class Tetris {
         this.camera = this.game.camera
         this.physics = this.game.physics
         this.shaders = this.game.shaders
+        this.player =  this.game.world.player
+
         this.objectsToIntersect = []
 
         this.isInteractingWithArcade = false
+
+        this.originalCameraPosition = new THREE.Vector3()
+        this.originalCameraRotation = new THREE.Quaternion()
+
+        this.cameraAnimationProgress = 1
+        this.cameraStartPosition = new THREE.Vector3()
+        this.cameraEndPosition = new THREE.Vector3()
+        this.cameraStartRotation = new THREE.Quaternion()
+        this.cameraEndRotation = new THREE.Quaternion()
         
         this.setModel()
         this.addArcadeToPhysics()
@@ -65,18 +76,58 @@ class Tetris {
     }
 
     centerCameraOnArcade() {
+        const camera = this.camera.instance
+
         if (!this.isInteractingWithArcade) {
-            this.isInteractingWithArcade= true
-            this.camera.instance.position.set(-15.03, 1.7, -26.15)
-            this.camera.instance.rotation.set(-0.4940008349279439, -0.0017608863389264688, -0.0009483038705260853)
+            this.isInteractingWithArcade = true
+
+            this.player.cameraControlEnabled = false
+
+            this.originalCameraPosition.copy(camera.position)
+            this.originalCameraRotation.copy(camera.quaternion)
+
+            this.cameraStartPosition.copy(camera.position)
+            this.cameraEndPosition.set(-15.03, 1.7, -26.15)
+
+            this.cameraStartRotation.copy(camera.quaternion)
+            this.cameraEndRotation.setFromEuler(new THREE.Euler(
+                -0.4940008349279439,
+                -0.0017608863389264688,
+                -0.0009483038705260853
+            ))
+
+            this.cameraAnimationProgress = 0
         } else {
             this.isInteractingWithArcade = false
-            this.camera.instance.position.set(-15, 1.7, -25.15)
+
+            this.player.cameraControlEnabled = false
+
+            this.cameraStartPosition.copy(camera.position)
+            this.cameraEndPosition.copy(this.originalCameraPosition)
+
+            this.cameraStartRotation.copy(camera.quaternion)
+            this.cameraEndRotation.copy(this.originalCameraRotation)
+
+            this.cameraAnimationProgress = 0
         }
     }
 
     update() {
         this.canvasTexture.needsUpdate = true
+
+        if (this.cameraAnimationProgress < 1) {
+            this.cameraAnimationProgress += 0.02
+
+            const t = THREE.MathUtils.smoothstep(this.cameraAnimationProgress, 0, 1)
+            const camera = this.camera.instance
+
+            camera.position.lerpVectors(this.cameraStartPosition, this.cameraEndPosition, t)
+            camera.quaternion.slerpQuaternions(this.cameraStartRotation, this.cameraEndRotation, t)
+
+            if (this.cameraAnimationProgress >= 1 && !this.isInteractingWithArcade) {
+                this.player.cameraControlEnabled = true
+            }
+        }
     }
 }
 
