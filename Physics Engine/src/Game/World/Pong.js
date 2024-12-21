@@ -1,8 +1,6 @@
 import * as THREE from 'three/webgpu'
 
 import Game from "../Game.js"
-import crtVertex from "../../shaders/crtScreen/vertex.glsl"
-import crtFragment from "../../shaders/crtScreen/fragment.glsl"
 
 class Pong{
     constructor() {
@@ -10,6 +8,7 @@ class Pong{
         this.scene = this.game.scene
         this.ressources = this.game.ressources
         this.physics = this.game.physics
+        this.shaders = this.game.shaders
 
         this.setModel()
         this.setPongVideo()
@@ -58,29 +57,29 @@ class Pong{
             new THREE.PlaneGeometry(0.74, 0.57),
             new THREE.MeshBasicMaterial({
                 map: pongTexture,
-                side: THREE.BackSide,
-                transparent: true,
+                side: THREE.FrontSide,
             })
         )
-        sadTvPong.position.set(0.10, 0.01, -0.26)
+        sadTvPong.position.set(0.10, 0.01, -0.28)
+        sadTvPong.rotation.y = Math.PI
+
         this.model.sadTv.add(sadTvPong)
 
 
+        const coolTvPongMaterial = new THREE.MeshBasicNodeMaterial({
+            side: THREE.FrontSide
+        })
+
+        coolTvPongMaterial.vertexNode = this.shaders.curveFlatPlane(0.11)
+        coolTvPongMaterial.fragmentNode = this.shaders.crtShader(pongTexture)
+
         const coolTvPong = new THREE.Mesh(
             new THREE.PlaneGeometry(0.914, 0.686, 128, 128),
-            new THREE.MeshBasicMaterial({
-                /* uniforms: {
-                     videoTexture: { value: this.canvasTexture }
-                 },
-                 vertexShader: crtVertex,
-                 fragmentShader: crtFragment,*/
-                map: pongTexture,
-                //color: '#FFFFFF',
-                side: THREE.DoubleSide
-            })
+            coolTvPongMaterial
         )
-        coolTvPong.position.set(0.15, -0.15, -0.55)
+        coolTvPong.position.set(0.15, -0.15, -0.405)
         coolTvPong.rotation.y = Math.PI
+
         this.model.coolerTv.add(coolTvPong)
     }
 

@@ -1,11 +1,27 @@
-import {float, Fn, mix, texture, uv, vec2, vec3,  vec4} from "three/tsl";
+import {
+    cameraProjectionMatrix,
+    distance,
+    float,
+    Fn,
+    mix,
+    normalGeometry,
+    oneMinus,
+    positionGeometry,
+    texture,
+    uv,
+    vec2,
+    vec3,
+    vec4,
+    modelViewMatrix,
+    mul
+} from "three/tsl";
 
 class Shaders {
     constructor() {
 
     }
 
-    flatCrtShader(videoTexture) {
+    crtShader(videoTexture, mixWhite = false) {
         return Fn(() => {
             const offset = 0.0025
             const scanlineFrequency = 800.0
@@ -19,9 +35,21 @@ class Shaders {
 
             baseColor.r = texture(videoTexture, uv().sub(offsetVec)).r
             baseColor.b = texture(videoTexture, uv().add(offsetVec)).b
-
-            baseColor.rgb = mix(baseColor, vec3(1.0), 0.01)
+            if (mixWhite){
+                baseColor.rgb = mix(baseColor, vec3(1.0), 0.01)
+            }
             return baseColor
+        })()
+    }
+
+    curveFlatPlane(curvatureRatio = 0) {
+        return Fn(() => {
+            const centerOffPlane = distance(uv(), vec2(0.5))
+
+            const curvature = float(curvatureRatio).mul(oneMinus(mul(centerOffPlane, centerOffPlane)))
+            const newPosition = positionGeometry.add(normalGeometry.mul(curvature))
+
+            return cameraProjectionMatrix.mul(modelViewMatrix).mul(vec4(newPosition, 1.0))
         })()
     }
 }

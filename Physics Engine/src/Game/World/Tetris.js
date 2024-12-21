@@ -39,7 +39,7 @@ class Tetris {
             side: THREE.FrontSide
         })
 
-        tetrisMaterial.fragmentNode = this.shaders.flatCrtShader(this.canvasTexture)
+        tetrisMaterial.fragmentNode = this.shaders.crtShader(this.canvasTexture, true)
 
         const tetrisGame = new THREE.Mesh(
             new THREE.PlaneGeometry(0.475, 0.352, 128, 128),
