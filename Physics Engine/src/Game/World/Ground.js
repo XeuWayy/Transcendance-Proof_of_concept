@@ -29,6 +29,11 @@ class Ground {
         this.textures.arm.wrapS = THREE.RepeatWrapping
         this.textures.arm.wrapT = THREE.RepeatWrapping
 
+        this.textures.ao = this.ressources.items.groundAoTexture
+        this.textures.ao.repeat.set(16, 16)
+        this.textures.ao.wrapS = THREE.RepeatWrapping
+        this.textures.ao.wrapT = THREE.RepeatWrapping
+
         this.textures.nor = this.ressources.items.groundNorTexture
         this.textures.nor.repeat.set(16, 16)
         this.textures.nor.wrapS = THREE.RepeatWrapping
@@ -45,10 +50,10 @@ class Ground {
         // Three Ground
         this.ground = new THREE.Mesh(
           new THREE.BoxGeometry(100, 100, 1, 100, 100),
-          new THREE.MeshStandardMaterial({
+          new THREE.MeshStandardNodeMaterial({
               map: this.textures.diff,
               normalMap: this.textures.nor,
-              aoMap: this.textures.arm,
+              aoMap: this.textures.ao,
               roughnessMap: this.textures.arm,
               metalnessMap: this.textures.arm
           })

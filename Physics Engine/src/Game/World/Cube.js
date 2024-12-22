@@ -1,5 +1,5 @@
 import Game from "../Game.js"
-import * as THREE from "three"
+import * as THREE from "three/webgpu"
 
 class Cube {
     constructor() {
@@ -22,6 +22,11 @@ class Cube {
         this.textures.diff.wrapS = THREE.RepeatWrapping
         this.textures.diff.wrapT = THREE.RepeatWrapping
 
+        this.textures.ao = this.ressources.items.cubeAoTexture
+        this.textures.ao.repeat.set(2, 2)
+        this.textures.ao.wrapS = THREE.RepeatWrapping
+        this.textures.ao.wrapT = THREE.RepeatWrapping
+
         this.textures.arm = this.ressources.items.cubeArmTexture
         this.textures.arm.repeat.set(2, 2)
         this.textures.arm.wrapS = THREE.RepeatWrapping
@@ -43,13 +48,13 @@ class Cube {
 
         for (let i = 0; i < this.position.length; i++) {
             this.cube = new THREE.Mesh(
-                new THREE.BoxGeometry(5, 5, 5, 32, 32),
-                new THREE.MeshStandardMaterial({
+                new THREE.BoxGeometry(5, 5, 5),
+                new THREE.MeshStandardNodeMaterial({
                     map: this.textures.diff,
                     normalMap: this.textures.nor,
-                    aoMap: this.textures.arm,
+                    aoMap: this.textures.ao,
                     roughnessMap: this.textures.arm,
-                    metalnessMap: this.textures.arm
+                    metalnessMap: this.textures.arm,
                 })
             )
             this.cube.position.set(this.position[i].x, this.position[i].y, this.position[i].z)
@@ -76,7 +81,7 @@ class Cube {
 
         let cubeMesh = new THREE.Mesh(
             new THREE.BoxGeometry(0.5, 0.5, 0.5),
-            new THREE.MeshBasicMaterial({
+            new THREE.MeshBasicNodeMaterial({
                 color: 'yellow'
             })
         )

@@ -3,7 +3,12 @@ export default [
         // Ground Texture
         name: 'groundArmTexture',
         type: 'texture',
-        path: './textures/ground/granite_tile_arm_1k.png'
+        path: './textures/ground/granite_tile_arm_1k.jpg'
+    },
+    {
+        name: 'groundAoTexture',
+        type: 'texture',
+        path: './textures/ground/granite_tile_ao_1k.jpg'
     },
     {
         name: 'groundDiffTexture',
@@ -13,13 +18,13 @@ export default [
     {
         name: 'groundNorTexture',
         type: 'texture',
-        path: './textures/ground/granite_tile_nor_gl_1k.png'
+        path: './textures/ground/granite_tile_nor_gl_1k.jpg'
     },
     {
         // Cube Texture
         name: 'cubeArmTexture',
         type: 'texture',
-        path: './textures/cube/broken_wall_arm_1k.png'
+        path: './textures/cube/broken_wall_arm_1k.jpg'
     },
     {
         name: 'cubeDiffTexture',
@@ -29,7 +34,12 @@ export default [
     {
         name: 'cubeNorTexture',
         type: 'texture',
-        path: './textures/cube/broken_wall_nor_gl_1k.png'
+        path: './textures/cube/broken_wall_nor_gl_1k.jpg'
+    },
+    {
+        name: 'cubeAoTexture',
+        type: 'texture',
+        path: './textures/cube/broken_wall_ao_1k.jpg'
     },
     {
         name: 'sofa',
