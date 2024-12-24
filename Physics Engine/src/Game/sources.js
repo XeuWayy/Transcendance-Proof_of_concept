@@ -44,7 +44,7 @@ export default [
     {
         name: 'sofa',
         type: 'gltfModel',
-        path: './gltf/sofa_web/scene.glb'
+        path: './gltf/sofa_web/sofa_web.glb'
     },
     {
         name: 'tvTable',
@@ -54,17 +54,17 @@ export default [
     {
         name: 'sadTv',
         type: 'gltfModel',
-        path: './gltf/old_tv/scene.glb'
+        path: './gltf/old_tv/old_tv.glb'
     },
     {
         name: 'coolerTv',
         type: 'gltfModel',
-        path: './gltf/old_tvclean/oldTvClean.glb'
+        path: './gltf/old_tvclean/oldTvCleanV2.glb'
     },
     {
         name: 'tetrisMachine',
         type: 'gltfModel',
-        path: './Tetris/tetris.glb'
+        path: './Tetris/tetris_.glb'
     },
     {
         name: 'test',

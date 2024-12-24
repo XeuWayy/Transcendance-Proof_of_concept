@@ -20,7 +20,6 @@ class Pong{
         this.model = {}
 
         this.model.sofa = this.ressources.items.sofa.scene
-        this.model.sofa.scale.set(0.003, 0.004, 0.004)
         this.model.sofa.position.set(15, 0, -26)
 
         this.model.tvTable = this.ressources.items.tvTable.scene
@@ -28,17 +27,15 @@ class Pong{
         this.model.tvTable.position.set(15, 0.3, -22)
 
         const sadTv = this.ressources.items.sadTv.scene
-        sadTv.scale.set(0.009, 0.009, 0.009)
         sadTv.rotation.y = Math.PI
 
         this.model.sadTv = new THREE.Group()
         this.model.sadTv.position.set(15.5, 1.02, -22)
         this.model.sadTv.add(sadTv)
 
-        const coolerTv = this.ressources.items.coolerTv.scene
-
+        const coolerTv = this.ressources.items.coolerTv.scene.children[0].children[0]
         this.model.coolerTv = new THREE.Group()
-        this.model.coolerTv.position.set(14.25, 0.60, -22)
+        this.model.coolerTv.position.set(14.5, 0.60, -21.85)
         this.model.coolerTv.add(coolerTv)
     }
 
@@ -60,7 +57,7 @@ class Pong{
                 side: THREE.FrontSide,
             })
         )
-        sadTvPong.position.set(0.10, 0.01, -0.28)
+        sadTvPong.position.set(0.10, 0.225, -0.28)
         sadTvPong.rotation.y = Math.PI
 
         this.model.sadTv.add(sadTvPong)
@@ -74,10 +71,10 @@ class Pong{
         coolTvPongMaterial.fragmentNode = this.shaders.crtShader(pongTexture)
 
         const coolTvPong = new THREE.Mesh(
-            new THREE.PlaneGeometry(0.914, 0.686, 128, 128),
+            new THREE.PlaneGeometry(0.914, 0.686, 16, 16),
             coolTvPongMaterial
         )
-        coolTvPong.position.set(0.15, -0.15, -0.405)
+        coolTvPong.position.set(-0.325, 0.425, -0.65)
         coolTvPong.rotation.y = Math.PI
 
         this.model.coolerTv.add(coolTvPong)

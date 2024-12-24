@@ -35,8 +35,8 @@ class Tetris {
         this.tetrisMachine = this.ressources.items.tetrisMachine.scene
         this.tetrisMachine.rotation.y = -Math.PI * 0.5
 
-        this.tetrisMachine.position.set(-15.032, 1.05, -26.57)
-        this.tetrisMachine.scale.set(0.030, 0.030, 0.030)
+        this.tetrisMachine.position.set(-15.032, 0, -26.57)
+        //this.tetrisMachine.scale.set(0.030, 0.030, 0.030)
         this.objectsToIntersect.push(this.tetrisMachine)
         this.scene.add(this.tetrisMachine)
     }
@@ -53,11 +53,13 @@ class Tetris {
         tetrisMaterial.fragmentNode = this.shaders.crtShader(this.canvasTexture, true)
 
         const tetrisGame = new THREE.Mesh(
-            new THREE.PlaneGeometry(0.475, 0.352, 128, 128),
+            new THREE.PlaneGeometry(0.475, 0.352),
             tetrisMaterial
         )
-        tetrisGame.position.set(-15.034, 1.553, -26.474)
-        tetrisGame.rotation.x = -Math.PI * 0.15
+        tetrisGame.position.set(-15.034, 1.533, -26.39)
+        tetrisGame.rotation.x = -Math.PI * 0.145
+        //tetrisGame.rotation.y = -Math.PI * -0.009
+
         this.objectsToIntersect.push(tetrisGame)
         this.scene.add(tetrisGame)
     }
@@ -87,13 +89,13 @@ class Tetris {
             this.originalCameraRotation.copy(camera.quaternion)
 
             this.cameraStartPosition.copy(camera.position)
-            this.cameraEndPosition.set(-15.03, 1.7, -26.15)
+            this.cameraEndPosition.set(-15.03, 1.67, -26.15)
 
             this.cameraStartRotation.copy(camera.quaternion)
             this.cameraEndRotation.setFromEuler(new THREE.Euler(
                 -0.4940008349279439,
                 -0.0017608863389264688,
-                -0.0009483038705260853
+                0
             ))
 
             this.cameraAnimationProgress = 0

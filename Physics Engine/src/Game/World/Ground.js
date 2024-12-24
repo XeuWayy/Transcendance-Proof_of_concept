@@ -49,7 +49,7 @@ class Ground {
 
         // Three Ground
         this.ground = new THREE.Mesh(
-          new THREE.BoxGeometry(100, 100, 1, 100, 100),
+          new THREE.BoxGeometry(100, 100, 1),
           new THREE.MeshStandardNodeMaterial({
               map: this.textures.diff,
               normalMap: this.textures.nor,

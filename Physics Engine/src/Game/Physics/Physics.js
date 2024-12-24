@@ -77,7 +77,7 @@ class Physics {
                     break;
             }
         } else {
-            const threeObjectBox = new THREE.Box3().setFromObject(threeObject);
+            const threeObjectBox = new THREE.Box3().setFromObject(threeObject, true);
             const threeObjectVector = new THREE.Vector3();
             threeObjectBox.getSize(threeObjectVector);
 
