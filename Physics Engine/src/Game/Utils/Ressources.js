@@ -21,18 +21,17 @@ class Ressources extends EventEmitter {
         this.toLoad = this.sources.length
         this.loaded = 0
 
-        this.setLoaders()
-        this.startLoading()
+        this.setLoaders().then( ()=> this.startLoading())
     }
 
-    setLoaders() {
+    async setLoaders() {
         this.loaders = {}
         this.loaders.textureLoader = new THREE.TextureLoader()
 
         const THREE_PATH = `https://unpkg.com/three@0.${REVISION}.x`
         this.loaders.ktx2Loader = new KTX2Loader()
         this.loaders.ktx2Loader.setTranscoderPath(`${THREE_PATH}/examples/jsm/libs/basis/`)
-        this.loaders.ktx2Loader.detectSupportAsync(this.renderer.instance)
+        await this.loaders.ktx2Loader.detectSupportAsync(this.renderer.instance)
 
         this.loaders.gltfLoader = new GLTFLoader()
         this.loaders.gltfLoader.setMeshoptDecoder(MeshoptDecoder)
@@ -46,6 +45,11 @@ class Ressources extends EventEmitter {
             switch (source.type) {
                 case "texture":
                     this.loaders.textureLoader.load(source.path, (file) => {
+                        this.sourceLoaded(source, file)
+                    })
+                    break
+                case "ktx2Texture":
+                    this.loaders.ktx2Loader.load(source.path, (file) => {
                         this.sourceLoaded(source, file)
                     })
                     break

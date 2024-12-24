@@ -64,7 +64,7 @@ export default [
     {
         name: 'tetrisMachine',
         type: 'gltfModel',
-        path: './Tetris/tetris_.glb'
+        path: './Tetris/tetris.glb'
     },
     {
         name: 'test',
