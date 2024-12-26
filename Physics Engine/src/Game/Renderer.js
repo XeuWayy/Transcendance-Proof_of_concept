@@ -19,7 +19,7 @@ class Renderer {
             canvas: this.canvas,
             antialias: true,
             alpha: true,
-            forceWebGL: false
+            forceWebGL: true
         })
         console.log(this.instance);
         this.instance.setSize(this.sizes.width, this.sizes.height)

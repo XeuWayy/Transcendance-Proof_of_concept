@@ -1,5 +1,6 @@
 import * as THREE from 'three/webgpu'
 import Stats from "three/addons/libs/stats.module.js"
+import { ThreePerf } from 'three-perf'
 import GUI from 'lil-gui'
 
 import Sizes from "./Sizes.js"
@@ -48,10 +49,18 @@ class Game {
             this.update()
         })
 
-        // FPS Count
+        // FPS Count (Upper left)
         this.stats = new Stats()
         this.stats.domElement.style.position = 'absolute'
         this.stats.domElement.style.top = '0px'
+
+        // Renderer perf (Bottom right)
+        this.renderPerf = new ThreePerf({
+            anchorX: 'right',
+            anchorY: 'bottom',
+            domElement: document.body, // or other canvas rendering wrapper
+            renderer: this.renderer.instance // three js renderer instance you use for rendering
+        });
         document.body.appendChild(this.stats.dom)
     }
 
@@ -63,10 +72,12 @@ class Game {
     update() {
         if (this.gameReady) {
             this.stats.begin()
+            this.renderPerf.begin()
             this.physics.update()
             this.camera.update()
             this.world.update()
             this.renderer.update()
+            this.renderPerf.end()
             this.stats.end()
         }
     }
