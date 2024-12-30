@@ -1,7 +1,7 @@
 import * as THREE from 'three/webgpu'
 import Stats from "three/addons/libs/stats.module.js"
-import { ThreePerf } from 'three-perf'
-import GUI from 'lil-gui'
+import {ThreePerf} from 'three-perf'
+import {Pane} from "tweakpane"
 
 import Sizes from "./Sizes.js"
 import Time from "./Utils/Time.js"
@@ -27,7 +27,8 @@ class Game {
         this.isFirefoxbasedbrowser = navigator.userAgent.includes("Firefox")
 
         // Debug
-        this.gui = new GUI({ width: 340 })
+        this.gui = new Pane({title: "🚀 Transcendance - Playground 🚀"})
+        this.injectCSS('.tp-dfwv {width: 350px !important}')
         this.debugObject = {}
 
         this.gameReady = false
@@ -62,6 +63,13 @@ class Game {
             renderer: this.renderer.instance // three js renderer instance you use for rendering
         });
         document.body.appendChild(this.stats.dom)
+    }
+
+    injectCSS(css) {
+        let element = document.createElement('style');
+        element.type = 'text/css';
+        element.innerText = css;
+        document.head.appendChild(element);
     }
 
     resize() {

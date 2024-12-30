@@ -1,12 +1,9 @@
-*
-{
+* {
     margin: 0;
     padding: 0;
 }
 
-html,
-body
-{
+html, body {
     overflow: hidden;
     background-color: black;
 }
@@ -16,8 +13,7 @@ body
     src: url('./font/Tetris.ttf');
 }
 
-.webgl
-{
+.webgl {
     position: fixed;
     top: 0;
     left: 0;

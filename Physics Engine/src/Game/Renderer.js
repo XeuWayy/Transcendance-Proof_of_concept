@@ -12,6 +12,27 @@ class Renderer {
         this.gui = this.game.gui
         this.debugObject = this.game.debugObject
         this.setInstance()
+        this.setDebug()
+    }
+
+    setDebug() {
+        this.debugObject = this.game.debugObject
+
+        this.rendererDebug = this.game.gui.addFolder({title: "🦄 - Renderer Debug", expanded: false})
+
+        this.debugObject.toneMappingExposure = 0.75
+
+        this.rendererDebug.addBinding(this.instance, 'toneMapping', {
+            label: 'Three.js tone mapping',
+            options: {
+                No: THREE.NoToneMapping,
+                Linear: THREE.LinearToneMapping,
+                Reinhard: THREE.ReinhardToneMapping,
+                Cineon: THREE.CineonToneMapping,
+                ACESFilmic: THREE.ACESFilmicToneMapping
+            }
+        })
+        this.rendererDebug.addBinding(this.debugObject, 'toneMappingExposure', {label: 'Tone mapping exposure', min: 0, max: 1}).on('change', () => {this.instance.toneMappingExposure = this.debugObject.toneMappingExposure})
     }
 
     setInstance() {
@@ -24,10 +45,8 @@ class Renderer {
         console.log(this.instance);
         this.instance.setSize(this.sizes.width, this.sizes.height)
         this.instance.setPixelRatio(this.sizes.pixelRatio)
-
-        this.debugObject.clearColor = '#160920'
-        this.gui.addColor(this.debugObject, 'clearColor').onChange(() => { this.instance.setClearColor(this.debugObject.clearColor) })
-        this.instance.setClearColor('#160920')
+        this.instance.toneMapping = THREE.LinearToneMapping
+        this.instance.toneMappingExposure = 0.75
     }
 
     resize() {
@@ -37,6 +56,8 @@ class Renderer {
 
     update() {
         this.instance.renderAsync(this.scene, this.camera.instance)
+
+        // Renderer Information
         //console.log(this.instance.info.render)
     }
 }

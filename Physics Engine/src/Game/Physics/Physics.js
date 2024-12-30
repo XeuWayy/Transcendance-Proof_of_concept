@@ -1,6 +1,6 @@
 import * as THREE from "three/webgpu";
 import * as RAPIER from "@dimforge/rapier3d";
-import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
+import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js'
 
 import Game from "../Game.js";
 
@@ -11,8 +11,15 @@ class Physics {
         this.time = this.game.time
 
         this.initPhysics()
+
         this.enabled = true
-        this.game.gui.add(this, 'enabled')
+        this.setDebug()
+    }
+
+    setDebug() {
+        this.physicsDebug = this.game.gui.addFolder({title: "🍃 - Physics Debug", expanded: false})
+
+        this.physicsDebug.addBinding(this, 'enabled', {label: "Collider representation"})
     }
 
     async initPhysics() {

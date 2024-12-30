@@ -19,7 +19,7 @@
     "@dimforge/rapier3d": "^0.14.0",
     "bootstrap": "^5.3.3",
     "gsap": "^3.12.5",
-    "lil-gui": "^0.20.0",
-    "three": "^0.171.0"
+    "three": "^0.171.0",
+    "tweakpane": "^4.0.5"
   }
 }
