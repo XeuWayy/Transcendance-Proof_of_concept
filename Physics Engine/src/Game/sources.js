@@ -75,5 +75,11 @@ export default [
         name: 'stove',
         type: 'gltfModel',
         path: './gltf/test/gas_stove.glb'
+    },
+    {
+        // Playground
+        name: 'swing',
+        type: 'gltfModel',
+        path: './gltf/playground/swing.glb'
     }
 ]

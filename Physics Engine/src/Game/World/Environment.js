@@ -9,6 +9,7 @@ class Environment {
         this.scene = this.game.scene
 
         this.setDebug()
+        this.initCubeCamera()
         this.setSky()
         this.setLight()
     }
@@ -64,19 +65,30 @@ class Environment {
             .on('change', () => {this.tvLight.position.copy(this.debugObject.tvLightPosition)})
     }
 
+    initCubeCamera() {
+        this.renderTarget = new THREE.WebGLCubeRenderTarget(128, {
+            type: THREE.HalfFloatType,
+            generateMipmaps: true,
+            minFilter: THREE.LinearMipmapLinearFilter
+        })
+        this.cubeCamera = new THREE.CubeCamera(1, 1.1, this.renderTarget)
+    }
+
     setSky() {
         this.sky = new SkyMesh()
         this.sky.scale.setScalar( 450000 );
 
-        const phi = THREE.MathUtils.degToRad( 90 - this.debugObject.elevation);
-        const theta = THREE.MathUtils.degToRad( this.debugObject.azimuth );
+        this.updateSky()
 
-        this.sky.sunPosition.value = new THREE.Vector3().setFromSphericalCoords( 1, phi, theta );
-        this.sky.turbidity.value = this.debugObject.turbidity
-        this.sky.rayleigh.value = this.debugObject.rayleigh
-        this.sky.mieCoefficient.value = this.debugObject.mieCoefficient
-        this.sky.mieDirectionalG.value = this.debugObject.mieDirectionalG
-
+        const sphere = new THREE.Mesh(
+            new THREE.SphereGeometry(1,32,32),
+            new THREE.MeshStandardNodeMaterial({
+                metalness: 1,
+                roughness: 0
+            })
+        )
+        sphere.position.set(5,1, 0)
+        this.scene.add(sphere)
         this.scene.add(this.sky)
     }
 
@@ -92,6 +104,8 @@ class Environment {
         this.sky.mieCoefficient.value = this.debugObject.mieCoefficient
         this.sky.mieDirectionalG.value = this.debugObject.mieDirectionalG
 
+        this.cubeCamera.update(this.game.renderer.instance, this.sky)
+        this.scene.environment = this.renderTarget.texture
     }
 
     setLight() {
