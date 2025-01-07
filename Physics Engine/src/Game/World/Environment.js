@@ -76,7 +76,7 @@ class Environment {
 
     setSky() {
         this.sky = new SkyMesh()
-        this.sky.scale.setScalar( 450000 );
+        this.sky.scale.setScalar(450000);
 
         this.updateSky()
 
@@ -93,18 +93,23 @@ class Environment {
     }
 
     updateSky() {
-        this.sky.turbidity.value = this.debugObject.turbidity
+        const phi = THREE.MathUtils.degToRad(90 - this.debugObject.elevation)
+        const theta = THREE.MathUtils.degToRad(this.debugObject.azimuth)
+        const sunPosition = new THREE.Vector3().setFromSphericalCoords(1, phi, theta)
 
-        const phi = THREE.MathUtils.degToRad( 90 - this.debugObject.elevation);
-        const theta = THREE.MathUtils.degToRad( this.debugObject.azimuth );
+        const thetaReversed = THREE.MathUtils.degToRad(-this.debugObject.azimuth);
+        const reversedSunPosition = new THREE.Vector3().setFromSphericalCoords(1, phi, thetaReversed)
 
-        this.sky.sunPosition.value = new THREE.Vector3().setFromSphericalCoords( 1, phi, theta );
         this.sky.turbidity.value = this.debugObject.turbidity
         this.sky.rayleigh.value = this.debugObject.rayleigh
         this.sky.mieCoefficient.value = this.debugObject.mieCoefficient
         this.sky.mieDirectionalG.value = this.debugObject.mieDirectionalG
 
+        this.sky.sunPosition.value.copy(reversedSunPosition);
         this.cubeCamera.update(this.game.renderer.instance, this.sky)
+
+        this.sky.sunPosition.value.copy(sunPosition);
+
         this.scene.environment = this.renderTarget.texture
     }
 
