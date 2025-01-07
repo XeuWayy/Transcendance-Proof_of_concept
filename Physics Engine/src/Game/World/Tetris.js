@@ -58,7 +58,6 @@ class Tetris {
         )
         tetrisGame.position.set(-15.034, 1.533, -26.39)
         tetrisGame.rotation.x = -Math.PI * 0.145
-        //tetrisGame.rotation.y = -Math.PI * -0.009
 
         this.objectsToIntersect.push(tetrisGame)
         this.scene.add(tetrisGame)
@@ -118,7 +117,7 @@ class Tetris {
         this.canvasTexture.needsUpdate = true
 
         if (this.cameraAnimationProgress < 1) {
-            this.cameraAnimationProgress += 0.02
+            this.cameraAnimationProgress += 2 * this.game.time.deltaInSecond
 
             const t = THREE.MathUtils.smoothstep(this.cameraAnimationProgress, 0, 1)
             const camera = this.camera.instance
