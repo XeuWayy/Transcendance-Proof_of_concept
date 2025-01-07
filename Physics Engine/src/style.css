@@ -10,7 +10,7 @@ html, body {
 
 @font-face {
     font-family: 'Tetris';
-    src: url('./font/Tetris.ttf');
+    src: url('../static/font/Tetris.ttf');
 }
 
 .webgl {
@@ -20,8 +20,22 @@ html, body {
     outline: none;
 }
 
+.webglVideo {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    display: none;
+}
+
+#tetrisCanvas{
+    width: 0;
+    height: 0;
+    display: none;
+}
+
 #overlay {
     position: fixed;
+    display: none;
     top: 0;
     left: 0;
     width: 100vw;

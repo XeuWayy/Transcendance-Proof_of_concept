@@ -22,7 +22,7 @@ class Environment {
         this.debugObject.turbidity = 5
         this.debugObject.rayleigh = 0.25
         this.debugObject.mieCoefficient = 0.005
-        this.debugObject.mieDirectionalG = 1
+        this.debugObject.mieDirectionalG = 0.998
         this.debugObject.elevation = 30
         this.debugObject.azimuth = 120
 

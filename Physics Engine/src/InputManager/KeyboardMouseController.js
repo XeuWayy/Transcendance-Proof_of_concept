@@ -24,8 +24,8 @@ class KeyboardMouseController {
 
         document.addEventListener('mousedown', (event) => this.onMouseDown(event))
         document.addEventListener('mouseup', (event) => this.onMouseUp(event))
-        document.addEventListener('click', () => {
-            if (!this.current.isLocked) {
+        document.addEventListener('click', (event) => {
+            if (!this.current.isLocked && event.target === this.canvas) {
                 this.canvas.requestPointerLock()
             }
         })
