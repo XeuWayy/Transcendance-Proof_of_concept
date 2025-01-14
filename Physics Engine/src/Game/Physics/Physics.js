@@ -144,7 +144,7 @@ class Physics {
 
     update() {
         if (this.instance) {
-            this.instance.timestep = this.time.deltaInSecond
+            this.instance.timestep = Math.min(this.time.deltaInSecond, 0.1)
             this.instance.step()
 
             if (this.enabled) {

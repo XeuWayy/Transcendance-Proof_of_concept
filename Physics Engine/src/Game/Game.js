@@ -26,6 +26,51 @@ class Game {
         this.canvas = canvas
         this.isFirefoxbasedbrowser = navigator.userAgent.includes("Firefox")
 
+        window.addEventListener('beforeunload', () => {
+            if (this.time) {
+                cancelAnimationFrame(this.time.request)
+            }
+
+            if (this.scene) {
+                this.scene.traverse(obj => {
+                    if (obj.material) {
+                        obj.material.dispose()
+                    }
+                    if (obj.geometry) {
+                        obj.geometry.dispose()
+                    }
+                    if (obj.texture) {
+                        obj.texture.dispose()
+                    }
+                })
+                for (let i = this.scene.children.length - 1; i >= 0; i--) {
+                    this.scene.remove(this.scene.children[i])
+                }
+            }
+
+            if (this.renderer) {
+                this.renderer.instance.dispose()
+            }
+
+            if (this.ressources) {
+                this.ressources.loaders.ktx2Loader.dispose()
+            }
+
+            if (this.physics && this.physics.instance) {
+                const instance = this.physics.instance
+
+                instance.forEachCollider((collider) => {
+                    instance.removeCollider(collider)
+                })
+                instance.forEachRigidBody((body) => {
+                    instance.removeRigidBody(body)
+                })
+
+                instance.free()
+                this.physics.geometry.dispose()
+            }
+        })
+
         // Debug
         this.gui = new Pane({title: "🚀 Transcendance - Playground 🚀"})
         this.injectCSS('.tp-dfwv {width: 350px !important}')

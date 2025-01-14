@@ -24,7 +24,7 @@ class Time extends EventEmitter{
 
         this.trigger('tick')
 
-        requestAnimationFrame(() => {
+        this.request = requestAnimationFrame(() => {
             this.tick()
         })
     }

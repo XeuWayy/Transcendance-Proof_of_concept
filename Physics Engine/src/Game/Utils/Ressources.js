@@ -3,7 +3,6 @@ import {REVISION} from "three"
 import {GLTFLoader} from "three/addons";
 import {MeshoptDecoder} from "three/addons/libs/meshopt_decoder.module.js";
 import {KTX2Loader} from 'three/addons/loaders/KTX2Loader.js';
-import { ColladaLoader } from 'three/addons/loaders/ColladaLoader.js'
 
 import EventEmitter from "./EventEmitter.js";
 import sources from "../sources.js";
@@ -36,8 +35,6 @@ class Ressources extends EventEmitter {
         this.loaders.gltfLoader = new GLTFLoader()
         this.loaders.gltfLoader.setMeshoptDecoder(MeshoptDecoder)
         this.loaders.gltfLoader.setKTX2Loader(this.loaders.ktx2Loader)
-
-        this.loaders.colladaLoader = new ColladaLoader()
     }
 
     startLoading() {
@@ -55,11 +52,6 @@ class Ressources extends EventEmitter {
                     break
                 case "gltfModel":
                     this.loaders.gltfLoader.load(source.path, (file) => {
-                        this.sourceLoaded(source, file)
-                    })
-                    break
-                case "colladaModel":
-                    this.loaders.colladaLoader.load(source.path, (file) => {
                         this.sourceLoaded(source, file)
                     })
                     break

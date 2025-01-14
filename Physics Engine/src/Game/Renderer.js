@@ -42,7 +42,6 @@ class Renderer {
             alpha: true,
             forceWebGL: true
         })
-        console.log(this.instance);
         this.instance.setSize(this.sizes.width, this.sizes.height)
         this.instance.setPixelRatio(this.sizes.pixelRatio)
         this.instance.toneMapping = THREE.LinearToneMapping

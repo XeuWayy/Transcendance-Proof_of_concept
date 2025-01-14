@@ -1,5 +1,5 @@
 import * as THREE from 'three/webgpu'
-import {SkyMesh} from "three/addons/objects/SkyMesh.js";
+import {SkyMesh} from "three/addons/objects/SkyMesh.js"
 
 import Game from "../Game.js"
 
@@ -7,6 +7,7 @@ class Environment {
     constructor() {
         this.game = new Game()
         this.scene = this.game.scene
+        this.renderer = this.game.renderer
 
         this.setDebug()
         this.initCubeCamera()

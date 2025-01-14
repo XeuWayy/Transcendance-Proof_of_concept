@@ -15,7 +15,7 @@ class KidsPlayground {
 
         this.models.swing = this.ressources.items.swing.scene
         this.models.swing.position.y = 10
-        console.log(this.models.swing);
+
         this.scene.add(this.models.swing)
     }
 }

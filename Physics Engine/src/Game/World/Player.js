@@ -35,11 +35,22 @@ class Player {
         this.translation = new THREE.Vector3()
 
         this.setupPhysics()
+        this.setupDebug()
+    }
+
+    setupDebug() {
+        this.debugObject = this.game.debugObject
+
+        this.playerDebug = this.game.gui.addFolder({title: " - Player debug", expanded: true})
+
+        this.debugObject.cameraPosition = this.camera.position
+
+        this.playerDebug.addBinding(this.debugObject, 'cameraPosition', {label: 'Camera Position', precision: 3})
     }
 
     setupPhysics() {
         const capsuleDesc = RAPIER.RigidBodyDesc.dynamic()
-            .setTranslation(0, 150, 0)
+            .setTranslation(5, 1.8, 0)
             .setCcdEnabled(true)
             .lockRotations()
 
@@ -156,8 +167,8 @@ class Player {
 
         this.camera.lookAt(this.fpsCamera.focusTarget())
         this.interactManager.updateTakenObject()
+        this.playerDebug.refresh()
     }
-
 }
 
 export default Player
