@@ -19,8 +19,11 @@ class GamepadController {
         this.deadzone = 0.05
         this.lookSensivity = 0.04
 
-        window.addEventListener('gamepadconnected', () => this.gamepadConnected())
-        window.addEventListener('gamepaddisconnected', () => this.gamepadDisconnected())
+        this.gamepadConnectedBind = this.gamepadConnected.bind(this)
+        this.gamepadDisconnectedBind = this.gamepadDisconnected.bind(this)
+
+        window.addEventListener('gamepadconnected', this.gamepadConnectedBind)
+        window.addEventListener('gamepaddisconnected', this.gamepadDisconnectedBind)
     }
 
     /**

@@ -18,7 +18,6 @@ class InputManager {
             throw: false
         }
 
-
         this.inputs = {
             forward: 0,
             strafe: 0,

@@ -22,25 +22,22 @@ class KeyboardMouseController {
         this.keys = {}
         this.previousKeys = {}
 
-        document.addEventListener('mousedown', (event) => this.onMouseDown(event))
-        document.addEventListener('mouseup', (event) => this.onMouseUp(event))
-        document.addEventListener('click', (event) => {
-            if (!this.current.isLocked && event.target === this.canvas) {
-                this.canvas.requestPointerLock()
-            }
-        })
+        this.onMouseDownBind = this.onMouseDown.bind(this)
+        this.onMouseUpBind = this.onMouseUp.bind(this)
+        this.onClickBind = this.onClick.bind(this)
+        this.onPointerLockChangeBind = this.onPointerLockChange.bind(this)
+        this.onMouseMoveBind = this.onMouseMove.bind(this)
+        this.onKeyDownBind = this.onKeyDown.bind(this)
+        this.onKeyUpBind = this.onKeyUp.bind(this)
 
-        document.addEventListener('pointerlockchange', () => {
-            this.current.isLocked = document.pointerLockElement === this.canvas
+        document.addEventListener('mousedown', this.onMouseDownBind)
+        document.addEventListener('mouseup', this.onMouseUpBind)
+        document.addEventListener('click', this.onClickBind)
 
-            if (!this.current.isLocked) {
-                this.current.mouseXDelta = 0
-                this.current.mouseYDelta = 0
-            }
-        })
-        document.addEventListener('mousemove', (event) => this.onMouseMove(event))
-        document.addEventListener('keydown', (event) => this.onKeyDown(event))
-        document.addEventListener('keyup', (event) => this.onKeyUp(event))
+        document.addEventListener('pointerlockchange', this.onPointerLockChangeBind)
+        document.addEventListener('mousemove', this.onMouseMoveBind)
+        document.addEventListener('keydown', this.onKeyDownBind)
+        document.addEventListener('keyup', this.onKeyUpBind)
     }
 
     /**
@@ -53,7 +50,7 @@ class KeyboardMouseController {
             case 0:
                 this.current.leftButton = true
                 break
-            case 1:
+            case 2:
                 this.current.rightButton = true
                 break
         }
@@ -69,9 +66,33 @@ class KeyboardMouseController {
             case 0:
                 this.current.leftButton = false
                 break
-            case 1:
+            case 2:
                 this.current.rightButton = false
                 break
+        }
+    }
+
+    /**
+     * @author Corentin (XeuWayy) Charton
+     * @desc Request pointer lock when user click on game canvas
+     * @param event The event listener information
+     */
+    onClick(event) {
+        if (!this.current.isLocked && event.target === this.canvas) {
+            this.canvas.requestPointerLock()
+        }
+    }
+
+    /**
+     * @author Corentin (XeuWayy) Charton
+     * @desc Reset mouse position when user leave the pointer lock
+     */
+    onPointerLockChange() {
+        this.current.isLocked = document.pointerLockElement === this.canvas
+
+        if (!this.current.isLocked) {
+            this.current.mouseXDelta = 0
+            this.current.mouseYDelta = 0
         }
     }
 

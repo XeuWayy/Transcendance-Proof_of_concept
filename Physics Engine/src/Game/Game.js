@@ -26,50 +26,8 @@ class Game {
         this.canvas = canvas
         this.isFirefoxbasedbrowser = navigator.userAgent.includes("Firefox")
 
-        window.addEventListener('beforeunload', () => {
-            if (this.time) {
-                cancelAnimationFrame(this.time.request)
-            }
-
-            if (this.scene) {
-                this.scene.traverse(obj => {
-                    if (obj.material) {
-                        obj.material.dispose()
-                    }
-                    if (obj.geometry) {
-                        obj.geometry.dispose()
-                    }
-                    if (obj.texture) {
-                        obj.texture.dispose()
-                    }
-                })
-                for (let i = this.scene.children.length - 1; i >= 0; i--) {
-                    this.scene.remove(this.scene.children[i])
-                }
-            }
-
-            if (this.renderer) {
-                this.renderer.instance.dispose()
-            }
-
-            if (this.ressources) {
-                this.ressources.loaders.ktx2Loader.dispose()
-            }
-
-            if (this.physics && this.physics.instance) {
-                const instance = this.physics.instance
-
-                instance.forEachCollider((collider) => {
-                    instance.removeCollider(collider)
-                })
-                instance.forEachRigidBody((body) => {
-                    instance.removeRigidBody(body)
-                })
-
-                instance.free()
-                this.physics.geometry.dispose()
-            }
-        })
+        this.cleanupBind = this.cleanup.bind(this)
+        window.addEventListener('beforeunload', this.cleanupBind)
 
         // Debug
         this.gui = new Pane({title: "🚀 Transcendance - Playground 🚀"})
@@ -132,6 +90,97 @@ class Game {
             this.renderer.update()
             this.renderPerf.end()
             this.stats.end()
+        }
+    }
+
+    cleanup() {
+        window.removeEventListener('beforeunload', this.cleanupBind)
+
+        if (this.time) {
+            cancelAnimationFrame(this.time.request)
+        }
+
+        if (this.renderPerf) {
+            this.renderPerf.dispose()
+        }
+
+        if (this.scene) {
+            this.scene.traverse(obj => {
+                if (obj.material) {
+                    obj.material.dispose()
+                }
+                if (obj.geometry) {
+                    obj.geometry.dispose()
+                }
+                if (obj.texture) {
+                    obj.texture.dispose()
+                }
+            })
+            for (let i = this.scene.children.length - 1; i >= 0; i--) {
+                this.scene.remove(this.scene.children[i])
+            }
+        }
+
+        if (this.renderer) {
+            this.renderer.instance.dispose()
+            if (this.renderer.rendererDebug) {
+                this.renderer.rendererDebug.dispose()
+            }
+        }
+
+        if (this.ressources) {
+            this.ressources.loaders.ktx2Loader.dispose()
+        }
+
+        if (this.physics && this.physics.instance) {
+            if (this.physics.physicsDebug) {
+                this.physics.physicsDebug.dispose()
+            }
+
+            const instance = this.physics.instance
+
+            instance.forEachCollider((collider) => {
+                instance.removeCollider(collider)
+            })
+            instance.forEachRigidBody((body) => {
+                instance.removeRigidBody(body)
+            })
+
+            instance.free()
+            this.physics.geometry.dispose()
+        }
+
+        if (this.camera) {
+            if (this.camera.fpsCamera && this.camera.fpsCamera.inputManager) {
+                const input = this.camera.fpsCamera.inputManager
+                if (input.keyboardMouseController) {
+                    document.removeEventListener('mousedown', input.keyboardMouseController.onMouseDownBind)
+                    document.removeEventListener('mousedown', input.keyboardMouseController.onMouseUpBind)
+                    document.removeEventListener('click', input.keyboardMouseController.onClickBind)
+                    document.removeEventListener('pointerlockchange', input.keyboardMouseController.onPointerLockChangeBind)
+                    document.removeEventListener('mousemove', input.keyboardMouseController.onMouseMoveBind)
+                    document.removeEventListener('keydown', input.keyboardMouseController.onKeyDownBind)
+                    document.removeEventListener('keyup', input.keyboardMouseController.onKeyUpBind)
+                }
+                if (input.gamepadController) {
+                    window.removeEventListener('gamepadconnected', input.gamepadController.gamepadConnectedBind)
+                    window.removeEventListener('gamepaddisconnected', input.gamepadController.gamepadDisconnectedBind)
+                }
+            }
+        }
+
+        if (this.world) {
+            if (this.world.player && this.world.player.playerDebug) {
+                this.world.player.playerDebug.dispose()
+            }
+
+            if (this.world.environment && this.world.environment.environmentDebug) {
+                this.world.environment.environmentDebug.dispose()
+            }
+        }
+
+        if (this.gui) {
+            this.gui.dispose()
         }
     }
 }

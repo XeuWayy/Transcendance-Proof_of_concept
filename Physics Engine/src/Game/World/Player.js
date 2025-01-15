@@ -41,7 +41,7 @@ class Player {
     setupDebug() {
         this.debugObject = this.game.debugObject
 
-        this.playerDebug = this.game.gui.addFolder({title: " - Player debug", expanded: true})
+        this.playerDebug = this.game.gui.addFolder({title: "🤖 - Player debug", expanded: true})
 
         this.debugObject.cameraPosition = this.camera.position
 
