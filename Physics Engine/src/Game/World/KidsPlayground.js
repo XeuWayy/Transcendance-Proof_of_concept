@@ -18,6 +18,15 @@ class KidsPlayground {
 
         this.scene.add(this.models.swing)
     }
+
+    cleanup() {
+        this.game = null
+        this.scene = null
+        this.ressources = null
+        this.physics = null
+
+        this.models = null
+    }
 }
 
 export default KidsPlayground

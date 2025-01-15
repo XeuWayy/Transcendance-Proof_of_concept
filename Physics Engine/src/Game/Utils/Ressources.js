@@ -1,5 +1,4 @@
 import * as THREE from 'three/webgpu'
-import {REVISION} from "three"
 import {GLTFLoader} from "three/addons";
 import {MeshoptDecoder} from "three/addons/libs/meshopt_decoder.module.js";
 import {KTX2Loader} from 'three/addons/loaders/KTX2Loader.js';
@@ -27,9 +26,8 @@ class Ressources extends EventEmitter {
         this.loaders = {}
         this.loaders.textureLoader = new THREE.TextureLoader()
 
-        const THREE_PATH = `https://unpkg.com/three@0.${REVISION}.x`
         this.loaders.ktx2Loader = new KTX2Loader()
-        this.loaders.ktx2Loader.setTranscoderPath(`${THREE_PATH}/examples/jsm/libs/basis/`)
+        this.loaders.ktx2Loader.setTranscoderPath('/libs/basis/')
         await this.loaders.ktx2Loader.detectSupportAsync(this.renderer.instance)
 
         this.loaders.gltfLoader = new GLTFLoader()
@@ -66,6 +64,17 @@ class Ressources extends EventEmitter {
         if (this.loaded === this.toLoad) {
             this.trigger('loaded')
         }
+    }
+
+    cleanup() {
+        this.game = null
+        this.renderer = null
+
+        if (this.loaders.ktx2Loader) {
+            this.loaders.ktx2Loader.dispose()
+        }
+        this.loaders = null
+        this.items = null
     }
 }
 

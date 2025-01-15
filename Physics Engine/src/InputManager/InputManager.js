@@ -157,6 +157,23 @@ class InputManager {
     getInputs() {
         return this.inputs
     }
+
+    cleanup() {
+        if (this.keyboardMouseController) {
+            this.keyboardMouseController.cleanup()
+            this.keyboardMouseController = null
+        }
+        if (this.gamepadController) {
+            this.gamepadController.cleanup()
+            this.gamepadController = null
+        }
+        if (this.interactManager) {
+            this.interactManager.cleanup()
+            this.interactManager = null
+        }
+        this.previousInputs = null
+        this.inputs = null
+    }
 }
 
 export default InputManager

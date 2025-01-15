@@ -7,17 +7,24 @@ class Sizes extends EventEmitter{
         this.height = window.innerHeight
         this.pixelRatio = Math.min(window.devicePixelRatio, 2)
 
-        window.addEventListener('resize', () =>
-        {
-            // Update sizes
-            this.width = window.innerWidth
-            this.height = window.innerHeight
-            this.pixelRatio = Math.min(window.devicePixelRatio, 2)
+        this.onResizeBind = this.onResize.bind(this)
 
-            // Update game
-            this.trigger('resize')
-        })
+        window.addEventListener('resize', this.onResizeBind)
 
+    }
+
+    onResize() {
+        // Update sizes
+        this.width = window.innerWidth
+        this.height = window.innerHeight
+        this.pixelRatio = Math.min(window.devicePixelRatio, 2)
+
+        // Update game
+        this.trigger('resize')
+    }
+
+    cleanup() {
+        window.removeEventListener('resize', this.onResizeBind)
     }
 }
 export default Sizes

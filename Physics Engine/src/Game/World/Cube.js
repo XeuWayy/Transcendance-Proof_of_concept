@@ -98,5 +98,14 @@ class Cube {
         })
         this.scene.add(cubeMesh)      
     }
+
+    cleanup() {
+        this.game = null
+        this.scene = null
+        this.ressources = null
+        this.physics = null
+
+        this.textures = null
+    }
 }
 export default Cube

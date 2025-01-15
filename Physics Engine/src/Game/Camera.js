@@ -46,5 +46,19 @@ class Camera {
     update() {
         this.fpsCamera.update(this.time.delta / 1000)
     }
+
+    cleanup() {
+        this.game = null
+        this.sizes = null
+        this.scene = null
+        this.canvas = null
+        this.time = null
+        this.shaders = null
+
+        if (this.fpsCamera) {
+            this.fpsCamera.cleanup()
+            this.fpsCamera = null
+        }
+    }
 }
 export default Camera

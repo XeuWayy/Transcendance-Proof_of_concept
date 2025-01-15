@@ -140,6 +140,23 @@ class KeyboardMouseController {
             this.current.mouseYDelta = 0
         }
     }
+
+    cleanup() {
+        this.canvas = null
+        this.current = null
+        this.previous = null
+        this.keys = null
+        this.previousKeys = null
+
+
+        document.removeEventListener('mousedown', this.onMouseDownBind)
+        document.removeEventListener('mousedown', this.onMouseUpBind)
+        document.removeEventListener('click', this.onClickBind)
+        document.removeEventListener('pointerlockchange', this.onPointerLockChangeBind)
+        document.removeEventListener('mousemove', this.onMouseMoveBind)
+        document.removeEventListener('keydown', this.onKeyDownBind)
+        document.removeEventListener('keyup', this.onKeyUpBind)
+    }
 }
 
 export default KeyboardMouseController

@@ -169,6 +169,21 @@ class Player {
         this.interactManager.updateTakenObject()
         this.playerDebug.refresh()
     }
+
+    cleanup() {
+        this.game = null
+        this.scene = null
+        this.physics = null
+        this.camera = null
+        this.fpsCamera = null
+        this.inputManager = null
+        this.interactManager = null
+
+        if (this.playerDebug) {
+            this.debugObject = null
+            this.playerDebug.dispose()
+        }
+    }
 }
 
 export default Player

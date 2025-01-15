@@ -93,6 +93,16 @@ class Test {
         this.scene.add(this.stove)
 
     }
+
+    cleanup() {
+        this.game = null
+        this.ressources = null
+        this.physics = null
+        this.scene = null
+
+        this.model = null
+        this.test = null
+    }
 }
 
 export default Test

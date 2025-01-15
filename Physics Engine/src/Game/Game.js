@@ -96,13 +96,19 @@ class Game {
     cleanup() {
         window.removeEventListener('beforeunload', this.cleanupBind)
 
-        if (this.time) {
-            cancelAnimationFrame(this.time.request)
+        singletonGame = null
+
+        if (this.sizes) {
+            this.sizes.cleanup()
+            this.sizes = null
         }
 
-        if (this.renderPerf) {
-            this.renderPerf.dispose()
+        if (this.time) {
+            this.time.cleanup()
+            this.time = null
         }
+
+        this.shaders = null
 
         if (this.scene) {
             this.scene.traverse(obj => {
@@ -119,69 +125,42 @@ class Game {
             for (let i = this.scene.children.length - 1; i >= 0; i--) {
                 this.scene.remove(this.scene.children[i])
             }
-        }
-
-        if (this.renderer) {
-            this.renderer.instance.dispose()
-            if (this.renderer.rendererDebug) {
-                this.renderer.rendererDebug.dispose()
-            }
-        }
-
-        if (this.ressources) {
-            this.ressources.loaders.ktx2Loader.dispose()
-        }
-
-        if (this.physics && this.physics.instance) {
-            if (this.physics.physicsDebug) {
-                this.physics.physicsDebug.dispose()
-            }
-
-            const instance = this.physics.instance
-
-            instance.forEachCollider((collider) => {
-                instance.removeCollider(collider)
-            })
-            instance.forEachRigidBody((body) => {
-                instance.removeRigidBody(body)
-            })
-
-            instance.free()
-            this.physics.geometry.dispose()
+            this.scene = null
         }
 
         if (this.camera) {
-            if (this.camera.fpsCamera && this.camera.fpsCamera.inputManager) {
-                const input = this.camera.fpsCamera.inputManager
-                if (input.keyboardMouseController) {
-                    document.removeEventListener('mousedown', input.keyboardMouseController.onMouseDownBind)
-                    document.removeEventListener('mousedown', input.keyboardMouseController.onMouseUpBind)
-                    document.removeEventListener('click', input.keyboardMouseController.onClickBind)
-                    document.removeEventListener('pointerlockchange', input.keyboardMouseController.onPointerLockChangeBind)
-                    document.removeEventListener('mousemove', input.keyboardMouseController.onMouseMoveBind)
-                    document.removeEventListener('keydown', input.keyboardMouseController.onKeyDownBind)
-                    document.removeEventListener('keyup', input.keyboardMouseController.onKeyUpBind)
-                }
-                if (input.gamepadController) {
-                    window.removeEventListener('gamepadconnected', input.gamepadController.gamepadConnectedBind)
-                    window.removeEventListener('gamepaddisconnected', input.gamepadController.gamepadDisconnectedBind)
-                }
-            }
+            this.camera.cleanup()
+            this.camera = null
+        }
+
+        if (this.renderer) {
+            this.renderer.cleanup()
+            this.renderer = null
+        }
+
+        if (this.ressources) {
+            this.ressources.cleanup()
+            this.ressources = null
+        }
+
+        if (this.physics) {
+            this.physics.cleanup()
+            this.physics = null
         }
 
         if (this.world) {
-            if (this.world.player && this.world.player.playerDebug) {
-                this.world.player.playerDebug.dispose()
-            }
+            this.world.cleanup()
+            this.world = null
+        }
 
-            if (this.world.environment && this.world.environment.environmentDebug) {
-                this.world.environment.environmentDebug.dispose()
-            }
+        if (this.renderPerf) {
+            this.renderPerf.dispose()
         }
 
         if (this.gui) {
             this.gui.dispose()
         }
+        this.debugObject = null
     }
 }
 

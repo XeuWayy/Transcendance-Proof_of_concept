@@ -80,6 +80,16 @@ class GamepadController {
         this.current.rJoyButton = gamepad.buttons[11].pressed
         this.current.lJoyButton = gamepad.buttons[10].pressed
     }
+
+    cleanup() {
+        this.game = null
+        this.isFirefoxbasedbrowser = null
+        this.current = null
+
+        window.removeEventListener('gamepadconnected', this.gamepadConnectedBind)
+        window.removeEventListener('gamepaddisconnected', this.gamepadDisconnectedBind)
+
+    }
 }
 
 export default GamepadController

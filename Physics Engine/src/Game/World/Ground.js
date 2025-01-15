@@ -64,6 +64,16 @@ class Ground {
 
         this.world.addFixedObject('ground', this.ground, this.groundCollider, {enabled: false})
     }
+
+    cleanup() {
+        this.game = null
+        this.scene = null
+        this.ressources = null
+        this.world = null
+        this.physics = null
+
+        this.textures = null
+    }
 }
 
 export default Ground

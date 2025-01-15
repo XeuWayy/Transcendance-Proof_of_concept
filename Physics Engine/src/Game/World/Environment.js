@@ -191,5 +191,22 @@ class Environment {
         this.tvLight.position.copy(this.debugObject.tvLightPosition)
         this.scene.add(this.tvLight)
     }
+
+    cleanup () {
+        this.game = new Game()
+        this.scene = this.game.scene
+        this.renderer = this.game.renderer
+
+        this.debugObject = null
+        if (this.environmentDebug) {
+            this.environmentDebug.dispose()
+        }
+        if (this.skyDebug) {
+            this.skyDebug.dispose()
+        }
+        if (this.lightDebug) {
+            this.lightDebug.dispose
+        }
+    }
 }
 export default Environment

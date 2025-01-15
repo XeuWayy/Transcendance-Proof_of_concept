@@ -177,6 +177,16 @@ class InteractManager {
             this.checkForInteraction()
         }
     }
+
+    cleanup () {
+        this.game = null
+        this.camera = null
+        this.cameraInstance = null
+        this.inputManager = null
+        this.world = null
+        this.player = null
+        this.time = null
+    }
 }
 
 export default InteractManager

@@ -136,6 +136,18 @@ class FirstPersonCamera {
         pos.add(forward)
         return pos
     }
+
+    cleanup() {
+        this.camera = null
+        this.game = null
+        this.player = null
+        this.interactManager = null
+
+        if (this.inputManager) {
+            this.inputManager.cleanup()
+            this.inputManager = null
+        }
+    }
 }
 
 export default FirstPersonCamera

@@ -62,7 +62,6 @@ class Pong{
 
         this.model.sadTv.add(sadTvPong)
 
-
         const coolTvPongMaterial = new THREE.MeshBasicNodeMaterial({
             side: THREE.FrontSide
         })
@@ -126,5 +125,14 @@ class Pong{
         })
     }
 
+    cleanup () {
+        this.game = null
+        this.scene = null
+        this.ressources = null
+        this.physics = null
+        this.shaders = null
+
+        this.model = null
+    }
 }
 export default Pong

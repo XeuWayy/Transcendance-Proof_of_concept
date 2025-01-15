@@ -164,6 +164,30 @@ class Physics {
             }
         }
     }
+
+    cleanup() {
+        this.game = null
+        this.scene = null
+        this.time = null
+
+        if (this.physicsDebug) {
+            this.physicsDebug.dispose()
+        }
+
+        if (this.instance) {
+            this.instance.forEachCollider((collider) => {
+                this.instance.removeCollider(collider, false)
+            })
+            this.instance.forEachRigidBody((body) => {
+                this.instance.removeRigidBody(body)
+            })
+
+            this.instance.free()
+        }
+        if (this.geometry) {
+            this.geometry.dispose()
+        }
+    }
 }
 
 export default Physics

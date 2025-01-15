@@ -28,6 +28,10 @@ class Time extends EventEmitter{
             this.tick()
         })
     }
+
+    cleanup() {
+        cancelAnimationFrame(this.request)
+    }
 }
 
 export default Time

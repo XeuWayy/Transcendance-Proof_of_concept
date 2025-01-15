@@ -59,6 +59,21 @@ class Renderer {
         // Renderer Information
         //console.log(this.instance.info.render)
     }
+
+    cleanup() {
+        this.game = null
+        this.sizes = null
+        this.scene = null
+        this.canvas = null
+        this.camera = null
+        this.gui = null
+
+        this.instance.dispose()
+        if (this.rendererDebug) {
+            this.debugObject = null
+            this.rendererDebug.dispose()
+        }
+    }
 }
 
 export default Renderer

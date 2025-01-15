@@ -11,7 +11,7 @@ class Tetris {
         this.camera = this.game.camera
         this.physics = this.game.physics
         this.shaders = this.game.shaders
-        this.player =  this.game.world.player
+        this.player = this.game.world.player
 
         this.objectsToIntersect = []
 
@@ -36,7 +36,6 @@ class Tetris {
         this.tetrisMachine.rotation.y = -Math.PI * 0.5
 
         this.tetrisMachine.position.set(-15.032, 0, -26.57)
-        //this.tetrisMachine.scale.set(0.030, 0.030, 0.030)
         this.objectsToIntersect.push(this.tetrisMachine)
         this.scene.add(this.tetrisMachine)
     }
@@ -129,6 +128,20 @@ class Tetris {
                 this.player.cameraControlEnabled = true
             }
         }
+    }
+
+    cleanup() {
+        this.game = null
+        this.canvas = null
+        this.scene = null
+        this.ressources = null
+        this.camera = null
+        this.physics = null
+        this.shaders = null
+        this.player = null
+
+        this.tetrisMachine = null
+        this.objectsToIntersect = null
     }
 }
 
