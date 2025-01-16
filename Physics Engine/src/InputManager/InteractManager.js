@@ -41,11 +41,19 @@ class InteractManager {
         if (this.currentObject.type === 'take') {
             this.currentObject.rapierCollider.setEnabled(true)
 
-            const playerLinvel = this.world.player.rigidBody.linvel()
-            playerLinvel.x *= 1.15
-            playerLinvel.z *= 1.15
+            const cameraPosition = this.cameraInstance.position
 
-            this.currentObject.rapierCollider.parent().setLinvel(playerLinvel, true)
+            const cameraDirection = this.cameraInstance.getWorldDirection(new THREE.Vector3()).normalize()
+
+            const newPosition = new THREE.Vector3()
+                .copy(cameraPosition)
+                .add(cameraDirection.multiplyScalar(2.5))
+
+            newPosition.y = cameraPosition.y
+
+            this.currentObject.rapierCollider.setEnabled(true)
+            this.currentObject.rapierCollider.parent().setTranslation(newPosition, true)
+
             this.currentObject = undefined
         }
     }
