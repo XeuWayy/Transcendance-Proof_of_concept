@@ -77,19 +77,11 @@ class InputManager {
             currentInteract = this.keyboardMouseController.keys['KeyE']? this.keyboardMouseController.keys['KeyE'] : false
             currentThrow = this.keyboardMouseController.current.leftButton
 
-            this.inputs = {
-                forward: (this.keyboardMouseController.keys['KeyW'] ? 1 : 0) + (this.keyboardMouseController.keys['KeyS'] ? -1 : 0),
-                strafe: (this.keyboardMouseController.keys['KeyA'] ? 1 : 0) + (this.keyboardMouseController.keys['KeyD'] ? -1 : 0),
-                jump: this.computeActionState(currentJump, this.previousInputs.jump),
-                run: this.computeActionState(currentRun, this.previousInputs.run),
-                crouch: this.computeActionState(currentCrouch, this.previousInputs.crouch),
-                interact: this.computeActionState(currentInteract, this.previousInputs.interact),
-                throw: this.computeActionState(currentThrow, this.previousInputs.throw),
-                rotation: {
-                    x: this.keyboardMouseController.current.mouseXDelta,
-                    y: this.keyboardMouseController.current.mouseYDelta
-                }
-            }
+            this.inputs.forward = (this.keyboardMouseController.keys['KeyW'] ? 1 : 0) + (this.keyboardMouseController.keys['KeyS'] ? -1 : 0)
+            this.inputs.strafe = (this.keyboardMouseController.keys['KeyA'] ? 1 : 0) + (this.keyboardMouseController.keys['KeyD'] ? -1 : 0)
+
+            this.inputs.rotation.x = this.keyboardMouseController.current.mouseXDelta
+            this.inputs.rotation.y = this.keyboardMouseController.current.mouseYDelta
         } else {
             currentJump = this.gamepadController.current.aButton
             currentRun = this.gamepadController.current.lJoyButton
@@ -97,20 +89,18 @@ class InputManager {
             currentInteract = this.gamepadController.current.bButton
             currentThrow = this.gamepadController.current.rTrigger
 
-            this.inputs = {
-                forward: -this.gamepadController.current.leftStickY,
-                strafe: -this.gamepadController.current.leftStickX,
-                jump: this.computeActionState(currentJump, this.previousInputs.jump),
-                run: this.computeActionState(currentRun, this.previousInputs.run),
-                crouch: this.computeActionState(currentCrouch, this.previousInputs.crouch),
-                interact: this.computeActionState(currentInteract, this.previousInputs.interact),
-                throw: this.computeActionState(currentThrow, this.previousInputs.throw),
-                rotation: {
-                    x: this.gamepadController.current.rightStickX,
-                    y: this.gamepadController.current.rightStickY
-                }
-            }
+            this.inputs.forward = -this.gamepadController.current.leftStickY
+            this.inputs.strafe = -this.gamepadController.current.leftStickX
+
+            this.inputs.rotation.x = this.gamepadController.current.rightStickX
+            this.inputs.rotation.y = this.gamepadController.current.rightStickY
         }
+
+        this.inputs.jump = this.computeActionState(currentJump, this.previousInputs.jump)
+        this.inputs.run = this.computeActionState(currentRun, this.previousInputs.run)
+        this.inputs.crouch = this.computeActionState(currentCrouch, this.previousInputs.crouch)
+        this.inputs.interact = this.computeActionState(currentInteract, this.previousInputs.interact)
+        this.inputs.throw = this.computeActionState(currentThrow, this.previousInputs.throw)
 
         this.previousInputs.jump = currentJump
         this.previousInputs.run = currentRun
@@ -123,17 +113,10 @@ class InputManager {
         let currentInteract
         if (this.activeInputController === 'keyboardMouse') {
             currentInteract = this.keyboardMouseController.keys['KeyE']? this.keyboardMouseController.keys['KeyE'] : false
-
-            this.inputs = {
-                interact: this.computeActionState(currentInteract, this.previousInputs.interact)
-            }
         } else {
             currentInteract = this.gamepadController.current.bButton
-
-            this.inputs = {
-                interact: this.computeActionState(currentInteract, this.previousInputs.interact)
-            }
         }
+        this.inputs.interact = this.computeActionState(currentInteract, this.previousInputs.interact)
 
         this.previousInputs.interact = currentInteract
     }
@@ -161,18 +144,17 @@ class InputManager {
     cleanup() {
         if (this.keyboardMouseController) {
             this.keyboardMouseController.cleanup()
-            this.keyboardMouseController = null
         }
         if (this.gamepadController) {
             this.gamepadController.cleanup()
-            this.gamepadController = null
         }
         if (this.interactManager) {
             this.interactManager.cleanup()
-            this.interactManager = null
         }
-        this.previousInputs = null
-        this.inputs = null
+
+        for (const properties in this) {
+            this[properties] = null
+        }
     }
 }
 

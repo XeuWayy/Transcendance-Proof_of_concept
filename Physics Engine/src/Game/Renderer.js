@@ -61,17 +61,16 @@ class Renderer {
     }
 
     cleanup() {
-        this.game = null
-        this.sizes = null
-        this.scene = null
-        this.canvas = null
-        this.camera = null
-        this.gui = null
+        if (this.instance) {
+            this.instance.dispose()
+        }
 
-        this.instance.dispose()
         if (this.rendererDebug) {
-            this.debugObject = null
             this.rendererDebug.dispose()
+        }
+
+        for (const properties in this) {
+            this[properties] = null
         }
     }
 }

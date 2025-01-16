@@ -31,6 +31,9 @@ class Time extends EventEmitter{
 
     cleanup() {
         cancelAnimationFrame(this.request)
+        for (const properties in this) {
+            this[properties] = null
+        }
     }
 }
 

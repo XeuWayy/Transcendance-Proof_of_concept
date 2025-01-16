@@ -193,11 +193,6 @@ class Environment {
     }
 
     cleanup () {
-        this.game = new Game()
-        this.scene = this.game.scene
-        this.renderer = this.game.renderer
-
-        this.debugObject = null
         if (this.environmentDebug) {
             this.environmentDebug.dispose()
         }
@@ -205,7 +200,10 @@ class Environment {
             this.skyDebug.dispose()
         }
         if (this.lightDebug) {
-            this.lightDebug.dispose
+            this.lightDebug.dispose()
+        }
+        for (const properties in this) {
+            this[properties] = null
         }
     }
 }

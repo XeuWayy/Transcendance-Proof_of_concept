@@ -95,20 +95,15 @@ class Game {
 
     cleanup() {
         window.removeEventListener('beforeunload', this.cleanupBind)
-
         singletonGame = null
 
         if (this.sizes) {
             this.sizes.cleanup()
-            this.sizes = null
         }
 
         if (this.time) {
             this.time.cleanup()
-            this.time = null
         }
-
-        this.shaders = null
 
         if (this.scene) {
             this.scene.traverse(obj => {
@@ -125,32 +120,26 @@ class Game {
             for (let i = this.scene.children.length - 1; i >= 0; i--) {
                 this.scene.remove(this.scene.children[i])
             }
-            this.scene = null
         }
 
         if (this.camera) {
             this.camera.cleanup()
-            this.camera = null
         }
 
         if (this.renderer) {
             this.renderer.cleanup()
-            this.renderer = null
         }
 
         if (this.ressources) {
             this.ressources.cleanup()
-            this.ressources = null
         }
 
         if (this.physics) {
             this.physics.cleanup()
-            this.physics = null
         }
 
         if (this.world) {
             this.world.cleanup()
-            this.world = null
         }
 
         if (this.renderPerf) {
@@ -160,7 +149,10 @@ class Game {
         if (this.gui) {
             this.gui.dispose()
         }
-        this.debugObject = null
+
+        for (const properties in this) {
+            this[properties] = null
+        }
     }
 }
 

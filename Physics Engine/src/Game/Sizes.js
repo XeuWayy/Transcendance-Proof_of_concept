@@ -10,7 +10,6 @@ class Sizes extends EventEmitter{
         this.onResizeBind = this.onResize.bind(this)
 
         window.addEventListener('resize', this.onResizeBind)
-
     }
 
     onResize() {
@@ -25,6 +24,10 @@ class Sizes extends EventEmitter{
 
     cleanup() {
         window.removeEventListener('resize', this.onResizeBind)
+
+        for (const properties in this) {
+            this[properties] = null
+        }
     }
 }
 export default Sizes

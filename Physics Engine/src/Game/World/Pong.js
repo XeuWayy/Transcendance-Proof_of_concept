@@ -126,13 +126,9 @@ class Pong{
     }
 
     cleanup () {
-        this.game = null
-        this.scene = null
-        this.ressources = null
-        this.physics = null
-        this.shaders = null
-
-        this.model = null
+        for (const properties in this) {
+            this[properties] = null
+        }
     }
 }
 export default Pong

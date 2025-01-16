@@ -166,10 +166,6 @@ class Physics {
     }
 
     cleanup() {
-        this.game = null
-        this.scene = null
-        this.time = null
-
         if (this.physicsDebug) {
             this.physicsDebug.dispose()
         }
@@ -186,6 +182,10 @@ class Physics {
         }
         if (this.geometry) {
             this.geometry.dispose()
+        }
+
+        for (const properties in this) {
+            this[properties] = null
         }
     }
 }

@@ -179,13 +179,9 @@ class InteractManager {
     }
 
     cleanup () {
-        this.game = null
-        this.camera = null
-        this.cameraInstance = null
-        this.inputManager = null
-        this.world = null
-        this.player = null
-        this.time = null
+        for (const properties in this) {
+            this[properties] = null
+        }
     }
 }
 

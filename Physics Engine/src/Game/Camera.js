@@ -48,16 +48,12 @@ class Camera {
     }
 
     cleanup() {
-        this.game = null
-        this.sizes = null
-        this.scene = null
-        this.canvas = null
-        this.time = null
-        this.shaders = null
-
         if (this.fpsCamera) {
             this.fpsCamera.cleanup()
-            this.fpsCamera = null
+        }
+
+        for (const properties in this) {
+            this[properties] = null
         }
     }
 }

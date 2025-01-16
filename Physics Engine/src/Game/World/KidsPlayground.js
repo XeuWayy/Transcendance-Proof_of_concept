@@ -20,12 +20,9 @@ class KidsPlayground {
     }
 
     cleanup() {
-        this.game = null
-        this.scene = null
-        this.ressources = null
-        this.physics = null
-
-        this.models = null
+        for (const properties in this) {
+            this[properties] = null
+        }
     }
 }
 

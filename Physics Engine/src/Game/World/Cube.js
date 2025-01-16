@@ -100,12 +100,9 @@ class Cube {
     }
 
     cleanup() {
-        this.game = null
-        this.scene = null
-        this.ressources = null
-        this.physics = null
-
-        this.textures = null
+        for (const properties in this) {
+            this[properties] = null
+        }
     }
 }
 export default Cube

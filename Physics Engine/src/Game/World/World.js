@@ -71,60 +71,40 @@ class World {
     }
 
     cleanup() {
-        if (this.player && this.player.playerDebug) {
-            this.player.playerDebug.dispose()
-        }
-
-        if (this.environment && this.environment.environmentDebug) {
-            this.environment.environmentDebug.dispose()
-        }
-
-        this.game = null
-        this.scene = null
-        this.ressources = null
-
-        this.interactManager = null
-        this.dynamicObjects = null
-        this.fixedObjects = null
-
         if (this.player) {
             this.player.cleanup()
-            this.player = null
         }
 
         if (this.environment) {
             this.environment.cleanup()
-            this.environment = null
         }
 
         if (this.ground) {
             this.ground.cleanup()
-            this.ground = null
         }
 
         if (this.cube) {
             this.cube.cleanup()
-            this.cube = null
         }
 
         if (this.pong) {
             this.pong.cleanup()
-            this.pong = null
         }
 
         if (this.tetris) {
             this.tetris.cleanup()
-            this.tetris = null
         }
 
         if (this.kidPlayground) {
             this.kidPlayground.cleanup()
-            this.kidPlayground = null
         }
 
         if (this.test) {
             this.test.cleanup()
-            this.test = null
+        }
+
+        for (const properties in this) {
+            this[properties] = null
         }
     }
 }

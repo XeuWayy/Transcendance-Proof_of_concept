@@ -67,14 +67,13 @@ class Ressources extends EventEmitter {
     }
 
     cleanup() {
-        this.game = null
-        this.renderer = null
-
         if (this.loaders.ktx2Loader) {
             this.loaders.ktx2Loader.dispose()
         }
-        this.loaders = null
-        this.items = null
+
+        for (const properties in this) {
+            this[properties] = null
+        }
     }
 }
 

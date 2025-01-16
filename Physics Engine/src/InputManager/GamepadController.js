@@ -82,13 +82,12 @@ class GamepadController {
     }
 
     cleanup() {
-        this.game = null
-        this.isFirefoxbasedbrowser = null
-        this.current = null
-
         window.removeEventListener('gamepadconnected', this.gamepadConnectedBind)
         window.removeEventListener('gamepaddisconnected', this.gamepadDisconnectedBind)
 
+        for (const properties in this) {
+            this[properties] = null
+        }
     }
 }
 

@@ -95,13 +95,9 @@ class Test {
     }
 
     cleanup() {
-        this.game = null
-        this.ressources = null
-        this.physics = null
-        this.scene = null
-
-        this.model = null
-        this.test = null
+        for (const properties in this) {
+            this[properties] = null
+        }
     }
 }
 

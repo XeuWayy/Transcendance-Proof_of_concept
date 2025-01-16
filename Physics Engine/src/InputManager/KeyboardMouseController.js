@@ -18,9 +18,7 @@ class KeyboardMouseController {
             mouseYDelta: 0
         }
         this.mouseSensitivity = 0.002
-        this.previous = null
         this.keys = {}
-        this.previousKeys = {}
 
         this.onMouseDownBind = this.onMouseDown.bind(this)
         this.onMouseUpBind = this.onMouseUp.bind(this)
@@ -134,7 +132,6 @@ class KeyboardMouseController {
      * @desc Update the class information
      */
     update() {
-        this.previous = {...this.current}
         if (this.current.isLocked) {
             this.current.mouseXDelta = 0
             this.current.mouseYDelta = 0
@@ -142,13 +139,6 @@ class KeyboardMouseController {
     }
 
     cleanup() {
-        this.canvas = null
-        this.current = null
-        this.previous = null
-        this.keys = null
-        this.previousKeys = null
-
-
         document.removeEventListener('mousedown', this.onMouseDownBind)
         document.removeEventListener('mousedown', this.onMouseUpBind)
         document.removeEventListener('click', this.onClickBind)
@@ -156,6 +146,10 @@ class KeyboardMouseController {
         document.removeEventListener('mousemove', this.onMouseMoveBind)
         document.removeEventListener('keydown', this.onKeyDownBind)
         document.removeEventListener('keyup', this.onKeyUpBind)
+
+        for (const properties in this) {
+            this[properties] = null
+        }
     }
 }
 

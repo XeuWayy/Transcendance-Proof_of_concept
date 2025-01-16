@@ -131,17 +131,9 @@ class Tetris {
     }
 
     cleanup() {
-        this.game = null
-        this.canvas = null
-        this.scene = null
-        this.ressources = null
-        this.camera = null
-        this.physics = null
-        this.shaders = null
-        this.player = null
-
-        this.tetrisMachine = null
-        this.objectsToIntersect = null
+        for (const properties in this) {
+            this[properties] = null
+        }
     }
 }
 
