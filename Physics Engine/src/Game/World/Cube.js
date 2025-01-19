@@ -16,23 +16,23 @@ class Cube {
     setTextures() {
         this.textures = {}
 
-        this.textures.diff = this.ressources.items.cubeDiffTexture
+        this.textures.diff = this.ressources.items.cubeDiffTexture.file
         this.textures.diff.colorSpace = THREE.SRGBColorSpace
         this.textures.diff.repeat.set(2, 2)
         this.textures.diff.wrapS = THREE.RepeatWrapping
         this.textures.diff.wrapT = THREE.RepeatWrapping
 
-        this.textures.ao = this.ressources.items.cubeAoTexture
+        this.textures.ao = this.ressources.items.cubeAoTexture.file
         this.textures.ao.repeat.set(2, 2)
         this.textures.ao.wrapS = THREE.RepeatWrapping
         this.textures.ao.wrapT = THREE.RepeatWrapping
 
-        this.textures.arm = this.ressources.items.cubeArmTexture
+        this.textures.arm = this.ressources.items.cubeArmTexture.file
         this.textures.arm.repeat.set(2, 2)
         this.textures.arm.wrapS = THREE.RepeatWrapping
         this.textures.arm.wrapT = THREE.RepeatWrapping
 
-        this.textures.nor = this.ressources.items.cubeNorTexture
+        this.textures.nor = this.ressources.items.cubeNorTexture.file
         this.textures.nor.repeat.set(2, 2)
         this.textures.nor.wrapS = THREE.RepeatWrapping
         this.textures.nor.wrapT = THREE.RepeatWrapping

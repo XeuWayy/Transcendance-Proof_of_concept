@@ -81,5 +81,12 @@ export default [
         name: 'swing',
         type: 'gltfModel',
         path: './gltf/playground/swing.glb'
+    },
+    {
+        // Playground
+        name: 'house',
+        type: 'gltfModel',
+        path: './gltf/playground/house.glb',
+        json: './gltf/playground/house.json'
     }
 ]

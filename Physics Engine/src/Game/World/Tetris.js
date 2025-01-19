@@ -32,7 +32,7 @@ class Tetris {
     }
 
     setModel() {
-        this.tetrisMachine = this.ressources.items.tetrisMachine.scene
+        this.tetrisMachine = this.ressources.items.tetrisMachine.file.scene
         this.tetrisMachine.rotation.y = -Math.PI * 0.5
 
         this.tetrisMachine.position.set(-15.032, 0, -26.57)

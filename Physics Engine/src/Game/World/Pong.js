@@ -19,21 +19,21 @@ class Pong{
     setModel() {
         this.model = {}
 
-        this.model.sofa = this.ressources.items.sofa.scene
+        this.model.sofa = this.ressources.items.sofa.file.scene
         this.model.sofa.position.set(15, 0.2, -26)
 
-        this.model.tvTable = this.ressources.items.tvTable.scene
+        this.model.tvTable = this.ressources.items.tvTable.file.scene
         this.model.tvTable.scale.set(1.25, 1, 1)
         this.model.tvTable.position.set(15, 0.35, -22)
 
-        const sadTv = this.ressources.items.sadTv.scene
+        const sadTv = this.ressources.items.sadTv.file.scene
         sadTv.rotation.y = Math.PI
 
         this.model.sadTv = new THREE.Group()
         this.model.sadTv.position.set(15.7, 0.85, -22)
         this.model.sadTv.add(sadTv)
 
-        const coolerTv = this.ressources.items.coolerTv.scene.children[0].children[0]
+        const coolerTv = this.ressources.items.coolerTv.file.scene.children[0].children[0]
         this.model.coolerTv = new THREE.Group()
         this.model.coolerTv.position.set(14.8, 0.8, -21.85)
         this.model.coolerTv.add(coolerTv)

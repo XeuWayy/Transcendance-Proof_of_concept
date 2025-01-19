@@ -50,13 +50,13 @@ class Player {
 
     setupPhysics() {
         const capsuleDesc = RAPIER.RigidBodyDesc.dynamic()
-            .setTranslation(5, 1.8, 0)
+            .setTranslation(-15, 1.7, 0)
             .setCcdEnabled(true)
             .lockRotations()
 
         this.rigidBody = this.physics.instance.createRigidBody(capsuleDesc)
 
-        const colliderDesc = RAPIER.ColliderDesc.capsule(0.55, 0.5)
+        const colliderDesc = RAPIER.ColliderDesc.capsule(0.55, 0.325)
             .setMass(0.75)
             .setRestitution(0.3)
             .setFriction(0.7)

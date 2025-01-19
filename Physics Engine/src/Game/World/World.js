@@ -21,7 +21,6 @@ class World {
 
         this.ressources.on('loaded', () => {
             this.loaded = true
-            this.game.gameReady = true
             this.player = new Player()
             this.environment = new Environment()
             this.ground = new Ground()
@@ -29,7 +28,8 @@ class World {
             this.pong = new Pong()
             this.tetris = new Tetris()
             this.kidPlayground = new KidsPlayground()
-            this.test = new Test()
+            //this.test = new Test()
+            this.game.gameReady = true
         })
     }
 
@@ -66,7 +66,7 @@ class World {
                 threeMesh.quaternion.set(rotation.x, rotation.y, rotation.z, rotation.w)
             })
 
-            this.tetris.update()
+            //this.tetris.update()
         }
     }
 

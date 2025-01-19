@@ -35,21 +35,21 @@ class Ressources extends EventEmitter {
         this.loaders.gltfLoader.setKTX2Loader(this.loaders.ktx2Loader)
     }
 
-    startLoading() {
+    async startLoading() {
         for(const source of sources) {
             switch (source.type) {
                 case "texture":
-                    this.loaders.textureLoader.load(source.path, (file) => {
+                    await this.loaders.textureLoader.load(source.path, (file) => {
                         this.sourceLoaded(source, file)
                     })
                     break
                 case "ktx2Texture":
-                    this.loaders.ktx2Loader.load(source.path, (file) => {
+                    await this.loaders.ktx2Loader.load(source.path, (file) => {
                         this.sourceLoaded(source, file)
                     })
                     break
                 case "gltfModel":
-                    this.loaders.gltfLoader.load(source.path, (file) => {
+                    await this.loaders.gltfLoader.load(source.path, (file) => {
                         this.sourceLoaded(source, file)
                     })
                     break
@@ -57,9 +57,15 @@ class Ressources extends EventEmitter {
         }
     }
 
-    sourceLoaded(source, file) {
-        this.items[source.name] = file
+    async sourceLoaded(source, file) {
+        if (source.json) {
+            source.json = await fetch(source.json).then((response) => response.json())
+        }
 
+        this.items[source.name] = {
+            file: file,
+            json : source.json || null
+        }
         this.loaded++
         if (this.loaded === this.toLoad) {
             this.trigger('loaded')

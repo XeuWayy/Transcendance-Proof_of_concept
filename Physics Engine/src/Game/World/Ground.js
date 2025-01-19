@@ -18,23 +18,23 @@ class Ground {
     setTextures() {
         this.textures = {}
 
-        this.textures.diff = this.ressources.items.groundDiffTexture
+        this.textures.diff = this.ressources.items.groundDiffTexture.file
         this.textures.diff.colorSpace = THREE.SRGBColorSpace
         this.textures.diff.repeat.set(16, 16)
         this.textures.diff.wrapS = THREE.RepeatWrapping
         this.textures.diff.wrapT = THREE.RepeatWrapping
 
-        this.textures.arm = this.ressources.items.groundArmTexture
+        this.textures.arm = this.ressources.items.groundArmTexture.file
         this.textures.arm.repeat.set(16, 16)
         this.textures.arm.wrapS = THREE.RepeatWrapping
         this.textures.arm.wrapT = THREE.RepeatWrapping
 
-        this.textures.ao = this.ressources.items.groundAoTexture
+        this.textures.ao = this.ressources.items.groundAoTexture.file
         this.textures.ao.repeat.set(16, 16)
         this.textures.ao.wrapS = THREE.RepeatWrapping
         this.textures.ao.wrapT = THREE.RepeatWrapping
 
-        this.textures.nor = this.ressources.items.groundNorTexture
+        this.textures.nor = this.ressources.items.groundNorTexture.file
         this.textures.nor.repeat.set(16, 16)
         this.textures.nor.wrapS = THREE.RepeatWrapping
         this.textures.nor.wrapT = THREE.RepeatWrapping

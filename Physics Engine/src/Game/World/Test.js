@@ -11,7 +11,7 @@ class Test {
 
     loadTest() {
         this.model = {}
-        this.test = this.ressources.items.test.scene
+        this.test = this.ressources.items.test.file.scene
 
         for (const children of this.test.children){
             const str = children.name.substring(0, children.name.indexOf('_'))
@@ -77,7 +77,7 @@ class Test {
             interact: {enabled: true, type: 'take', threeMesh: this.model['MONKE'].at(0), rapierCollider: null, action: null}
         })
 
-        this.stove = this.ressources.items.stove.scene
+        this.stove = this.ressources.items.stove.file.scene
 
         this.physics.createPhysics({
             name: 'testCube',

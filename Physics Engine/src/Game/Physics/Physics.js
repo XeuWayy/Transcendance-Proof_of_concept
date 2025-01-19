@@ -64,6 +64,12 @@ class Physics {
         const position = threeObject.position
         const quaternion = threeObject.quaternion
 
+        let lod
+        if (threeObject.isLOD) {
+            lod = threeObject
+            threeObject = threeObject.children[0]
+        }
+
         let colliderDesc
 
         if (colliderType === 'convexHull' || colliderType === 'trimesh') {
@@ -121,6 +127,12 @@ class Physics {
         let rigidBodyDesc;
         if (type === 'fixed') {
             rigidBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(position.x, position.y, position.z)
+                .setRotation(new RAPIER.Quaternion(
+                    quaternion.x,
+                    quaternion.y,
+                    quaternion.z,
+                    quaternion.w
+                ));
         } else {
             rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic().setTranslation(position.x, position.y, position.z)
                 .setRotation(new RAPIER.Quaternion(
@@ -133,6 +145,10 @@ class Physics {
 
         const rigidBody = this.instance.createRigidBody(rigidBodyDesc);
         interact.rapierCollider = this.instance.createCollider(colliderDesc, rigidBody)
+
+        if (lod) {
+            threeObject = lod
+        }
 
         if (type === 'fixed') {
             this.game.world.addFixedObject(name, threeObject, rigidBody, interact)
@@ -151,7 +167,7 @@ class Physics {
                 const { vertices, colors } = this.instance.debugRender()
 
                 this.geometry.attributes.position.array = vertices
-                this.geometry.attributes.position.count = Math.round(vertices.length * 0.3333)
+                this.geometry.attributes.position.count = vertices.length / 3
                 this.geometry.attributes.position.needsUpdate = true
 
                 this.geometry.attributes.color.array = colors
