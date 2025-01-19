@@ -1,5 +1,5 @@
 {
-"coat_hanger_LOD_Collection": {
+  "coat_hanger_LOD_Collection": {
     "name": "coat_hanger_LOD_Collection",
     "colliderType": "box",
     "threeObject": "coat_hanger_LOD0",
@@ -239,6 +239,198 @@
       "enabled": false
     }
   },
+  "toilet_LOD_Collection": {
+    "name": "toilet_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "toilet_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "toiletBrush_LOD_Collection": {
+    "name": "toiletBrush_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "toiletBrush_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "toiletPaperHolder_LOD_Collection": {
+    "name": "toiletPaperHolder_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "toiletPaperHolder_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "lawnmower_LOD_Collection": {
+    "name": "lawnmower_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "lawnmower_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "Old_rusty_stove_LOD_Collection": {
+    "name": "Old_rusty_stove_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "Old_rusty_stove_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "smeg_LOD_Collection": {
+    "name": "smeg_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "smeg_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "clothesRack_LOD_Collection": {
+    "name": "clothesRack_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "clothesRack_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "modernWardrobe_LOD_Collection": {
+    "name": "modernWardrobe_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "modernWardrobe_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "microwave_glass_LOD_Collection": {
+    "name": "microwave_glass_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "microwave_glass_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "door007": {
+    "name": "door007",
+    "colliderType": "box",
+    "threeObject": "door007",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "door006": {
+    "name": "door006",
+    "colliderType": "box",
+    "threeObject": "door006",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "door005": {
+    "name": "door005",
+    "colliderType": "box",
+    "threeObject": "door005",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "door004": {
+    "name": "door004",
+    "colliderType": "box",
+    "threeObject": "door004",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "door003": {
+    "name": "door003",
+    "colliderType": "box",
+    "threeObject": "door003",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "door002": {
+    "name": "door002",
+    "colliderType": "box",
+    "threeObject": "door002",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "door001": {
+    "name": "door001",
+    "colliderType": "box",
+    "threeObject": "door001",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
   "appleSticker_LOD_Collection": {
     "name": "appleSticker_LOD_Collection",
     "colliderType": "box",
@@ -291,6 +483,18 @@
     "name": "desk_LOD_Collection",
     "colliderType": "box",
     "threeObject": "desk_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0.1,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "deskChair_LOD_Collection": {
+    "name": "deskChair_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "deskChair_LOD0_1",
     "type": "fixed",
     "mass": 1,
     "friction": 0.5,
@@ -411,114 +615,6 @@
     "name": "stevePhoto2_LOD_Collection",
     "colliderType": "box",
     "threeObject": "stevePhoto2_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "toilet_LOD_Collection": {
-    "name": "toilet_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "toilet_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "toiletBrush_LOD_Collection": {
-    "name": "toiletBrush_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "toiletBrush_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "toiletPaperHolder_LOD_Collection": {
-    "name": "toiletPaperHolder_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "toiletPaperHolder_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "lawnmower_LOD_Collection": {
-    "name": "lawnmower_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "lawnmower_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "Old_rusty_stove_LOD_Collection": {
-    "name": "Old_rusty_stove_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "Old_rusty_stove_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "smeg_LOD_Collection": {
-    "name": "smeg_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "smeg_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "clothesRack_LOD_Collection": {
-    "name": "clothesRack_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "clothesRack_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "modernWardrobe_LOD_Collection": {
-    "name": "modernWardrobe_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "modernWardrobe_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "microwave_glass_LOD_Collection": {
-    "name": "microwave_glass_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "microwave_glass_LOD0",
     "type": "fixed",
     "mass": 1,
     "friction": 0.5,
