@@ -62,8 +62,8 @@ class Game {
         this.renderPerf = new ThreePerf({
             anchorX: 'right',
             anchorY: 'bottom',
-            domElement: document.body, // or other canvas rendering wrapper
-            renderer: this.renderer.instance // three js renderer instance you use for rendering
+            domElement: document.body,
+            renderer: this.renderer.instance
         });
         document.body.appendChild(this.stats.dom)
     }

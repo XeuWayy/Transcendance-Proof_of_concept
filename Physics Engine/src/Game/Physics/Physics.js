@@ -12,7 +12,7 @@ class Physics {
 
         this.initPhysics()
 
-        this.enabled = true
+        this.enabled = false
         this.setDebug()
     }
 
@@ -36,7 +36,7 @@ class Physics {
             this.lineSegments = new THREE.LineSegments(this.geometry, this.material)
             this.lineSegments.frustumCulled = false
 
-            this.scene.add(this.lineSegments)
+            //this.scene.add(this.lineSegments)
         })
     }
 
@@ -158,12 +158,13 @@ class Physics {
     }
 
 
-    update() {
+    async update() {
         if (this.instance) {
             this.instance.timestep = Math.min(this.time.deltaInSecond, 0.1)
             this.instance.step()
 
             if (this.enabled) {
+                this.scene.add(this.lineSegments)
                 const { vertices, colors } = this.instance.debugRender()
 
                 this.geometry.attributes.position.array = vertices

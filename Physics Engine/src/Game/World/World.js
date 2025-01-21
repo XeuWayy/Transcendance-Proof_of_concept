@@ -29,7 +29,22 @@ class World {
             this.tetris = new Tetris()
             this.kidPlayground = new KidsPlayground()
             //this.test = new Test()
+
+            this.save = {
+                position: this.game.camera.instance.position,
+                rotation: this.game.camera.instance.rotation
+            }
+
+            this.game.camera.instance.position.set(0, 150, 0)
+            this.game.camera.instance.rotation.set(0,0,0)
+            this.scene.traverse((child) => {
+                if (child.isMesh) {
+                    this.game.renderer.instance.compile(child, this.game.camera.instance)
+                }
+            })
             this.game.gameReady = true
+            this.game.camera.instance.position.copy(this.save.position)
+            this.game.camera.instance.rotation.copy(this.save.rotation)
         })
     }
 

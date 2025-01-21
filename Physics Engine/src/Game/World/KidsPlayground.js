@@ -45,6 +45,7 @@ class KidsPlayground {
                         lod.scale.copy(child.scale)
                         child = lod
                     }
+
                     this.scene.add(child)
 
                     this.physics.createPhysics({
