@@ -1,244 +1,4 @@
 {
-  "coat_hanger_LOD_Collection": {
-    "name": "coat_hanger_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "coat_hanger_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "house": {
-    "name": "house",
-    "colliderType": "trimesh",
-    "threeObject": "house",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "window": {
-    "name": "window",
-    "colliderType": "box",
-    "threeObject": "window",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "answeringMachine_LOD_Collection": {
-    "name": "answeringMachine_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "answeringMachine_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "h2g2_LOD_Collection": {
-    "name": "h2g2_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "h2g2_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "plantMonsteraDeliciosa_LOD_Collection": {
-    "name": "plantMonsteraDeliciosa_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "plantMonsteraDeliciosa_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "saucepan_trivet_LOD_Collection": {
-    "name": "saucepan_trivet_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "saucepan_trivet_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "table_LOD_Collection": {
-    "name": "table_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "table_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "chair_LOD_Collection": {
-    "name": "chair_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "chair_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "Bathhub_LOD_Collection": {
-    "name": "Bathhub_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "Bathhub_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "bathroomCabinet_LOD_Collection": {
-    "name": "bathroomCabinet_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "bathroomCabinet_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "bathroomSink_LOD_Collection": {
-    "name": "bathroomSink_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "bathroomSink_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "heatedTowel_LOD_Collection": {
-    "name": "heatedTowel_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "heatedTowel_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "Laundry_LOD_Collection": {
-    "name": "Laundry_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "Laundry_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "Bed_LOD_Collection": {
-    "name": "Bed_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "Bed_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "bedsideCupboard_LOD_Collection": {
-    "name": "bedsideCupboard_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "bedsideCupboard_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "book1_LOD_Collection": {
-    "name": "book1_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "book1_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "book3_LOD_Collection": {
-    "name": "book3_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "book3_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "oldWardrobe_LOD_Collection": {
-    "name": "oldWardrobe_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "oldWardrobe_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "pencilHolder_LOD_Collection": {
-    "name": "pencilHolder_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "pencilHolder_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
   "toilet_LOD_Collection": {
     "name": "toilet_LOD_Collection",
     "colliderType": "box",
@@ -246,19 +6,19 @@
     "type": "fixed",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
   "toiletBrush_LOD_Collection": {
     "name": "toiletBrush_LOD_Collection",
-    "colliderType": "box",
+    "colliderType": "cylinder",
     "threeObject": "toiletBrush_LOD0",
-    "type": "fixed",
+    "type": "dynamic",
     "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
+    "friction": 0.7,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
@@ -270,43 +30,19 @@
     "type": "fixed",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
-  "lawnmower_LOD_Collection": {
-    "name": "lawnmower_LOD_Collection",
+  "washingmachine_LOD_Collection": {
+    "name": "washingmachine_LOD_Collection",
     "colliderType": "box",
-    "threeObject": "lawnmower_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "Old_rusty_stove_LOD_Collection": {
-    "name": "Old_rusty_stove_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "Old_rusty_stove_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
-    "interact": {
-      "enabled": false
-    }
-  },
-  "smeg_LOD_Collection": {
-    "name": "smeg_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "smeg_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
+    "threeObject": "washingmachine_LOD0",
+    "type": "dynamic",
+    "mass": 80,
+    "friction": 1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
@@ -315,118 +51,430 @@
     "name": "clothesRack_LOD_Collection",
     "colliderType": "box",
     "threeObject": "clothesRack_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
+    "type": "dynamic",
+    "mass": 10,
+    "friction": 0.7,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
-  "modernWardrobe_LOD_Collection": {
-    "name": "modernWardrobe_LOD_Collection",
+  "shoes_LOD_Collection": {
+    "name": "shoes_LOD_Collection",
     "colliderType": "box",
-    "threeObject": "modernWardrobe_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
+    "threeObject": "shoes_LOD0",
+    "type": "dynamic",
+    "mass": 2,
+    "friction": 1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
-  "microwave_glass_LOD_Collection": {
-    "name": "microwave_glass_LOD_Collection",
-    "colliderType": "box",
-    "threeObject": "microwave_glass_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
+  "coat_hanger_LOD_Collection": {
+    "name": "coat_hanger_LOD_Collection",
+    "colliderType": "cylinder",
+    "threeObject": "coat_hanger_LOD0",
+    "type": "dynamic",
+    "mass": 7,
+    "friction": 0.7,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
-  "door007": {
-    "name": "door007",
+  "Console_LOD_Collection": {
+    "name": "Console_LOD_Collection",
     "colliderType": "box",
-    "threeObject": "door007",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
+    "threeObject": "Console_LOD0",
+    "type": "dynamic",
+    "mass": 20,
+    "friction": 0.7,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
-  "door006": {
-    "name": "door006",
+  "letters_LOD_Collection": {
+    "name": "letters_LOD_Collection",
     "colliderType": "box",
-    "threeObject": "door006",
-    "type": "fixed",
+    "threeObject": "letters_LOD0",
+    "type": "dynamic",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
-  "door005": {
-    "name": "door005",
+  "PaperStack_LOD_Collection": {
+    "name": "PaperStack_LOD_Collection",
     "colliderType": "box",
-    "threeObject": "door005",
-    "type": "fixed",
+    "threeObject": "PaperStack_LOD0",
+    "type": "dynamic",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
-  "door004": {
-    "name": "door004",
+  "pencilHolder_LOD_Collection": {
+    "name": "pencilHolder_LOD_Collection",
     "colliderType": "box",
-    "threeObject": "door004",
-    "type": "fixed",
+    "threeObject": "pencilHolder_LOD0",
+    "type": "dynamic",
     "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
+    "friction": 0.6,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
-  "door003": {
-    "name": "door003",
-    "colliderType": "box",
-    "threeObject": "door003",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
+  "woodLamp_LOD_Collection": {
+    "name": "woodLamp_LOD_Collection",
+    "colliderType": "cylinder",
+    "threeObject": "woodLamp_LOD0",
+    "type": "dynamic",
+    "mass": 4,
+    "friction": 0.6,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
-  "door002": {
-    "name": "door002",
+  "lighter_LOD_Collection": {
+    "name": "lighter_LOD_Collection",
     "colliderType": "box",
-    "threeObject": "door002",
-    "type": "fixed",
-    "mass": 1,
+    "threeObject": "lighter_LOD0",
+    "type": "dynamic",
+    "mass": 0.5,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
-  "door001": {
-    "name": "door001",
+  "GothicCommode_LOD_Collection": {
+    "name": "GothicCommode_LOD_Collection",
     "colliderType": "box",
-    "threeObject": "door001",
+    "threeObject": "GothicCommode_LOD0",
+    "type": "dynamic",
+    "mass": 45,
+    "friction": 0.8,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "jugOfFlowers_LOD_Collection": {
+    "name": "jugOfFlowers_LOD_Collection",
+    "colliderType": "cylinder",
+    "threeObject": "jugOfFlowers_LOD0",
+    "type": "dynamic",
+    "mass": 1,
+    "friction": 0.6,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "Bed_LOD_Collection": {
+    "name": "Bed_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "Bed_LOD0",
+    "type": "dynamic",
+    "mass": 50,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "bedsideCupboard_LOD_Collection": {
+    "name": "bedsideCupboard_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "bedsideCupboard_LOD0",
+    "type": "dynamic",
+    "mass": 20,
+    "friction": 0.6,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "bedsideLamp_LOD_Collection": {
+    "name": "bedsideLamp_LOD_Collection",
+    "colliderType": "cylinder",
+    "threeObject": "bedsideLamp_LOD0",
+    "type": "dynamic",
+    "mass": 5,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "lamp_LOD_Collection": {
+    "name": "lamp_LOD_Collection",
+    "colliderType": "cylinder",
+    "threeObject": "lamp_LOD0",
+    "type": "fixed",
+    "mass": 20,
+    "friction": 0.5,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "oldWardrobe_LOD_Collection": {
+    "name": "oldWardrobe_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "oldWardrobe_LOD0",
+    "type": "dynamic",
+    "mass": 25,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "WallBookShelf_LOD_Collection": {
+    "name": "WallBookShelf_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "WallBookShelf_LOD0",
+    "type": "dynamic",
+    "mass": 20,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "bench_LOD_Collection": {
+    "name": "bench_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "bench_LOD0",
+    "type": "dynamic",
+    "mass": 20,
+    "friction": 0.5,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "answeringMachine_LOD_Collection": {
+    "name": "answeringMachine_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "answeringMachine_LOD0",
+    "type": "dynamic",
+    "mass": 1,
+    "friction": 0.6,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "kichenUtensils_LOD_Collection": {
+    "name": "kichenUtensils_LOD_Collection",
+    "colliderType": "cylinder",
+    "threeObject": "kichenUtensils_LOD0",
+    "type": "dynamic",
+    "mass": 2,
+    "friction": 0.6,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "KitchenGlove_LOD_Collection": {
+    "name": "KitchenGlove_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "KitchenGlove_LOD0",
+    "type": "dynamic",
+    "mass": 1,
+    "friction": 0.3,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "kitchenWallShelf_LOD_Collection": {
+    "name": "kitchenWallShelf_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "kitchenWallShelf_LOD0",
     "type": "fixed",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "Folderdocuments_LOD_Collection": {
+    "name": "Folderdocuments_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "Folderdocuments_LOD0",
+    "type": "dynamic",
+    "mass": 1,
+    "friction": 0.6,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "h2g2_LOD_Collection": {
+    "name": "h2g2_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "h2g2_LOD0",
+    "type": "dynamic",
+    "mass": 1,
+    "friction": 0.6,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "choppingBoard_LOD_Collection": {
+    "name": "choppingBoard_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "choppingBoard_LOD0",
+    "type": "dynamic",
+    "mass": 1.5,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "Old_rusty_stove_LOD_Collection": {
+    "name": "Old_rusty_stove_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "Old_rusty_stove_LOD0",
+    "type": "dynamic",
+    "mass": 80,
+    "friction": 0.8,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "corkscrew_LOD_Collection": {
+    "name": "corkscrew_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "corkscrew_LOD0",
+    "type": "dynamic",
+    "mass": 100,
+    "friction": 0.4,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "cofeeMachine_LOD_Collection": {
+    "name": "cofeeMachine_LOD_Collection",
+    "colliderType": "cylinder",
+    "threeObject": "cofeeMachine_LOD0",
+    "type": "dynamic",
+    "mass": 3,
+    "friction": 0.6,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "smeg_LOD_Collection": {
+    "name": "smeg_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "smeg_LOD0",
+    "type": "dynamic",
+    "mass": 100,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "folder_LOD_Collection": {
+    "name": "folder_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "folder_LOD0",
+    "type": "dynamic",
+    "mass": 1,
+    "friction": 0.6,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "book1_LOD_Collection": {
+    "name": "book1_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "book1_LOD0",
+    "type": "dynamic",
+    "mass": 1,
+    "friction": 0.6,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "book4_LOD_Collection": {
+    "name": "book4_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "book4_LOD0",
+    "type": "dynamic",
+    "mass": 1,
+    "friction": 0.6,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "book5_LOD_Collection": {
+    "name": "book5_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "book5_LOD0",
+    "type": "dynamic",
+    "mass": 1,
+    "friction": 0.6,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "microwave_LOD_Collection": {
+    "name": "microwave_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "microwave_LOD0",
+    "type": "dynamic",
+    "mass": 15,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "bin_LOD_Collection": {
+    "name": "bin_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "bin_LOD0",
+    "type": "dynamic",
+    "mass": 2,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "Stapler_LOD_Collection": {
+    "name": "Stapler_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "Stapler_LOD0",
+    "type": "dynamic",
+    "mass": 1,
+    "friction": 0.6,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
@@ -435,10 +483,10 @@
     "name": "appleSticker_LOD_Collection",
     "colliderType": "box",
     "threeObject": "appleSticker_LOD0",
-    "type": "fixed",
+    "type": "dynamic",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
@@ -447,10 +495,10 @@
     "name": "book_LOD_Collection",
     "colliderType": "box",
     "threeObject": "book_LOD0",
-    "type": "fixed",
+    "type": "dynamic",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
@@ -462,7 +510,7 @@
     "type": "fixed",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
@@ -471,10 +519,10 @@
     "name": "computer_LOD_Collection",
     "colliderType": "box",
     "threeObject": "computer_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
+    "type": "dynamic",
+    "mass": 20,
+    "friction": 0.65,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
@@ -483,10 +531,10 @@
     "name": "desk_LOD_Collection",
     "colliderType": "box",
     "threeObject": "desk_LOD0",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
+    "type": "dynamic",
+    "mass": 20,
+    "friction": 0.7,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
@@ -494,11 +542,11 @@
   "deskChair_LOD_Collection": {
     "name": "deskChair_LOD_Collection",
     "colliderType": "box",
-    "threeObject": "deskChair_LOD0_1",
-    "type": "fixed",
-    "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
+    "threeObject": "deskChair_LOD0",
+    "type": "dynamic",
+    "mass": 10,
+    "friction": 0.7,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
@@ -507,10 +555,10 @@
     "name": "keyboard_LOD_Collection",
     "colliderType": "box",
     "threeObject": "keyboard_LOD0",
-    "type": "fixed",
+    "type": "dynamic",
     "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
+    "friction": 0.7,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
@@ -519,82 +567,82 @@
     "name": "mouse_LOD_Collection",
     "colliderType": "box",
     "threeObject": "mouse_LOD0",
-    "type": "fixed",
+    "type": "dynamic",
     "mass": 1,
-    "friction": 0.5,
-    "restitution": 0.1,
+    "friction": 0.7,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
   "pencil1_LOD_Collection": {
     "name": "pencil1_LOD_Collection",
-    "colliderType": "box",
+    "colliderType": "cylinder",
     "threeObject": "pencil1_LOD0",
-    "type": "fixed",
+    "type": "dynamic",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
   "pencil2_LOD_Collection": {
     "name": "pencil2_LOD_Collection",
-    "colliderType": "box",
+    "colliderType": "cylinder",
     "threeObject": "pencil2_LOD0",
-    "type": "fixed",
+    "type": "dynamic",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
   "pencil3_LOD_Collection": {
     "name": "pencil3_LOD_Collection",
-    "colliderType": "box",
+    "colliderType": "cylinder",
     "threeObject": "pencil3_LOD0",
-    "type": "fixed",
+    "type": "dynamic",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
   "pencil4_LOD_Collection": {
     "name": "pencil4_LOD_Collection",
-    "colliderType": "box",
+    "colliderType": "cylinder",
     "threeObject": "pencil4_LOD0",
-    "type": "fixed",
+    "type": "dynamic",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
   "pencil5_LOD_Collection": {
     "name": "pencil5_LOD_Collection",
-    "colliderType": "box",
+    "colliderType": "cylinder",
     "threeObject": "pencil5_LOD0",
-    "type": "fixed",
+    "type": "dynamic",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
   },
   "pencilPot_LOD_Collection": {
     "name": "pencilPot_LOD_Collection",
-    "colliderType": "box",
+    "colliderType": "cylinder",
     "threeObject": "pencilPot_LOD0",
-    "type": "fixed",
+    "type": "dynamic",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
@@ -603,10 +651,10 @@
     "name": "stevePhoto1_LOD_Collection",
     "colliderType": "box",
     "threeObject": "stevePhoto1_LOD0",
-    "type": "fixed",
+    "type": "dynamic",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }
@@ -615,10 +663,274 @@
     "name": "stevePhoto2_LOD_Collection",
     "colliderType": "box",
     "threeObject": "stevePhoto2_LOD0",
+    "type": "dynamic",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "Bathhub_LOD_Collection": {
+    "name": "Bathhub_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "Bathhub_LOD0",
     "type": "fixed",
     "mass": 1,
     "friction": 0.5,
-    "restitution": 0.1,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "bathroomCabinet_LOD_Collection": {
+    "name": "bathroomCabinet_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "bathroomCabinet_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "bathroomSink_LOD_Collection": {
+    "name": "bathroomSink_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "bathroomSink_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "heatedTowel_LOD_Collection": {
+    "name": "heatedTowel_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "heatedTowel_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "laundryBasket_LOD_Collection": {
+    "name": "laundryBasket_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "laundryBasket_LOD0",
+    "type": "dynamic",
+    "mass": 5,
+    "friction": 0.6,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "bedsideTable_LOD_Collection": {
+    "name": "bedsideTable_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "bedsideTable_LOD0",
+    "type": "dynamic",
+    "mass": 20,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "modernWardrobe_LOD_Collection": {
+    "name": "modernWardrobe_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "modernWardrobe_LOD0",
+    "type": "dynamic",
+    "mass": 100,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "chair_LOD_Collection": {
+    "name": "chair_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "chair_LOD0",
+    "type": "dynamic",
+    "mass": 5,
+    "friction": 0.65,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "oldTv_LOD_Collection": {
+    "name": "oldTv_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "oldTv_LOD0",
+    "type": "dynamic",
+    "mass": 40,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "plantMonsteraDeliciosa_LOD_Collection": {
+    "name": "plantMonsteraDeliciosa_LOD_Collection",
+    "colliderType": "cylinder",
+    "threeObject": "plantMonsteraDeliciosa_LOD0",
+    "type": "dynamic",
+    "mass": 10,
+    "friction": 0.65,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "sofa_LOD_Collection": {
+    "name": "sofa_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "sofa_LOD0",
+    "type": "dynamic",
+    "mass": 65,
+    "friction": 0.9,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "SucculentPot_LOD_Collection": {
+    "name": "SucculentPot_LOD_Collection",
+    "colliderType": "cylinder",
+    "threeObject": "SucculentPot_LOD0",
+    "type": "dynamic",
+    "mass": 3,
+    "friction": 0.6,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "table_LOD_Collection": {
+    "name": "table_LOD_Collection",
+    "colliderType": "cylinder",
+    "threeObject": "table_LOD0",
+    "type": "dynamic",
+    "mass": 25,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "Torchere_LOD_Collection": {
+    "name": "Torchere_LOD_Collection",
+    "colliderType": "cylinder",
+    "threeObject": "Torchere_LOD0",
+    "type": "dynamic",
+    "mass": 10,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "vintageRock_LOD_Collection": {
+    "name": "vintageRock_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "vintageRock_LOD0",
+    "type": "dynamic",
+    "mass": 50,
+    "friction": 0.7,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "saucepan_trivet_LOD_Collection": {
+    "name": "saucepan_trivet_LOD_Collection",
+    "colliderType": "cylinder",
+    "threeObject": "saucepan_trivet_LOD0",
+    "type": "dynamic",
+    "mass": 1,
+    "friction": 0.4,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "corvette_LOD_Collection": {
+    "name": "corvette_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "corvette_LOD0",
+    "type": "dynamic",
+    "mass": 1525,
+    "friction": 0.3,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "lawnmover_LOD_Collection": {
+    "name": "lawnmover_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "lawnmover_LOD0",
+    "type": "dynamic",
+    "mass": 30,
+    "friction": 0.5,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "lawnmower_LOD_Collection": {
+    "name": "lawnmower_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "lawnmower_LOD0",
+    "type": "dynamic",
+    "mass": 30,
+    "friction": 0.5,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "Tape_LOD_Collection": {
+    "name": "Tape_LOD_Collection",
+    "colliderType": "cylinder",
+    "threeObject": "Tape_LOD0",
+    "type": "dynamic",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "GreenGardeningRake_LOD_Collection": {
+    "name": "GreenGardeningRake_LOD_Collection",
+    "colliderType": "box",
+    "threeObject": "GreenGardeningRake_LOD0",
+    "type": "dynamic",
+    "mass": 2,
+    "friction": 0.5,
+    "restitution": 0,
+    "interact": {
+      "enabled": false
+    }
+  },
+  "house_LOD_Collection": {
+    "name": "house_LOD_Collection",
+    "colliderType": "trimesh",
+    "threeObject": "house_LOD0",
+    "type": "fixed",
+    "mass": 1,
+    "friction": 0.5,
+    "restitution": 0,
     "interact": {
       "enabled": false
     }

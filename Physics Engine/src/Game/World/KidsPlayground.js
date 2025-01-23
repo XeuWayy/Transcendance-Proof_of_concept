@@ -39,6 +39,7 @@ class KidsPlayground {
                         for (let i = 0; i < length; i++) {
                             lod.addLevel(child.children[0], this.distance[i], 0.05)
                         }
+                        lod.name = child.name
                         lod.position.copy(child.position)
                         lod.rotation.copy(child.rotation)
                         lod.quaternion.copy(child.quaternion)

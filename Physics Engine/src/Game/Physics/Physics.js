@@ -132,7 +132,7 @@ class Physics {
                     quaternion.y,
                     quaternion.z,
                     quaternion.w
-                ));
+                ))
         } else {
             rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic().setTranslation(position.x, position.y, position.z)
                 .setRotation(new RAPIER.Quaternion(
@@ -140,12 +140,14 @@ class Physics {
                     quaternion.y,
                     quaternion.z,
                     quaternion.w
-                ));
+                ))
         }
 
         const rigidBody = this.instance.createRigidBody(rigidBodyDesc);
         interact.rapierCollider = this.instance.createCollider(colliderDesc, rigidBody)
-
+        if (threeObject.name.includes('corkscrew') || threeObject.name.includes('Tape')) {
+            rigidBody.enableCcd(true);
+        }
         if (lod) {
             threeObject = lod
         }
